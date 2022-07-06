@@ -13,7 +13,6 @@ import java.util.Map;
 public class APIManager {
     private static final LoggerManager log = LoggerManager.getInstance();
     private static APIManager instance;
-
     private APIManager() {
         initialize();
     }
