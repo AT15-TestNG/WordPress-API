@@ -28,13 +28,6 @@ public class APIManager {
         RestAssured.port = CredentialsManager.getInstance().getAPIServicePort();
     }
 
-    public void setCredentials(String username, String password) {
-        PreemptiveBasicAuthScheme authScheme = new PreemptiveBasicAuthScheme();
-        authScheme.setUserName(username);
-        authScheme.setPassword(password);
-        RestAssured.authentication = authScheme;
-    }
-
     public Response get(String endpoint) {
         return RestAssured.given().get(endpoint);
     }
