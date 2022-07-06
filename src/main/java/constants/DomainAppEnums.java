@@ -2,8 +2,8 @@ package constants;
 
 public class DomainAppEnums {
     public enum UserRole {
-        ADMINISTRATOR("administrator"),
-        SUBSCRIBER("subscriber");
+        ADMIN("administrator"),
+        SUBS("subscriber");
 
         private final String userRole;
 
