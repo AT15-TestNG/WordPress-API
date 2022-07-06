@@ -21,13 +21,13 @@ public class APIAuthorizationMethods {
         jsonAsMap.put("username", auth.getUserName(userRole));
         jsonAsMap.put("password", auth.getPassword(userRole));
         String tokenEndpoint = auth.getTokenEndpoint();
-        Response res = api.post(tokenEndpoint, ContentType.JSON, jsonAsMap);
+        Response response = api.post(tokenEndpoint, ContentType.JSON, jsonAsMap);
 
-        if ((res.jsonPath().get("token_type") == null)||(res.jsonPath().get("jwt_token") == null)) {
+        if ((response.jsonPath().get("token_type") == null)||(response.jsonPath().get("jwt_token") == null)) {
             log.error("Error while getting token");
             return null;
         } else {
-            String token = res.jsonPath().get("token_type") + " " + res.jsonPath().get("jwt_token");
+            String token = response.jsonPath().get("token_type") + " " + response.jsonPath().get("jwt_token");
             return new Header("Authorization", token);
         }
     }

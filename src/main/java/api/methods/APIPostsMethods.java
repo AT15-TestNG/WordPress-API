@@ -17,15 +17,15 @@ public class APIPostsMethods {
     public static final CredentialsManager auth = CredentialsManager.getInstance();
 
     public static String deletePostById(String postId) {
-        String userRole = DomainAppEnums.UserRole.ADMIN.getUserRole();
+        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers headers = new Headers(authHeader);
 
         String postsByIdEndpoint = auth.getPostsByIdEndpoint().replace("<id>", postId);
-        Response res = api.delete(postsByIdEndpoint, headers);
+        Response response = api.delete(postsByIdEndpoint, headers);
 
-        if (res.jsonPath().getString("status").equals("trash")) {
-            return res.jsonPath().getString("status");
+        if (response.jsonPath().getString("status").equals("trash")) {
+            return response.jsonPath().getString("status");
         } else {
             log.error("Error while deleting post");
             return null;
@@ -33,7 +33,7 @@ public class APIPostsMethods {
     }
 
     public static Response createAPost(String content, String title, String excerpt) {
-        String userRole = DomainAppEnums.UserRole.ADMIN.getUserRole();
+        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers headers = new Headers(authHeader);
@@ -45,8 +45,8 @@ public class APIPostsMethods {
         jsonAsMap.put("title", title);
         jsonAsMap.put("excerpt", excerpt);
 
-        Response res = api.post(postsEndpoint, jsonAsMap, headers);
+        Response response = api.post(postsEndpoint, jsonAsMap, headers);
 
-        return (res.jsonPath().getString("id")) == null ? null : res;
+        return (response.jsonPath().getString("id")) == null ? null : response;
     }
 }
