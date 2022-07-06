@@ -25,6 +25,7 @@ public class APIManager {
         log.info("Initializing API Manager");
         RestAssured.baseURI = CredentialsManager.getInstance().getBaseUrl();
         RestAssured.basePath = CredentialsManager.getInstance().getBasePath();
+        RestAssured.port = CredentialsManager.getInstance().getAPIServicePort();
     }
 
     public void setCredentials(String username, String password) {
