@@ -6,6 +6,7 @@ This framework was implemented in Java, and it is used to test the WordPress API
 The following dependencies were used:
 * [Rest Assured](https://rest-assured.io/)
 * [TestNG](https://testng.org/)
+* [Cucumber](https://cucumber.io/)
 * [SonarQube](https://www.sonarqube.org/)
 * [Allure](https://www.allure.io/)
 
