@@ -17,7 +17,23 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
         continue-on-error: true
 
-  SmokeTests:
+  CodeInspection:
+    runs-on: ubuntu-20.04
+    needs: Build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '16.0.2'
+          distribution: 'adopt'
+          fetch-depth: 0
+      - name: Grant execute permissions for gradlew
+        run: chmod +x gradlew
+      - name: SonarQube Scan
+        run: ./gradlew sonarqube
+
+  RunSmokeTests:
     runs-on: ubuntu-20.04
     steps:
       - name: Cancel previous redundant builds
@@ -36,25 +52,9 @@ jobs:
         run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Smoke"
         continue-on-error: false
 
-  CodeInspection:
+  RunAcceptanceTests:
     runs-on: ubuntu-20.04
-    needs: SmokeTests
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '16.0.2'
-          distribution: 'adopt'
-          fetch-depth: 0
-      - name: Grant execute permissions for gradlew
-        run: chmod +x gradlew
-      - name: SonarQube Scan
-        run: ./gradlew sonarqube
-
-  AcceptanceTests:
-    runs-on: ubuntu-20.04
-    needs: CodeInspection
+    needs: RunSmokeTests
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK
