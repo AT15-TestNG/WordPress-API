@@ -22,10 +22,10 @@ public class APIPostsMethods {
         Headers headers = new Headers(authHeader);
 
         String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", postId);
-        Response res = apiManager.delete(postsByIdEndpoint, headers);
+        Response response = apiManager.delete(postsByIdEndpoint, headers);
 
-        if (res.jsonPath().getString("status").equals("trash")) {
-            return res.jsonPath().getString("status");
+        if (response.jsonPath().getString("status").equals("trash")) {
+            return response.jsonPath().getString("status");
         } else {
             log.error("Error while deleting post");
             return null;
@@ -45,8 +45,8 @@ public class APIPostsMethods {
         jsonAsMap.put("title", title);
         jsonAsMap.put("excerpt", excerpt);
 
-        Response res = apiManager.post(postsEndpoint, jsonAsMap, headers);
+        Response response = apiManager.post(postsEndpoint, jsonAsMap, headers);
 
-        return (res.jsonPath().getString("id")) == null ? null : res;
+        return (response.jsonPath().getString("id")) == null ? null : response;
     }
 }
