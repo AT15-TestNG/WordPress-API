@@ -1,3 +1,4 @@
+[![WordPress Pipeline](https://github.com/AT15-TestNG/WordPress-API/actions/workflows/github-actions-pipeline.yml/badge.svg)](https://github.com/AT15-TestNG/WordPress-API/actions/workflows/github-actions-pipeline.yml)
 # WordPress API v2 Testing Framework
 
 This framework was implemented in Java, and it is used to test the WordPress API v2.
