@@ -24,7 +24,7 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: Build API Testing framework
-        run: gradle clean executeFeatures -PenvId="QA01" -PcucumberOptions="@RunSuit"
+        run: gradle clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Acceptance"
         continue-on-error: true
 
   CodeInspection:
