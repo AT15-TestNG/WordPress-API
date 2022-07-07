@@ -13,16 +13,20 @@ import java.util.Map;
 
 public class APIPostsMethods {
     public static final LoggerManager log = LoggerManager.getInstance();
+
     public static final APIManager apiManager = APIManager.getInstance();
     public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
+
 
     public static String deletePostById(String postId) {
         String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers headers = new Headers(authHeader);
 
+
         String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", postId);
         Response response = apiManager.delete(postsByIdEndpoint, headers);
+
 
         if (response.jsonPath().getString("status").equals("trash")) {
             return response.jsonPath().getString("status");
@@ -38,7 +42,9 @@ public class APIPostsMethods {
         Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers headers = new Headers(authHeader);
 
+
         String postsEndpoint = credentialsManager.getPostsEndpoint();
+
 
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("content", content);
