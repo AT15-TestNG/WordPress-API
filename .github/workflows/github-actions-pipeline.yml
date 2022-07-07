@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Cancel previous redundant builds
         uses: styfle/cancel-workflow-action@0.9.1
-        with:hich repositories you want to analyze.
+        with: which repositories you want to analyze.
           access_token: ${{ github.token }}
       - uses: actions/checkout@v2
       - name: Set up JDK
