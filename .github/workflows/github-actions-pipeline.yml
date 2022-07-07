@@ -8,7 +8,7 @@ on:
 env:
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 jobs:
-  Build:
+  SmokeTests:
     runs-on: ubuntu-20.04
     steps:
       - name: Cancel previous redundant builds
@@ -24,12 +24,12 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: Build API Testing framework
-        run: gradle clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Acceptance"
-        continue-on-error: true
+        run: gradle clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Smoke"
+        continue-on-error: false
 
   CodeInspection:
     runs-on: ubuntu-20.04
-    needs: Build
+    needs: SmokeTests
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK
@@ -57,7 +57,7 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: Run Tests
-        run: ./gradlew clean test
+        run: gradle clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Acceptance"
         continue-on-error: true
 
       - name: Publish Test Results
