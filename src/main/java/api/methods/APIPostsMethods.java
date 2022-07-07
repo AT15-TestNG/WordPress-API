@@ -13,16 +13,16 @@ import java.util.Map;
 
 public class APIPostsMethods {
     public static final LoggerManager log = LoggerManager.getInstance();
-    public static final APIManager api = APIManager.getInstance();
-    public static final CredentialsManager auth = CredentialsManager.getInstance();
+    public static final APIManager apiManager = APIManager.getInstance();
+    public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
 
     public static String deletePostById(String postId) {
         String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers headers = new Headers(authHeader);
 
-        String postsByIdEndpoint = auth.getPostsByIdEndpoint().replace("<id>", postId);
-        Response response = api.delete(postsByIdEndpoint, headers);
+        String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", postId);
+        Response response = apiManager.delete(postsByIdEndpoint, headers);
 
         if (response.jsonPath().getString("status").equals("trash")) {
             return response.jsonPath().getString("status");
@@ -38,15 +38,20 @@ public class APIPostsMethods {
         Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers headers = new Headers(authHeader);
 
-        String postsEndpoint = auth.getPostsEndpoint();
+        String postsEndpoint = credentialsManager.getPostsEndpoint();
 
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("content", content);
         jsonAsMap.put("title", title);
         jsonAsMap.put("excerpt", excerpt);
 
-        Response response = api.post(postsEndpoint, jsonAsMap, headers);
+        Response response = apiManager.post(postsEndpoint, jsonAsMap, headers);
 
-        return (response.jsonPath().getString("id")) == null ? null : response;
+        if (response.jsonPath().getString("id") == null) {
+            log.error("Error while creating post");
+            return null;
+        } else {
+            return response;
+        }
     }
 }
