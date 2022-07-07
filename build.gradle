@@ -22,7 +22,7 @@ dependencies {
 
 test {
     useTestNG()
-    systemProperty "envId", 'envId'
+    systemProperty "envId", envId
 }
 
 configurations {
