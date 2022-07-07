@@ -84,8 +84,4 @@ public class CredentialsManager {
     public String getPassword(String userRole) {
         return getEnvironmentSetting("userType.password").replace("usertype", userRole);
     }
-
-    public int getAPIServicePort() {
-        return Integer.parseInt(getEnvironmentSetting("api.service.port"));
-    }
 }
