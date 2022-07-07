@@ -27,13 +27,6 @@ public class APIManager {
         RestAssured.basePath = CredentialsManager.getInstance().getBasePath();
     }
 
-    public void setCredentials(String username, String password) {
-        PreemptiveBasicAuthScheme authScheme = new PreemptiveBasicAuthScheme();
-        authScheme.setUserName(username);
-        authScheme.setPassword(password);
-        RestAssured.authentication = authScheme;
-    }
-
     public Response get(String endpoint) {
         return RestAssured.given().get(endpoint);
     }
