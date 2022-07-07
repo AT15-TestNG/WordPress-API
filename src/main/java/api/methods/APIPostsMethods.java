@@ -47,6 +47,11 @@ public class APIPostsMethods {
 
         Response response = apiManager.post(postsEndpoint, jsonAsMap, headers);
 
-        return (response.jsonPath().getString("id")) == null ? null : response;
+        if (response.jsonPath().getString("id") == null) {
+            log.error("Error while creating post");
+            return null;
+        } else {
+            return response;
+        }
     }
 }
