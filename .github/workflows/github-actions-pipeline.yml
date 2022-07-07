@@ -2,22 +2,92 @@ name: WordPress CI
 on:
   push:
     branches:
-      - master
-      - develop
+      - '**'
   pull_request:
     types: [opened, reopened, synchronize]
+env:
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+  Build:
+    runs-on: ubuntu-20.04
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Cancel previous redundant builds
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:hich repositories you want to analyze.
+          access_token: ${{ github.token }}
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '16.0.2'
+          distribution: 'adopt'
+      - name: Grant execute permissions for gradlew
+        run: chmod +x gradlew
+      - name: Build API Testing framework
+        run: ./gradlew clean build
+        continue-on-error: true
+
+  CodeInspection:
+    runs-on: ubuntu-20.04
+    needs: Build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '16.0.2'
+          distribution: 'adopt'
+          fetch-depth: 0
+      - name: Grant execute permissions for gradlew
+        run: chmod +x gradlew
+      - name: SonarQube Scan
+        run: ./gradlew sonarqube
+
+  AcceptanceTests:
+    runs-on: ubuntu-20.04
+    needs: CodeInspection
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '16.0.2'
+          distribution: 'adopt'
+          fetch-depth: 0
+      - name: Grant execute permissions for gradlew
+        run: chmod +x gradlew
+      - name: Run Tests
+        run: ./gradlew clean test
+        continue-on-error: true
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        if: always()
+        with:
+          files: "build/test-results/**/*.xml"
+
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        if: ${{ github.event.pull_request.synchronize == true }}
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Allure Report action from marketplace
+        uses: simple-elf/allure-report-action@master
+        if: ${{ github.event.pull_request.synchronize == true }}
+        id: allure-report
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+
+      - name: Deploy report to Github Pages
+        if: ${{ github.event.pull_request.synchronize == true }}
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
