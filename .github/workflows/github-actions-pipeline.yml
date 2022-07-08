@@ -24,7 +24,8 @@ jobs:
     runs-on: ubuntu-20.04
     needs: Build
     steps:
-      - uses: actions/checkout@v2
+      - name: Cloning repository
+        uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -40,7 +41,8 @@ jobs:
     runs-on: ubuntu-20.04
     needs: CodeInspection
     steps:
-      - uses: actions/checkout@v2
+      - name: Cloning Repository
+        uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -55,7 +57,8 @@ jobs:
     runs-on: ubuntu-20.04
     needs: RunSmokeTests
     steps:
-      - uses: actions/checkout@v2
+      - name: Cloning Repository
+        uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -67,7 +70,15 @@ jobs:
       - name: Run Tests
         run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Acceptance"
       - name: Publish cucumber report
-      - uses: deblockt/cucumber-report-annotations-action@v1.7
+        uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
           path: "reports/cucumber-reports/CucumberTestReport.json"
+
+#      - name: Deploy report to Github Pages
+#        if: always()
+#        uses: peaceiris/actions-gh-pages@v2
+#        env:
+#          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          PUBLISH_BRANCH: gh-pages
+#          PUBLISH_DIR: "reports/cucumber-html-reports/overview-features.html"
