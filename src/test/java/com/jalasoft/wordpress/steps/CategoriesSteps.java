@@ -74,6 +74,19 @@ public class CategoriesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to delete a category$")
+    public void deleteCategoryById() {
+        String id = response.getResponse().jsonPath().getString("id");
+
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("force", true);
+
+        String categoryByIdEndpoint = credentialsManager.getCategoriesByIdEndpoint().replace("<id>", id);
+
+        Response requestResponse = apiManager.delete(categoryByIdEndpoint, jsonAsMap, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of categories$")
     public void checkCategoriesAmount() {
         int expectedAmountOfCategories = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
@@ -96,5 +109,10 @@ public class CategoriesSteps {
     @Then("^proper description should be returned$")
     public void checkProperDescription() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("description"), queryParamsCategory.get("description"), "wrong description returned");
+    }
+
+    @Then("^the category should be deleted$")
+    public void checkDeletedCategory() {
+        Assert.assertTrue(response.getResponse().jsonPath().get("deleted"), "category was not deleted");
     }
 }
