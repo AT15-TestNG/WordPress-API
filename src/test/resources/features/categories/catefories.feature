@@ -28,8 +28,8 @@ Feature: Categories
       | User Role     | Status Line          |
       | administrator | HTTP/1.1 201 Created |
 
-  @RetrieveACategory @Smoke @Test
-  Scenario Outline: A user with proper role should be able to retrieve a post
+  @RetrieveACategory @Smoke
+  Scenario Outline: A user with proper role should be able to retrieve a category
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a category
     Then response should be "<Status Line>"
