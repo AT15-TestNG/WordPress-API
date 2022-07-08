@@ -58,6 +58,22 @@ public class CategoriesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to update a category with the following query params$")
+    public void updateCategoryById(DataTable table) {
+        String id = response.getResponse().jsonPath().getString("id");
+
+        queryParamsCategory = new HashMap<>();
+        queryParamsCategory.put("id", id);
+
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        queryParamsCategory.putAll(queryParamsList.get(0));
+
+        String categoryByIdEndpoint = credentialsManager.getCategoriesByIdEndpoint().replace("<id>", id);
+
+        Response requestResponse = apiManager.put(categoryByIdEndpoint, queryParamsList.get(0), headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of categories$")
     public void checkCategoriesAmount() {
         int expectedAmountOfCategories = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
@@ -65,7 +81,7 @@ public class CategoriesSteps {
         Assert.assertEquals(expectedAmountOfCategories, actualAmountOfCategories, "wrong amount of categories returned");
     }
 
-    @Then("^name should be correct$")
+    @Then("^proper name should be returned")
     public void checkCategoryName() {
         String categoryName = response.getResponse().jsonPath().getString("name");
         Assert.assertEquals(queryParamsCategory.get("name"), categoryName, "wrong category name returned");
@@ -75,5 +91,10 @@ public class CategoriesSteps {
     public void checkProperCategoryId() {
         String categoryId = queryParamsCategory.get("id").toString();
         Assert.assertEquals(response.getResponse().jsonPath().getString("id"), categoryId);
+    }
+
+    @Then("^proper description should be returned$")
+    public void checkProperDescription() {
+        Assert.assertEquals(response.getResponse().jsonPath().getString("description"), queryParamsCategory.get("description"), "wrong description returned");
     }
 }

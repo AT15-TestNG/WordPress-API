@@ -22,7 +22,7 @@ Feature: Categories
       | TestNG Category Example |
     Then response should be "<Status Line>"
     And response should be valid and have a body
-    And name should be correct
+    And proper name should be returned
 
     Examples:
       | User Role     | Status Line          |
@@ -35,7 +35,23 @@ Feature: Categories
     Then response should be "<Status Line>"
     And response should be valid and have a body
     And proper category id should be returned
-    And name should be correct
+    And proper name should be returned
+
+    Examples:
+      | User Role     | Status Line     |
+      | administrator | HTTP/1.1 200 OK |
+
+  @UpdateACategory @Smoke
+  Scenario Outline: A user with proper role should be able to update a category
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to update a category with the following query params
+      | name                    | description                 |
+      | TestNG Category Updated | TestNG Category Description |
+    Then response should be "<Status Line>"
+    And response should be valid and have a body
+    And proper category id should be returned
+    And proper name should be returned
+    And proper description should be returned
 
     Examples:
       | User Role     | Status Line     |
