@@ -24,7 +24,7 @@ public class CategoriesFeatureHook {
         Assert.assertTrue(deleted, "Category was not deleted");
     }
 
-    @Before("@RetrieveACategory or @UpdateACategory")
+    @Before("@RetrieveACategory or @UpdateACategory or @DeleteACategory")
     public void beforeRetrieveACategory() {
         String name = "Category Name Example";
 
