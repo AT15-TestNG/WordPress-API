@@ -63,6 +63,21 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to update a user with the following query params$")
+    public void updateUserById(DataTable table) {
+        String id = response.getResponse().jsonPath().getString("id");
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        queryParams.putAll(queryParamsList.get(0));
+
+        String usersEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", id);
+
+        Response requestResponse = apiManager.put(usersEndpoint, queryParams, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^proper user id should be returned$")
     public void checkUserId() {
         String id = response.getResponse().jsonPath().getString("id");
@@ -73,6 +88,18 @@ public class UsersSteps {
     public void checkUserName() {
         String name = response.getResponse().jsonPath().getString("name");
         Assert.assertEquals(name, queryParams.get("name"));
+    }
+
+    @Then("^First Name should be correct$")
+    public void checkUserFirstName() {
+        String firstName = response.getResponse().jsonPath().getString("first_name");
+        Assert.assertEquals(firstName, queryParams.get("first_name"));
+    }
+
+    @Then("^Last Name should be correct$")
+    public void checkUserLastName() {
+        String lastName = response.getResponse().jsonPath().getString("last_name");
+        Assert.assertEquals(lastName, queryParams.get("last_name"));
     }
 
     @Then("^description should be correct$")
