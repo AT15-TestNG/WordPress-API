@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: CodeInspection
     steps:
-      - name: Cloning Repository
+      - name: cloning repository
         uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: RunSmokeTests
     steps:
-      - name: Cloning Repository
+      - name: cloning repository
         uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -73,7 +73,7 @@ jobs:
         uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
-          path: "reports/cucumber-reports/CucumberTestReport.json"
+          path: "build/cucumber/cucumber.json"
 
 #      - name: Deploy report to Github Pages
 #        if: always()
