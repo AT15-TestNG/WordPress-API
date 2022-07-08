@@ -39,7 +39,7 @@ jobs:
       - name: Cancel previous redundant builds
         uses: styfle/cancel-workflow-action@0.9.1
         with: which repositories you want to analyze.
-          access_token: ${{ github.token }}
+          access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -73,25 +73,7 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action/composite@v1
         if: always()
         with:
-          files: "build/test-results/**/*.xml"
-
-      - name: Get Allure history
-        uses: actions/checkout@v2
-        if: ${{ github.event.pull_request.synchronize == true }}
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: Allure Report action from marketplace
-        uses: simple-elf/allure-report-action@master
-        if: ${{ github.event.pull_request.synchronize == true }}
-        id: allure-report
-        with:
-          allure_results: allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
-          allure_history: allure-history
+          files: "reports/cucumber-reports/cucumber-report.html"
 
       - name: Deploy report to Github Pages
         if: ${{ github.event.pull_request.synchronize == true }}
