@@ -73,7 +73,7 @@ jobs:
         uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
-          path: "reports/cucumber-reports/CucumberTestReport.json"
+          path: "build/cucumber/cucumber.json"
 
 #      - name: Deploy report to Github Pages
 #        if: always()

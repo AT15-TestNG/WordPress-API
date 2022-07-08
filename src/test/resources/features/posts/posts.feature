@@ -1,4 +1,4 @@
-@Posts
+@Posts @Acceptance
 Feature: Posts
 
   @GetAllPosts @Smoke
