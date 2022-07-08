@@ -35,7 +35,7 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: SonarQube Scan
-        run: ./gradlew sonarqube
+        run: ./gradlew sonarqube -PenvId="QA01"
 
   RunSmokeTests:
     runs-on: ubuntu-20.04

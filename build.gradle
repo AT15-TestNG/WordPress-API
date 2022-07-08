@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "org.sonarqube" version "3.4.0.2513"
 }
 
 group 'com.jalasoft'
@@ -50,5 +51,13 @@ task executeFeatures(type: Test) {
                     '--tags', cucumberOptions
             ]
         }
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "wordpress-testng"
+        property "sonar.organization", "testng-wordpress"
+        property "sonar.host.url", "https://sonarcloud.io"
     }
 }
