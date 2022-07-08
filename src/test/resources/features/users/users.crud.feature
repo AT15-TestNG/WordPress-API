@@ -59,3 +59,16 @@ Feature: Users
   Examples:
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
+
+  @DeleteAPost @Smoke
+  Scenario Outline: A user with proper role should be able to delete a User by Id
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to delete a user by Id
+    Then response should be "<Status Line>"
+    And response should be valid and have a body
+    And user should be deleted
+    And proper deleted user id should be returned
+
+    Examples:
+      | User Role     | Status Line     |
+      | administrator | HTTP/1.1 200 OK |

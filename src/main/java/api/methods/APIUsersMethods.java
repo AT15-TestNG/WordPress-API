@@ -43,8 +43,8 @@ public class APIUsersMethods {
         jsonAsMap.put("force", true);
         jsonAsMap.put("reassign", 1);
 
-        String postsByIdEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", userId);
-        Response response = apiManager.delete(postsByIdEndpoint, jsonAsMap, authHeaders);
+        String usersByIdEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", userId);
+        Response response = apiManager.delete(usersByIdEndpoint, jsonAsMap, authHeaders);
 
         if (response.getBody().jsonPath().getString("deleted").equals("true")) {
             return response.jsonPath().getString("deleted");

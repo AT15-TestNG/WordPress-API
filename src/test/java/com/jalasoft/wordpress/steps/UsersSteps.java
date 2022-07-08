@@ -78,9 +78,31 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to delete a user by Id$")
+    public void deleteUserById() {
+        String id = response.getResponse().jsonPath().getString("id");
+
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+        queryParams.put("reassign", 1);
+        queryParams.put("force", true);
+
+        String usersByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.delete(usersByIdEndpoint, queryParams, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Then("^proper user id should be returned$")
     public void checkUserId() {
         String id = response.getResponse().jsonPath().getString("id");
+        Assert.assertEquals(id, queryParams.get("id"));
+    }
+
+    @Then("^proper deleted user id should be returned$")
+    public void checkDeletedUserId() {
+        String id = response.getResponse().jsonPath().getString("previous.id");
         Assert.assertEquals(id, queryParams.get("id"));
     }
 
@@ -131,5 +153,10 @@ public class UsersSteps {
     public void checkRole() {
         String role = response.getResponse().jsonPath().getString("role");
         Assert.assertEquals(role, queryParams.get("role"));
+    }
+
+    @Then("^user should be deleted$")
+    public void checkUserDeleted() {
+        Assert.assertEquals(response.getResponse().jsonPath().getString("deleted"), "true");
     }
 }
