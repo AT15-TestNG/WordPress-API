@@ -2,7 +2,6 @@ package api;
 
 import framework.CredentialsManager;
 import io.restassured.RestAssured;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.http.ContentType;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
@@ -30,13 +29,6 @@ public class APIManager {
         RestAssured.baseURI = CredentialsManager.getInstance().getBaseURL();
         RestAssured.basePath = CredentialsManager.getInstance().getBasePath();
         RestAssured.port = CredentialsManager.getInstance().getAPIServicePort();
-    }
-
-    public void setCredentials(String userName, String password) {
-        PreemptiveBasicAuthScheme authScheme = new PreemptiveBasicAuthScheme();
-        authScheme.setUserName(userName);
-        authScheme.setPassword(password);
-        RestAssured.authentication = authScheme;
     }
 
     public Response get(String endpoint) {
