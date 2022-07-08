@@ -97,4 +97,8 @@ public class CredentialsManager {
     public String getUsersEndpoint() {
         return getEnvironmentSetting("api.endpoint.users");
     }
+
+    public String getUsersByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.usersById");
+    }
 }
