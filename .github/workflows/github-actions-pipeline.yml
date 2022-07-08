@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: CodeInspection
     steps:
-      - name: Cloning Repository
+      - name: cloning repository
         uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: RunSmokeTests
     steps:
-      - name: Cloning Repository
+      - name: cloning repository
         uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v3
