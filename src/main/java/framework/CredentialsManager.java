@@ -5,6 +5,7 @@ import utils.LoggerManager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
 
 public class CredentialsManager {
@@ -96,5 +97,9 @@ public class CredentialsManager {
 
     public String getUsersEndpoint() {
         return getEnvironmentSetting("api.endpoint.users");
+    }
+
+    public String getUsersByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.usersById");
     }
 }

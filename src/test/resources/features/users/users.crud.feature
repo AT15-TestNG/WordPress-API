@@ -12,3 +12,19 @@ Feature: Users
     Examples:
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
+
+  @CreateUser @Smoke
+  Scenario Outline: A user with proper role should be able to create a post
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to create a user with the following query params
+      | username      | email                  | password   | roles         |
+      | admin_test    | administrate@email.com | admin_test | administrator |
+    Then response should be "<Status Line>"
+    And response should be valid and have a body
+    And username should be correct
+    And email should be correct
+    And role should be correct
+
+    Examples:
+      | User Role     | Status Line          |
+      | administrator | HTTP/1.1 201 Created |
