@@ -1,4 +1,4 @@
-@Posts @Regression
+@Posts
 Feature: Posts
 
   @GetAllPosts @Smoke
@@ -44,7 +44,7 @@ Feature: Posts
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
 
-  @UpdateAPost @Smoke @Test
+  @UpdateAPost @Smoke
   Scenario Outline: A user with proper role should be able to update a post
     Given I am authorized with a user with "<User Role>" role
     When I make a request to update a post with the following query params
