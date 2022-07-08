@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     testImplementation group: 'io.cucumber', name: 'cucumber-java', version: '7.4.1'
+    implementation group: 'me.jvt.cucumber', name: 'reporting-plugin', version: '7.3.0'
     testImplementation group: 'io.cucumber', name: 'cucumber-testng', version: '7.4.1'
     testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '7.4.1'
     implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.1.1'
@@ -40,9 +41,10 @@ task executeFeatures(type: Test) {
             systemProperty "cucumber.publish.quiet", true
             args = [
                     '--plugin', 'pretty',
+                    '--plugin', 'me.jvt.cucumber.report.PrettyReports:reports',
                     '--plugin', 'html:reports/cucumber-reports/cucumber-report.html',
-                    '--plugin', 'json:reports/cucumber-reports/CucumberTestReport.json',
-                    '--plugin', 'rerun:reports/cucumber-reports/rerun.txt',
+                    '--plugin', 'json:build/cucumber/cucumber.json',
+                    '--plugin', 'rerun:build/cucumber/rerun.txt',
                     '--glue', 'com.jalasoft.wordpress',
                     'src/test/resources/features',
                     '--tags', cucumberOptions
