@@ -18,9 +18,9 @@ public class PostsFeatureHook {
 
     @Before("@RetrieveAPost or @UpdateAPost or @DeleteAPost")
     public void beforeRetrieveAPostFeature() {
-        String content = "Test WAPI Post content";
-        String title = "Test WAPI Title";
-        String excerpt = "Test WAPI Excerpt";
+        String content = "TestNG WordPress Post content";
+        String title = "TestNG WordPress Post title";
+        String excerpt = "TestNG WordPress Post excerpt";
 
         Response requestResponse = APIPostsMethods.createAPost(content, title, excerpt);
 

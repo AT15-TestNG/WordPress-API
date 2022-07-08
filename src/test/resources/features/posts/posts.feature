@@ -17,8 +17,8 @@ Feature: Posts
   Scenario Outline: A user with proper role should be able to create a post
     Given I am authorized with a user with "<User Role>" role
     When I make a request to create a post with the following query params
-      | content                | title           | excerpt           |
-      | Test WAPI Post Content | Test WAPI Title | Test WAPI Excerpt |
+      | content                       | title                  | excerpt                  |
+      | TestNG WordPress Post Content | TestNG WordPress Title | TestNG WordPress Excerpt |
     Then response should be "<Status Line>"
       And response should be valid and have a body
       And content should be correct
@@ -48,8 +48,8 @@ Feature: Posts
   Scenario Outline: A user with proper role should be able to update a post
     Given I am authorized with a user with "<User Role>" role
     When I make a request to update a post with the following query params
-      | content                        | title                   | excerpt                   |
-      | Test WAPI Post Content Updated | Test WAPI Title Updated | Test WAPI Excerpt Updated |
+      | content                          | title                          | excerpt                          |
+      | TestNG WordPress Content Updated | TestNG WordPress Title Updated | TestNG WordPress Excerpt Updated |
     Then response should be "<Status Line>"
       And response should be valid and have a body
       And proper post id should be returned
