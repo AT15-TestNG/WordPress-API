@@ -1,7 +1,6 @@
 package com.jalasoft.wordpress.steps.hooks.features;
 
 import api.http.HttpResponse;
-import api.methods.APIPostsMethods;
 import api.methods.APIUsersMethods;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -17,7 +16,7 @@ public class UsersFeatureHook {
         this.response = response;
     }
 
-    @Before("@RetrieveAUser or @UpdateUser")
+    @Before("@RetrieveAUser or @UpdateUser or @DeleteUser")
     public void beforeRetrieveAUserFeature() {
         String name = "Adolfo";
         String email = "adolfo@email.com";
