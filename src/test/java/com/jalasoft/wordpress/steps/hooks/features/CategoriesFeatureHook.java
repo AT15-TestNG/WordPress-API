@@ -26,9 +26,7 @@ public class CategoriesFeatureHook {
 
     @Before("@RetrieveACategory or @UpdateACategory or @DeleteACategory")
     public void beforeRetrieveACategory() {
-        String name = "Category Name Example";
-
-        Response requestResponse = APICategoriesMethods.createACategory(name);
+        Response requestResponse = APICategoriesMethods.createACategory();
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
