@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +43,21 @@ public class CategoriesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve a category$")
+    public void getCategoryById() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String name = response.getResponse().jsonPath().getString("name");
+
+        queryParamsCategory = new HashMap<>();
+        queryParamsCategory.put("id", id);
+        queryParamsCategory.put("name", name);
+
+        String categoryByIdEndpoint = credentialsManager.getCategoriesByIdEndpoint().replace("<id>", id);
+
+        Response requestResponse = apiManager.get(categoryByIdEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of categories$")
     public void checkCategoriesAmount() {
         int expectedAmountOfCategories = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
@@ -53,5 +69,11 @@ public class CategoriesSteps {
     public void checkCategoryName() {
         String categoryName = response.getResponse().jsonPath().getString("name");
         Assert.assertEquals(queryParamsCategory.get("name"), categoryName, "wrong category name returned");
+    }
+
+    @Then("^proper category id should be returned$")
+    public void checkProperCategoryId() {
+        String categoryId = queryParamsCategory.get("id").toString();
+        Assert.assertEquals(response.getResponse().jsonPath().getString("id"), categoryId);
     }
 }

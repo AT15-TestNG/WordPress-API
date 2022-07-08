@@ -30,4 +30,23 @@ public class APICategoriesMethods {
             return false;
         }
     }
+
+    public static Response createACategory(String name) {
+        String userRole = "administrator";
+        Header header = APIAuthorizationMethods.getAuthHeader(userRole);
+        Headers authHeaders = new Headers(header);
+
+        String categoryEndpoint = credentialsManager.getCategoriesEndpoint();
+
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("name", name);
+
+        Response response = apiManager.post(categoryEndpoint, jsonAsMap, authHeaders);
+
+        if (response.jsonPath().getString("id") == null) {
+            return null;
+        } else {
+            return response;
+        }
+    }
 }
