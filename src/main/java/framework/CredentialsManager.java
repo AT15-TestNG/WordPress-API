@@ -10,7 +10,7 @@ public class CredentialsManager {
     private Properties properties;
     private static final LoggerManager log = LoggerManager.getInstance();
     private static final String envFilePath = System.getProperty("user.dir") + File.separator + "environment.properties";
-    private static final String usersFilePath = System.getProperty("user.dir") + File.separator + "users.properties";
+    private static final String usersFilePath = System.getProperty("user.dir") + File.separator + "user.properties";
     private static final String apiFilePath = System.getProperty("user.dir") + File.separator + "api.properties";
     private static CredentialsManager instance;
     private String envId;
