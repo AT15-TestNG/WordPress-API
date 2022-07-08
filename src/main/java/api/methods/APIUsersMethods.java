@@ -13,6 +13,28 @@ public class APIUsersMethods {
     public static final APIManager apiManager = APIManager.getInstance();
     public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
 
+    public static Response createAUser(String name, String email, String password, String description) {
+        String userRole = "administrator";
+        Header header = APIAuthorizationMethods.getAuthHeader(userRole);
+        Headers authHeaders = new Headers(header);
+
+        String usersEndpoint = credentialsManager.getUsersEndpoint();
+
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("username", name);
+        jsonAsMap.put("email", email);
+        jsonAsMap.put("password", password);
+        jsonAsMap.put("description", description);
+
+        Response response = apiManager.post(usersEndpoint, jsonAsMap, authHeaders);
+
+        if (response.jsonPath().getString("id") == null) {
+            return null;
+        } else {
+            return response;
+        }
+    }
+
     public static String deleteUserById(String userId) {
         String userRole = "administrator";
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);

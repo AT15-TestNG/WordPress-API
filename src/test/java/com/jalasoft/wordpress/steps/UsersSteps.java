@@ -7,9 +7,11 @@ import framework.CredentialsManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +43,42 @@ public class UsersSteps {
 
         Response requestResponse = apiManager.post(usersEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to retrieve a user by Id$")
+    public void getUserById() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String name = response.getResponse().jsonPath().getString("name");
+        String description = response.getResponse().jsonPath().getString("description");
+
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+        queryParams.put("name", name);
+        queryParams.put("description", description);
+
+        String usersByIdEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.get(usersByIdEndpoint, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
+    @Then("^proper user id should be returned$")
+    public void checkUserId() {
+        String id = response.getResponse().jsonPath().getString("id");
+        Assert.assertEquals(id, queryParams.get("id"));
+    }
+
+    @Then("^name should be correct$")
+    public void checkUserName() {
+        String name = response.getResponse().jsonPath().getString("name");
+        Assert.assertEquals(name, queryParams.get("name"));
+    }
+
+    @Then("^description should be correct$")
+    public void checkUserDescription() {
+        String description = response.getResponse().jsonPath().getString("description");
+        Assert.assertEquals(description, queryParams.get("description"));
     }
 
     @Then("^response should have proper amount of users")
