@@ -82,6 +82,10 @@ public class CredentialsManager {
         return getEnvironmentSetting("api.endpoint.postsById");
     }
 
+    public String getPagesEndpoint() {
+        return getEnvironmentSetting("api.endpoint.pages");
+    }
+
     public String getUserName(String userRole) {
         return getEnvironmentSetting("userRole.username".replace("userRole", userRole));
     }
