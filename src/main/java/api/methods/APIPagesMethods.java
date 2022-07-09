@@ -20,7 +20,7 @@ public class APIPagesMethods {
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
-        String pagesByIdEndpoint = credentialsManager.getPagesByIdEndpoint().replace("<id>", pageId);
+        String pagesByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", pageId);
 
         Response response = apiManager.delete(pagesByIdEndpoint, authHeaders);
 

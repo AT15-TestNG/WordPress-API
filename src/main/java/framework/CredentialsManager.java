@@ -86,7 +86,7 @@ public class CredentialsManager {
         return getEnvironmentSetting("api.endpoint.pages");
     }
 
-    public String getPagesByIdEndpoint() {
+    public String getPageByIdEndpoint() {
         return getEnvironmentSetting("api.endpoint.pagesById");
     }
 
