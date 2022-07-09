@@ -82,6 +82,21 @@ public class PagesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to delete a page$")
+    public void deletePageById() {
+        String id = response.getResponse().jsonPath().getString("id");
+
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+        queryParams.put("status", "trash");
+
+        String pageByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.delete(pageByIdEndpoint, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of pages$")
     public void verifyPageAmount() {
         int expectAmountOfPages = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
@@ -108,5 +123,10 @@ public class PagesSteps {
     public void verifyExcerpt() {
         String expectedExcerpt = "<p>" + queryParams.get("excerpt") + "</p>\n";
         Assert.assertEquals(response.getResponse().jsonPath().getString("excerpt.rendered"), expectedExcerpt, "wrong excerpt value returned");
+    }
+
+    @Then("^page should be deleted$")
+    public void verifyPageIsDeleted() {
+        Assert.assertEquals(response.getResponse().jsonPath().getString("status"), queryParams.get("status"), "page was not deleted");
     }
 }
