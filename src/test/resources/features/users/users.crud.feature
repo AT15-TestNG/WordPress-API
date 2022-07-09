@@ -87,8 +87,8 @@ Feature: Users
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
 
-  @UpdateMe @Smoke @Test
-  Scenario Outline: A user with proper role should be able to update a User by Id
+  @UpdateMe @Smoke
+  Scenario Outline: A user with proper role should be able to update his own user
     Given An authorized user with "<User Role>" role
     When He makes a request to update his own user with the following query params
       | first_name      | last_name                | description        |
