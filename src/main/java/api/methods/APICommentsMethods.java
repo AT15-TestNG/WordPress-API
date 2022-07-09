@@ -14,9 +14,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class APICommentsMethods {
-    public static final LoggerManager log = LoggerManager.getInstance();
-    public static final APIManager apiManager = APIManager.getInstance();
-    public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
+    private static final LoggerManager log = LoggerManager.getInstance();
+    private static final APIManager apiManager = APIManager.getInstance();
+    private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
 
     public static boolean deleteCommentById(String commentId) {
         String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
