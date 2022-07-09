@@ -125,6 +125,22 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^He makes a request to delete his own user$")
+    public void deleteMe() {
+        String id = response.getResponse().jsonPath().getString("id");
+
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+        queryParams.put("reassign", 1);
+        queryParams.put("force", true);
+
+        String deleteMeEndpoint = credentialsManager.getRetrieveMeEndpoint();
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.delete(deleteMeEndpoint, queryParams, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Then("^proper user id should be returned$")
     public void checkUserId() {
         String id = response.getResponse().jsonPath().getString("id");
