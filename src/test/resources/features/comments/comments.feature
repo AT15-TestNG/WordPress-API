@@ -35,9 +35,26 @@ Feature: Comments
     When I make a request to retrieve a comment
     Then response should be "<Status Line>"
     And response should be valid and have a body
+    And proper comment id should be returned
     And proper postID should be returned
     And proper author_name should be returned
     And proper content of a retrieve comment should be returned
+
+    Examples:
+      | User Role     | Status Line     |
+      | administrator | HTTP/1.1 200 OK |
+
+  @UpdateAComment @Smoke
+  Scenario Outline: A user with proper role should be able to update a comment
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to update a comment with the following query params
+      | author_name                 | content                |
+      | A TestNG Commenter Updated  | TestNG Comment Updated |
+    Then response should be "<Status Line>"
+    And response should be valid and have a body
+    And proper comment id should be returned
+    And proper author_name should be returned
+    And proper content should be returned
 
     Examples:
       | User Role     | Status Line     |
