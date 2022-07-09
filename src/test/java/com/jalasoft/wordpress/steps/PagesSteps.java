@@ -58,10 +58,27 @@ public class PagesSteps {
         queryParams.put("title", title);
         queryParams.put("excerpt", excerpt);
 
-        String pagesByIdEndpoint = credentialsManager.getPagesByIdEndpoint().replace("<id>", id);
+        String pagesByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", id);
         Headers authHeaders = headers.getHeaders();
 
         Response requestResponse = apiManager.get(pagesByIdEndpoint, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to update a page with the following query params$")
+    public void updatePageById(DataTable table) {
+        String id = response.getResponse().jsonPath().getString("id");
+
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        queryParams.putAll(queryParamsList.get(0));
+
+        String pageByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.put(pageByIdEndpoint, queryParamsList.get(0), authHeaders);
         response.setResponse(requestResponse);
     }
 
