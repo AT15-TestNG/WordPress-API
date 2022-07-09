@@ -60,6 +60,20 @@ public class CommentsSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to update a comment with the following query params$")
+    public void updateACommentByID(DataTable table) {
+        String id = response.getResponse().jsonPath().getString("id");
+        String commentByIdEndpoint = credentialsManager.getCommentsByIdEndpoint().replace("<id>", id);
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+
+        queryParamsComments = new HashMap<>();
+        queryParamsComments.put("id", id);
+        queryParamsComments.putAll(queryParamsList.get(0));
+
+        Response requestResponse = apiManager.put(commentByIdEndpoint, queryParamsList.get(0), headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of comments$")
     public void checkCommentsAmount() {
         int expectedAmountOfComments = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
@@ -88,5 +102,11 @@ public class CommentsSteps {
     public void checkRetrieveComment() {
         String content = queryParamsComments.get("content").toString();
         Assert.assertEquals(response.getResponse().jsonPath().getString("content.rendered"), content, "wrong content was returned");
+    }
+
+    @Then("^proper comment id should be returned$")
+    public void checkCommentId() {
+        String id = response.getResponse().jsonPath().getString("id");
+        Assert.assertEquals(id, queryParamsComments.get("id"));
     }
 }
