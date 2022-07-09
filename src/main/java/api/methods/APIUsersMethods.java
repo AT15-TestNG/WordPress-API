@@ -38,29 +38,6 @@ public class APIUsersMethods {
         }
     }
 
-    public static Response createAUser(String username) {
-        Header header = APIAuthorizationMethods.getAuthHeader(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
-        Headers authHeaders = new Headers(header);
-
-        String usersEndpoint = credentialsManager.getUsersEndpoint();
-
-        Map<String, Object> jsonAsMap = new HashMap<>();
-        jsonAsMap.put("username", username);
-        jsonAsMap.put("email", username + "@email.com");
-        jsonAsMap.put("password", credentialsManager.getPassword(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole()));
-        jsonAsMap.put("roles", DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
-
-        Response response = apiManager.post(usersEndpoint, jsonAsMap, authHeaders);
-
-
-        if (response.jsonPath().getString("id") == null) {
-            log.error("Failed to create user");
-            return null;
-        } else {
-            return response;
-        }
-    }
-
     public static String deleteUserById(String userId) {
         Header header = APIAuthorizationMethods.getAuthHeader(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
         Headers authHeaders = new Headers(header);

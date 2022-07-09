@@ -16,20 +16,9 @@ public class UsersFeatureHook {
         this.response = response;
     }
 
-    @Before("@RetrieveAUser or @UpdateUser or @DeleteUser")
+    @Before("@RetrieveAUser or @RetrieveMe or @UpdateUser or @DeleteUser")
     public void beforeRetrieveAUserFeature() {
         Response requestResponse = APIUsersMethods.createAUser();
-
-        if (Objects.nonNull(requestResponse)) {
-            response.setResponse(requestResponse);
-        } else {
-            Assert.fail("User was not created");
-        }
-    }
-
-    @Before("@RetrieveMe")
-    public void beforeRetrieveMeFeature() {
-        Response requestResponse = APIUsersMethods.createAUser("testng");
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
