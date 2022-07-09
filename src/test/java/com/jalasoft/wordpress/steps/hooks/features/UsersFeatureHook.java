@@ -6,7 +6,6 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.response.Response;
 import org.testng.Assert;
-import utils.LoggerManager;
 
 import java.util.Objects;
 
