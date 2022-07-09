@@ -16,7 +16,7 @@ public class UsersFeatureHook {
         this.response = response;
     }
 
-    @Before("@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser")
+    @Before("@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser or @DeleteMe")
     public void beforeRetrieveAUserFeature() {
         Response requestResponse = APIUsersMethods.createAUser();
 
