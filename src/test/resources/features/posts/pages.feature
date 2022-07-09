@@ -20,9 +20,9 @@ Feature: Pages
     Then response should be "<Status Line>"
     And response should be valid and have a body
     And proper page id should be returned
-    And content should be correct
-    And title should be correct
-    And excerpt should be correct
+    And page content should be correct
+    And page title should be correct
+    And page excerpt should be correct
 
     Examples:
       | User Role     | Status Line     |

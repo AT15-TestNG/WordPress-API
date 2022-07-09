@@ -62,4 +62,21 @@ public class PagesSteps {
     public void verifyPageId() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("id"), queryParams.get("id"), "wrong id value returned");
     }
+
+    @Then("^page content should be correct$")
+    public void verifyContent() {
+        String expectedContent = "<p>" + queryParams.get("content") + "</p>\n";
+        Assert.assertEquals(response.getResponse().jsonPath().getString("content.rendered"), expectedContent, "wrong content value returned");
+    }
+
+    @Then("^page title should be correct$")
+    public void verifyTitle() {
+        Assert.assertEquals(response.getResponse().jsonPath().getString("title.rendered"), queryParams.get("title"), "wrong tile value returned");
+    }
+
+    @Then("^page excerpt should be correct$")
+    public void verifyExcerpt() {
+        String expectedExcerpt = "<p>" + queryParams.get("excerpt") + "</p>\n";
+        Assert.assertEquals(response.getResponse().jsonPath().getString("excerpt.rendered"), expectedExcerpt, "wrong excerpt value returned");
+    }
 }
