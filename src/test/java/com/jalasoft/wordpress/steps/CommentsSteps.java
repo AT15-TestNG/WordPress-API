@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,25 @@ public class CommentsSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve a comment")
+    public void retrieveComment() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String author_name = response.getResponse().jsonPath().getString("author_name");
+        String content = response.getResponse().jsonPath().getString("content.rendered");
+        String post = response.getResponse().jsonPath().getString("post");
+
+        queryParamsComments = new HashMap<>();
+        queryParamsComments.put("id", id);
+        queryParamsComments.put("post", post);
+        queryParamsComments.put("author_name", author_name);
+        queryParamsComments.put("content", content);
+
+        String commentByIdEndpoint = credentialsManager.getCommentsByIdEndpoint().replace("<id>", id);
+
+        Response requestResponse = apiManager.get(commentByIdEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of comments$")
     public void checkCommentsAmount() {
         int expectedAmountOfComments = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
@@ -58,15 +78,15 @@ public class CommentsSteps {
         Assert.assertEquals(queryParamsComments.get("author_name"), author_name, "wrong author_name was returned");
     }
 
-    @Then("^proper author_email should be returned$")
-    public void checkAuthorEmail() {
-        String author_email = response.getResponse().jsonPath().getString("author_email");
-        Assert.assertEquals(queryParamsComments.get("author_email"), author_email, "wrong author_email was returned");
-    }
-
     @Then("^proper content should be returned$")
     public void checkContent() {
         String content = "<p>" + queryParamsComments.get("content") + "</p>\n";
+        Assert.assertEquals(response.getResponse().jsonPath().getString("content.rendered"), content, "wrong content was returned");
+    }
+
+    @Then("^proper content of a retrieve comment should be returned$")
+    public void checkRetrieveComment() {
+        String content = queryParamsComments.get("content").toString();
         Assert.assertEquals(response.getResponse().jsonPath().getString("content.rendered"), content, "wrong content was returned");
     }
 }

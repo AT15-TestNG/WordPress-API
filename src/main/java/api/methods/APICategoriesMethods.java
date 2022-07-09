@@ -11,6 +11,7 @@ import utils.StringManager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class APICategoriesMethods {
     public static final LoggerManager log = LoggerManager.getInstance();
@@ -28,7 +29,7 @@ public class APICategoriesMethods {
 
         Response response = apiManager.delete(categoryByIdEndpoint, jsonAsMap, authHeaders);
 
-        if (response.jsonPath().get("deleted")) {
+        if (Objects.nonNull(response.jsonPath().getString("deleted"))) {
             return response.jsonPath().get("deleted");
         } else {
             log.error("Failed to delete category");

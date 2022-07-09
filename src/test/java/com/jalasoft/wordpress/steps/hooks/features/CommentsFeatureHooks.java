@@ -3,7 +3,11 @@ package com.jalasoft.wordpress.steps.hooks.features;
 import api.http.HttpResponse;
 import api.methods.APICommentsMethods;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.restassured.response.Response;
 import org.testng.Assert;
+
+import java.util.Objects;
 
 public class CommentsFeatureHooks {
     private final HttpResponse response;
@@ -12,7 +16,18 @@ public class CommentsFeatureHooks {
         this.response = response;
     }
 
-    @After("@CreateAComment")
+    @Before("@RetrieveAComment")
+    public void beforeRetrieveAComment() {
+        Response requestResponse = APICommentsMethods.createAComment();
+
+        if (Objects.nonNull(requestResponse)) {
+            response.setResponse(requestResponse);
+        } else {
+            Assert.fail("Comment was not created");
+        }
+    }
+
+    @After("@CreateAComment or @RetrieveAComment")
     public void afterCreateAComment() {
         String id = response.getResponse().jsonPath().getString("id");
         boolean deleted = APICommentsMethods.deleteCommentById(id);
