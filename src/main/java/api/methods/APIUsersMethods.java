@@ -1,7 +1,6 @@
 package api.methods;
 
 import api.APIManager;
-import api.http.HttpHeaders;
 import constants.DomainAppEnums;
 import framework.CredentialsManager;
 import io.restassured.http.Header;
