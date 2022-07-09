@@ -60,7 +60,7 @@ Feature: Users
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
 
-  @DeleteAPost @Smoke
+  @DeleteAUser @Smoke
   Scenario Outline: A user with proper role should be able to delete a User by Id
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a user by Id
