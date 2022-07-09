@@ -104,3 +104,15 @@ Feature: Users
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
 
+  @DeleteMe @Smoke
+  Scenario Outline: A user with proper role should be able to delete his own user
+    Given An authorized user with "<User Role>" role
+    When He makes a request to delete his own user
+    Then response should be "<Status Line>"
+    And response should be valid and have a body
+    And user should be deleted
+    And proper deleted user id should be returned
+
+  Examples:
+    | User Role     | Status Line     |
+    | administrator | HTTP/1.1 200 OK |
