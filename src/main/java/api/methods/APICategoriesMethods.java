@@ -15,8 +15,8 @@ import java.util.Objects;
 
 public class APICategoriesMethods {
     private static final LoggerManager log = LoggerManager.getInstance();
-    public static final APIManager apiManager = APIManager.getInstance();
-    public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
+    private static final APIManager apiManager = APIManager.getInstance();
+    private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
 
     public static boolean deleteCategoryById(String categoryId) {
         String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
