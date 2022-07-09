@@ -73,7 +73,7 @@ Feature: Users
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
 
-  @RetrieveMe @Smoke @Test
+  @RetrieveMe @Smoke
   Scenario Outline: A user with proper role should be able to retrieve your own user
     Given An authorized user with "<User Role>" role
     When I make a request to retrieve my own user
