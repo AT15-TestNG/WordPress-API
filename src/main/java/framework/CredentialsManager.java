@@ -101,4 +101,12 @@ public class CredentialsManager {
     public String getCategoriesByIdEndpoint() {
         return getEnvironmentSetting("api.endpoint.categoriesById");
     }
+
+    public String getCommentsEndpoint() {
+        return getEnvironmentSetting("api.endpoint.comments");
+    }
+
+    public String getCommentsByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.commentsById");
+    }
 }
