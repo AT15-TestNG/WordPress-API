@@ -95,6 +95,21 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^He makes a request to update his own user with the following query params$")
+    public void updateMyUser(DataTable table) {
+        String id = response.getResponse().jsonPath().getString("id");
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        queryParams.putAll(queryParamsList.get(0));
+
+        String updateMeEndpoint = credentialsManager.getRetrieveMeEndpoint();
+
+        Response requestResponse = apiManager.put(updateMeEndpoint, queryParams, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Given("^I make a request to delete a user by Id$")
     public void deleteUserById() {
         String id = response.getResponse().jsonPath().getString("id");
