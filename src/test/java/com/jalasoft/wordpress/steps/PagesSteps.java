@@ -89,6 +89,7 @@ public class PagesSteps {
         queryParams = new HashMap<>();
         queryParams.put("id", id);
         queryParams.put("status", "trash");
+        queryParams.put("force", true);
 
         String pageByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", id);
         Headers authHeaders = headers.getHeaders();

@@ -89,6 +89,7 @@ public class PostsSteps {
         queryParams = new HashMap<>();
         queryParams.put("id", id);
         queryParams.put("status", "trash");
+        queryParams.put("force", true);
 
         String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", id);
         Headers authHeaders = headers.getHeaders();
