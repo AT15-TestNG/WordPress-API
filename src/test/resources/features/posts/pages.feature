@@ -60,3 +60,16 @@ Feature: Pages
     Examples:
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
+
+  @DeleteAPage @Smoke
+  Scenario Outline: A user with proper role should be able to delete a page
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to delete a page
+    Then response should be "<Status Line>"
+    And response should be valid and have a body
+    And page should be deleted
+    And proper page id should be returned
+
+    Examples:
+      | User Role     | Status Line     |
+      | administrator | HTTP/1.1 200 OK |
