@@ -24,4 +24,14 @@ public class AuthorizationSteps {
             Assert.fail("Unable to retrieve authorization header for user --> " + userRole);
         }
     }
+
+    @Given("^An authorized user with \"(.*?)\" role$")
+    public void changeToken(String userRole) {
+        Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole, "testng");
+        if (Objects.nonNull(authHeader)) {
+            headers.addHeader(authHeader);
+        } else {
+            Assert.fail("Unable to retrieve authorization header for user --> " + userRole);
+        }
+    }
 }

@@ -16,15 +16,9 @@ public class UsersFeatureHook {
         this.response = response;
     }
 
-    @Before("@RetrieveAUser or @UpdateUser or @DeleteUser")
+    @Before("@RetrieveAUser or @RetrieveMe or @UpdateUser or @DeleteUser")
     public void beforeRetrieveAUserFeature() {
-        String name = "Adolfo";
-        String email = "adolfo@email.com";
-        String password = "123456";
-        String description = "I am a user test";
-
-
-        Response requestResponse = APIUsersMethods.createAUser(name, email, password, description);
+        Response requestResponse = APIUsersMethods.createAUser();
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
@@ -33,7 +27,7 @@ public class UsersFeatureHook {
         }
     }
 
-    @After("@CreateUser or @RetrieveAUser or @UpdateUser")
+    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe")
     public void afterCreateAUserFeature() {
         String id = response.getResponse().jsonPath().getString("id");
         String status = APIUsersMethods.deleteUserById(id);

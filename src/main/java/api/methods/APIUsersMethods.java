@@ -1,34 +1,37 @@
 package api.methods;
 
 import api.APIManager;
+import constants.DomainAppEnums;
 import framework.CredentialsManager;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import utils.LoggerManager;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class APIUsersMethods {
+    private static final LoggerManager log = LoggerManager.getInstance();
     public static final APIManager apiManager = APIManager.getInstance();
     public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
 
-    public static Response createAUser(String name, String email, String password, String description) {
-        String userRole = "administrator";
-        Header header = APIAuthorizationMethods.getAuthHeader(userRole);
+    public static Response createAUser() {
+        Header header = APIAuthorizationMethods.getAuthHeader(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
         Headers authHeaders = new Headers(header);
 
         String usersEndpoint = credentialsManager.getUsersEndpoint();
 
         Map<String, Object> jsonAsMap = new HashMap<>();
-        jsonAsMap.put("username", name);
-        jsonAsMap.put("email", email);
-        jsonAsMap.put("password", password);
-        jsonAsMap.put("description", description);
+        jsonAsMap.put("username", "testng");
+        jsonAsMap.put("email", "testng@email.com");
+        jsonAsMap.put("password", credentialsManager.getPassword(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole()));
+        jsonAsMap.put("roles", DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
 
         Response response = apiManager.post(usersEndpoint, jsonAsMap, authHeaders);
 
         if (response.jsonPath().getString("id") == null) {
+            log.error("Failed to create user");
             return null;
         } else {
             return response;
@@ -36,8 +39,7 @@ public class APIUsersMethods {
     }
 
     public static String deleteUserById(String userId) {
-        String userRole = "administrator";
-        Header header = APIAuthorizationMethods.getAuthHeader(userRole);
+        Header header = APIAuthorizationMethods.getAuthHeader(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
         Headers authHeaders = new Headers(header);
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("force", true);
@@ -49,6 +51,7 @@ public class APIUsersMethods {
         if (response.getBody().jsonPath().getString("deleted").equals("true")) {
             return response.jsonPath().getString("deleted");
         } else {
+            log.error("Failed to delete user");
             return null;
         }
     }
