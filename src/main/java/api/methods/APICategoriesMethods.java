@@ -1,10 +1,12 @@
 package api.methods;
 
 import api.APIManager;
+import constants.DomainAppEnums;
 import framework.CredentialsManager;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import utils.StringManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +16,7 @@ public class APICategoriesMethods {
     public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
 
     public static boolean deleteCategoryById(String categoryId) {
-        String userRole = "administrator";
+        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
         Map<String, Object> jsonAsMap = new HashMap<>();
@@ -31,13 +33,14 @@ public class APICategoriesMethods {
         }
     }
 
-    public static Response createACategory(String name) {
-        String userRole = "administrator";
+    public static Response createACategory() {
+        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
         String categoryEndpoint = credentialsManager.getCategoriesEndpoint();
 
+        String name = "Category Name Example" + StringManager.generateStringDate();
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("name", name);
 
