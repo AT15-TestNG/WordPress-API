@@ -1,4 +1,4 @@
-@Pages @Acceptance
+@Pages @Regression
 Feature: Pages
 
   @GetAllPages @Smoke

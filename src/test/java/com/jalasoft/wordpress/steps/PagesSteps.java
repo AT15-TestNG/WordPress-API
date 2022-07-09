@@ -9,7 +9,6 @@ import io.cucumber.java.en.Then;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.testng.Assert;
-import org.testng.Reporter;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -19,11 +19,11 @@ public class PagesFeatureHook {
 
     @Before("@RetrieveAPage or @UpdateAPage or @DeleteAPage")
     public void beforeRetrieveAPageFeature() {
-        String content = "TestNG WordPress API v2 Page content";
-        String title = "TestNG WordPress API v2 Page title";
-        String excerpt = "TestNG WordPress API v2 Page excerpt";
+        String content = "TestNG WordPress Page content";
+        String title = "TestNG WordPress Page title";
+        String excerpt = "TestNG WordPress Page excerpt";
 
-        Response requestResponse = APIPostsMethods.createAPost(content, title, excerpt);
+        Response requestResponse = APIPagesMethods.createAPage(content, title, excerpt);
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
