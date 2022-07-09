@@ -63,6 +63,23 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve my own user$")
+    public void retrieveMyUser() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String name = response.getResponse().jsonPath().getString("name");
+        String description = response.getResponse().jsonPath().getString("description");
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+        queryParams.put("name", name);
+        queryParams.put("description", description);
+
+        String retrieveMeEndpoint = credentialsManager.getRetrieveMeEndpoint();
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.get(retrieveMeEndpoint, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Given("^I make a request to update a user with the following query params$")
     public void updateUserById(DataTable table) {
         String id = response.getResponse().jsonPath().getString("id");
