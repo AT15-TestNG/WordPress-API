@@ -13,4 +13,5 @@ Feature: Users Negative Tests
   Examples:
     | User Role     | Status Line            | code                 | message          |
     | administrator | HTTP/1.1 404 Not Found | rest_user_invalid_id | Invalid user ID. |
-    | subscriber    | HTTP/1.1 404 Not Found | rest_user_invalid_id | Invalid user ID. |
+
+
