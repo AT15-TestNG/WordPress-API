@@ -21,6 +21,7 @@ public class PostsSteps {
     private final HttpHeaders headers;
     private final HttpResponse response;
     private Map<String, Object> queryParams;
+    private String postId;
 
     public PostsSteps(HttpHeaders headers, HttpResponse response) {
         this.headers = headers;
@@ -43,6 +44,7 @@ public class PostsSteps {
 
         Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
+        postId = requestResponse.jsonPath().getString("id");
     }
 
     @Given("^I make a request to retrieve a post$")

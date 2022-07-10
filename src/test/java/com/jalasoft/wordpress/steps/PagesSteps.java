@@ -21,6 +21,7 @@ public class PagesSteps {
     private final HttpHeaders headers;
     private final HttpResponse response;
     private Map<String, Object> queryParams;
+    private String pageId;
 
     public PagesSteps(HttpHeaders headers, HttpResponse response) {
         this.headers = headers;
@@ -116,6 +117,7 @@ public class PagesSteps {
 
         Response requestResponse = apiManager.put(pageByIdEndpoint, queryParamsList.get(0), authHeaders);
         response.setResponse(requestResponse);
+        pageId = requestResponse.jsonPath().getString("id");
     }
 
     @Given("^I make a request to delete a page$")
