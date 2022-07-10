@@ -2,6 +2,7 @@ package com.jalasoft.wordpress.steps;
 
 import api.methods.APIAuthorizationMethods;
 import api.http.HttpHeaders;
+import constants.DomainAppEnums;
 import io.cucumber.java.en.Given;
 import io.restassured.http.Header;
 import org.testng.Assert;
@@ -27,7 +28,7 @@ public class AuthorizationSteps {
 
     @Given("^An authorized user with \"(.*?)\" role$")
     public void changeToken(String userRole) {
-        Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole, "testng");
+        Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole, DomainAppEnums.UserNames.USERNAME.getUserName());
         if (Objects.nonNull(authHeader)) {
             headers.addHeader(authHeader);
         } else {

@@ -1,4 +1,4 @@
-@Posts @Acceptance
+@Posts @Regression
 Feature: Posts
 
   @GetAllPosts @Smoke

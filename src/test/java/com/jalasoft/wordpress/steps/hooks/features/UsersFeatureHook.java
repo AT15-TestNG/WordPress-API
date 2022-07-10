@@ -2,6 +2,7 @@ package com.jalasoft.wordpress.steps.hooks.features;
 
 import api.http.HttpResponse;
 import api.methods.APIUsersMethods;
+import constants.DomainAppEnums;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.response.Response;
@@ -18,7 +19,7 @@ public class UsersFeatureHook {
 
     @Before("@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser or @DeleteMe")
     public void beforeRetrieveAUserFeature() {
-        Response requestResponse = APIUsersMethods.createAUser();
+        Response requestResponse = APIUsersMethods.createAUser(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
@@ -27,7 +28,18 @@ public class UsersFeatureHook {
         }
     }
 
-    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe")
+    @Before("@RetrieveMeAsSubscriber")
+    public void beforeTestsWithSubscriberUser() {
+        Response requestResponse = APIUsersMethods.createAUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
+
+        if (Objects.nonNull(requestResponse)) {
+            response.setResponse(requestResponse);
+        } else {
+            Assert.fail("User was not created");
+        }
+    }
+
+    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @RetrieveMeAsSubscriber")
     public void afterCreateAUserFeature() {
         String id = response.getResponse().jsonPath().getString("id");
         String status = APIUsersMethods.deleteUserById(id);
