@@ -141,6 +141,17 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve a user by non-existent Id$")
+    public void getUserByIdNonExistent() {
+        String id = "12345";
+
+        String usersByIdEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.get(usersByIdEndpoint, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Then("^proper user id should be returned$")
     public void checkUserId() {
         String id = response.getResponse().jsonPath().getString("id");
