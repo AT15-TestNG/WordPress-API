@@ -9,26 +9,30 @@ import utils.LoggerManager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class APIPostsMethods {
     private static final APIManager apiManager = APIManager.getInstance();
     private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
     private static final LoggerManager log = LoggerManager.getInstance();
 
-    public static String deletePostById(String postId) {
+    public static boolean deletePostById(String postId) {
         String userRole = "administrator";
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("force", true);
+
         String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", postId);
 
-        Response response = apiManager.delete(postsByIdEndpoint, authHeaders);
+        Response response = apiManager.delete(postsByIdEndpoint, jsonAsMap, authHeaders);
 
-        if (response.jsonPath().getString("status").equals("trash")) {
-            return response.jsonPath().getString("status");
+        if (Objects.nonNull(response.jsonPath().getString("deleted"))) {
+            return response.jsonPath().get("deleted");
         } else {
-            log.error("Post was not deleted");
-            return null;
+            log.error("Failed to delete Post with id: " + postId);
+            return false;
         }
     }
 

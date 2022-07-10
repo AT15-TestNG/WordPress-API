@@ -33,9 +33,16 @@ public class PostsFeatureHook {
         postId = response.getResponse().jsonPath().getString("id");
     }
 
-    @After("@CreateAPost or @RetrieveAPost or @UpdateAPost or @RetrieveAPostAsSub or @UpdateAPostAsSub or @CreateAPostAsSub")
+    @After("@CreateAPost or @RetrieveAPost or @UpdateAPost")
     public void afterCreateAPostFeature() {
-        String status = APIPostsMethods.deletePostById(postId);
-        Assert.assertEquals(status, "trash", "post was not deleted");
+        String id = response.getResponse().jsonPath().getString("id");
+        boolean status = APIPostsMethods.deletePostById(id);
+        Assert.assertTrue(status, "Post was not deleted");
+    }
+
+    @After("@RetrieveAPostAsSub or @UpdateAPostAsSub or @CreateAPostAsSub")
+    public void afterCreateAPostFeatureAsSubscriber() {
+        boolean status = APIPostsMethods.deletePostById(postId);
+        Assert.assertTrue(status, "Post was not deleted");
     }
 }
