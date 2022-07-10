@@ -121,6 +121,18 @@ public class CategoriesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to delete a category without using force=true$")
+    public void deleteACategoryWithoutForcingTrue() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String categoryByIdEndpoint = credentialsManager.getCategoriesByIdEndpoint().replace("<id>", id);
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("force", true);
+
+        Response requestResponse = apiManager.delete(categoryByIdEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+        apiManager.delete(categoryByIdEndpoint, jsonAsMap, headers.getHeaders());
+    }
+
     @Then("^response should have proper amount of categories$")
     public void checkCategoriesAmount() {
         int expectedAmountOfCategories = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));

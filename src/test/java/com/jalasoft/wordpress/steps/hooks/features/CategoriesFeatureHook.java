@@ -24,7 +24,7 @@ public class CategoriesFeatureHook {
         Assert.assertTrue(deleted, "Category was not deleted");
     }
 
-    @Before("@RetrieveACategory or @UpdateACategory or @DeleteACategory")
+    @Before("@RetrieveACategory or @UpdateACategory or @DeleteACategory or @DeleteACategoryError501")
     public void beforeRetrieveACategory() {
         Response requestResponse = APICategoriesMethods.createACategory();
 
