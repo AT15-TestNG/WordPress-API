@@ -11,12 +11,13 @@ import java.util.Objects;
 
 public class PostsFeatureHook {
     private final HttpResponse response;
+    private String postId;
 
     public PostsFeatureHook(HttpResponse response) {
         this.response = response;
     }
 
-    @Before("@RetrieveAPost or @UpdateAPost or @DeleteAPost")
+    @Before("@RetrieveAPost or @UpdateAPost or @DeleteAPost or @RetrieveAPostAsSub")
     public void beforeRetrieveAPostFeature() {
         String content = "TestNG WordPress Post content";
         String title = "TestNG WordPress Post title";
@@ -29,12 +30,12 @@ public class PostsFeatureHook {
         } else {
             Assert.fail("post was not created");
         }
+        postId = response.getResponse().jsonPath().getString("id");
     }
 
-    @After("@CreateAPost or @RetrieveAPost or @UpdateAPost")
+    @After("@CreateAPost or @RetrieveAPost or @UpdateAPost or @RetrieveAPostAsSub")
     public void afterCreateAPostFeature() {
-        String id = response.getResponse().jsonPath().getString("id");
-        String status = APIPostsMethods.deletePostById(id);
+        String status = APIPostsMethods.deletePostById(postId);
 
         Assert.assertEquals(status, "trash", "post was not deleted");
     }

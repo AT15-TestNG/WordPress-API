@@ -12,6 +12,7 @@ Feature: Posts
   Examples:
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
+    | subscriber    | HTTP/1.1 200 OK |
 
   @CreateAPost @Smoke
   Scenario Outline: A user with proper role should be able to create a post
@@ -43,6 +44,16 @@ Feature: Posts
   Examples:
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
+
+  @RetrieveAPostAsSub @Smoke
+  Scenario Outline: A user with proper role should be able to retrieve a post
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to retrieve a post
+    Then response should be "<Status Line>"
+
+    Examples:
+      | User Role     | Status Line            |
+      | subscriber    | HTTP/1.1 403 Forbidden |
 
   @UpdateAPost @Smoke
   Scenario Outline: A user with proper role should be able to update a post
