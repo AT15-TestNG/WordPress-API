@@ -91,6 +91,12 @@ public class CredentialsManager {
     public String getUsersByIdEndpoint() {
         return getEnvironmentSetting("api.endpoint.usersById");
     }
+    public String getAppPasswordsByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.appPasswordsById");
+    }
+    public String getAppPasswordsByIByUuidEndpoint() {
+        return getEnvironmentSetting("api.endpoint.appPasswordsByIdByUuid");
+    }
     public String getUsersEndpoint() {
         return getEnvironmentSetting("api.endpoint.users");
     }

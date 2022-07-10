@@ -7,6 +7,7 @@ import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import utils.LoggerManager;
+import utils.StringManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,8 +24,8 @@ public class APIUsersMethods {
         String usersEndpoint = credentialsManager.getUsersEndpoint();
 
         Map<String, Object> jsonAsMap = new HashMap<>();
-        jsonAsMap.put("username", credentialsManager.getUserName(role));
-        jsonAsMap.put("email", "serjmendieta@gmail.com");
+        jsonAsMap.put("username", credentialsManager.getUserName(role) + StringManager.getTimeStamp());
+        jsonAsMap.put("email", "serjmendieta"+StringManager.getTimeStamp()+"@gmail.com");
         jsonAsMap.put("password", credentialsManager.getPassword(role));
         jsonAsMap.put("roles", role);
 
@@ -55,4 +56,5 @@ public class APIUsersMethods {
             return null;
         }
     }
+
 }
