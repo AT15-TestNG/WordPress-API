@@ -12,6 +12,7 @@ Feature: Pages
     Examples:
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
+      | subscriber    | HTTP/1.1 200 OK |
 
   @CreateAPage @Smoke
   Scenario Outline: A user with proper role should be able to create a page
@@ -73,3 +74,47 @@ Feature: Pages
     Examples:
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
+
+  @CreateAPageAsSub @Smoke
+  Scenario Outline: A user with proper role should be able to create a page
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to create a page with the following query params
+      | content                       | title                  | excerpt                  |
+      | TestNG WordPress Page Content | TestNG WordPress Title | TestNG WordPress Excerpt |
+    Then response should be "<Status Line>"
+
+    Examples:
+      | User Role     | Status Line            |
+      | subscriber    | HTTP/1.1 403 Forbidden |
+
+  @RetrieveAPageAsSub @Smoke
+  Scenario Outline: A user with proper role should be able to retrieve a page
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to retrieve a page
+    Then response should be "<Status Line>"
+
+    Examples:
+      | User Role     | Status Line            |
+      | subscriber    | HTTP/1.1 403 Forbidden |
+
+  @UpdateAPageAsSub @Smoke
+  Scenario Outline: A user with proper role should be able to update a page
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to update a page with the following query params
+      | content                          | title                          | excerpt                          |
+      | TestNG WordPress Content Updated | TestNG WordPress Title Updated | TestNG WordPress Excerpt Updated |
+    Then response should be "<Status Line>"
+
+    Examples:
+      | User Role     | Status Line            |
+      | subscriber    | HTTP/1.1 403 Forbidden |
+
+  @DeleteAPageAsSub @Smoke
+  Scenario Outline: A user with proper role should be able to delete a page
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to delete a page
+    Then response should be "<Status Line>"
+
+    Examples:
+      | User Role     | Status Line            |
+      | subscriber    | HTTP/1.1 403 Forbidden |

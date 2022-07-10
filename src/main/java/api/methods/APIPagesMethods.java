@@ -9,26 +9,32 @@ import utils.LoggerManager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class APIPagesMethods {
-    public static final APIManager apiManager = APIManager.getInstance();
-    public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
-    public static final LoggerManager log = LoggerManager.getInstance();
+    private static final APIManager apiManager = APIManager.getInstance();
+    private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
+    private static final LoggerManager log = LoggerManager.getInstance();
 
-    public static String deletePageById(String pageId) {
+
+    public static Boolean deletePageById(String pageId) {
         String userRole = "administrator";
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("force", true);
+
+
         String pagesByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", pageId);
 
-        Response response = apiManager.delete(pagesByIdEndpoint, authHeaders);
+        Response response = apiManager.delete(pagesByIdEndpoint, jsonAsMap, authHeaders);
 
-        if (response.jsonPath().getString("status").equals("trash")) {
-            return response.jsonPath().getString("status");
+        if (Objects.nonNull(response.jsonPath().getString("deleted"))) {
+            return response.jsonPath().get("deleted");
         } else {
-            log.error("page was not deleted");
-            return null;
+            log.error("Failed to delete Page with id: " + pageId);
+            return false;
         }
     }
 
