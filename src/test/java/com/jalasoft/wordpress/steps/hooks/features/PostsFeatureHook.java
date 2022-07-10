@@ -17,7 +17,7 @@ public class PostsFeatureHook {
         this.response = response;
     }
 
-    @Before("@RetrieveAPost or @UpdateAPost or @DeleteAPost or @RetrieveAPostAsSub")
+    @Before("@RetrieveAPost or @UpdateAPost or @DeleteAPost or @RetrieveAPostAsSub or @UpdateAPostAsSub or @CreateAPostAsSub or @DeleteAPostAsSub")
     public void beforeRetrieveAPostFeature() {
         String content = "TestNG WordPress Post content";
         String title = "TestNG WordPress Post title";
@@ -33,10 +33,9 @@ public class PostsFeatureHook {
         postId = response.getResponse().jsonPath().getString("id");
     }
 
-    @After("@CreateAPost or @RetrieveAPost or @UpdateAPost or @RetrieveAPostAsSub")
+    @After("@CreateAPost or @RetrieveAPost or @UpdateAPost or @RetrieveAPostAsSub or @UpdateAPostAsSub or @CreateAPostAsSub")
     public void afterCreateAPostFeature() {
         String status = APIPostsMethods.deletePostById(postId);
-
         Assert.assertEquals(status, "trash", "post was not deleted");
     }
 }

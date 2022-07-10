@@ -5,13 +5,15 @@ import framework.CredentialsManager;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import utils.LoggerManager;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class APIPostsMethods {
-    public static final APIManager apiManager = APIManager.getInstance();
-    public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
+    private static final APIManager apiManager = APIManager.getInstance();
+    private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
+    private static final LoggerManager log = LoggerManager.getInstance();
 
     public static String deletePostById(String postId) {
         String userRole = "administrator";
@@ -25,6 +27,7 @@ public class APIPostsMethods {
         if (response.jsonPath().getString("status").equals("trash")) {
             return response.jsonPath().getString("status");
         } else {
+            log.error("Post was not deleted");
             return null;
         }
     }
@@ -44,6 +47,7 @@ public class APIPostsMethods {
         Response response = apiManager.post(postsEndpoint, jsonAsMap, authHeaders);
 
         if (response.jsonPath().getString("id") == null) {
+            log.error("Post was not created");
             return null;
         } else {
             return response;
