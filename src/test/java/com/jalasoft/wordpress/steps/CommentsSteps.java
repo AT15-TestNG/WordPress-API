@@ -140,6 +140,21 @@ public class CommentsSteps {
         commentByIdEndpoint = credentialsManager.getCommentsByIdEndpoint().replace("<id>", id);
         apiManager.delete(commentByIdEndpoint, jsonAsMap, headers.getHeaders());
     }
+
+    @Given("^I make a request to delete a trashed comment without using force=true$")
+    public void deleteTrashedCommentError410() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String commentByIdEndpoint = credentialsManager.getCommentsByIdEndpoint().replace("<id>", id);
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("force", true);
+
+        apiManager.delete(commentByIdEndpoint, headers.getHeaders());
+        Response requestResponse = apiManager.delete(commentByIdEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+
+        apiManager.delete(commentByIdEndpoint, jsonAsMap, headers.getHeaders());
+    }
+
     @Then("^response should have proper amount of comments$")
     public void checkCommentsAmount() {
         int expectedAmountOfComments = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));

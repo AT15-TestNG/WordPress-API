@@ -16,7 +16,7 @@ public class CommentsFeatureHooks {
         this.response = response;
     }
 
-    @Before("@RetrieveAComment or @UpdateAComment or @DeleteAComment")
+    @Before("@RetrieveAComment or @UpdateAComment or @DeleteAComment or @DeleteATrashedCommentError410")
     public void beforeRetrieveAComment() {
         Response requestResponse = APICommentsMethods.createAComment();
 
