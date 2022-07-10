@@ -32,4 +32,15 @@ Feature: Statuses
       | administrator | HTTP/1.1 200 OK | private     |
       | administrator | HTTP/1.1 200 OK | trash       |
 
+  @GetAllStatusWithoutToken @Regression
+  Scenario Outline: A user with proper role should not be able to retrieve all the statuses without authentication
+    Given I make a request to retrieve all statuses without authentication
+    Then response should be "<Status Line>"
+      And response should be invalid and have a body
+      And response body should contain the "<Error Message>"
+
+    Examples:
+      | Status Line               | Error Message               |
+      | HTTP/1.1 401 Unauthorized | MISSING_AUTHORIZATION_HEADER|
+
 
