@@ -30,7 +30,6 @@ public class StatusesSteps {
         Response requestResponse = apiManager.get(statusesEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Given("^(?:I make|the user makes) a request to retrieve all statuses without authentication$")
     public void getAllStatusesWithoutToken() {
         String statusesEndpoint = credentialsManager.getStatusesEndpoint();
