@@ -62,7 +62,6 @@ public class AppPasswordsSteps {
     public void verifyNameRetrieved() {
         Assert.assertTrue(response.getResponse().body().asString().contains(scenarioContext.getScenarioContext().get("name").toString()), "name value not found");
     }
-
     @Then("^item with the uuid of the app-password created should be retrieved$")
     public void verifyUuidRetrieved() {
         Assert.assertTrue(response.getResponse().body().asString().contains(scenarioContext.getScenarioContext().get("uuid").toString()), "uuid value not found");

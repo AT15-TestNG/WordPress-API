@@ -32,4 +32,15 @@ Feature: App_Passwords
 
 
 
+  @GetAllAppPasswordsById @GetAllAppPasswordsById2 @Smoke
+  Scenario: A user with proper role should be able to retrieve all te app passwords from the request user
+    Given I am authorized with a user with "administrator" role
+    When I make a request to retrieve all app passwords from the request user
+    Then response should be "HTTP/1.1 200 OK"
+    And response should be valid and have a body
+    And item with the name of the app-password created should be retrieved
+
+
+
+
 
