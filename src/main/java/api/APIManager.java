@@ -7,7 +7,6 @@ import io.restassured.http.Headers;
 import io.restassured.parsing.Parser;
 import io.restassured.response.Response;;
 import utils.LoggerManager;
-
 import java.util.Map;
 
 public class APIManager {
@@ -27,6 +26,7 @@ public class APIManager {
 
     private void initialize() {
         log.info("Initializing API Manager");
+        RestAssured.useRelaxedHTTPSValidation();
         RestAssured.baseURI = CredentialsManager.getInstance().getBaseURL();
         RestAssured.basePath = CredentialsManager.getInstance().getBasePath();
         RestAssured.port = CredentialsManager.getInstance().getAPIServicePort();
