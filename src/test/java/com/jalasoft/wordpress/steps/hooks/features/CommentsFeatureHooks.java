@@ -16,7 +16,7 @@ public class CommentsFeatureHooks {
         this.response = response;
     }
 
-    @Before("@RetrieveAComment or @UpdateAComment")
+    @Before("@RetrieveAComment or @UpdateAComment or @DeleteAComment")
     public void beforeRetrieveAComment() {
         Response requestResponse = APICommentsMethods.createAComment();
 
@@ -27,7 +27,7 @@ public class CommentsFeatureHooks {
         }
     }
 
-    @After("@CreateAComment or @RetrieveAComment or @UpdateAComment")
+    @After("@CreateAComment or @RetrieveAComment or @UpdateAComment or @DeleteAComment")
     public void afterCreateAComment() {
         String id = response.getResponse().jsonPath().getString("id");
         boolean deleted = APICommentsMethods.deleteCommentById(id);

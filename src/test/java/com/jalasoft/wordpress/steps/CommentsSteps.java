@@ -25,6 +25,7 @@ public class CommentsSteps {
         this.headers = headers;
         this.response = response;
     }
+    
     @Given("^I make a request to retrieve all comments$")
     public void getAllComments() {
         Response requestResponse = apiManager.get(credentialsManager.getCommentsEndpoint(), headers.getHeaders());
@@ -74,6 +75,18 @@ public class CommentsSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to delete a comment$")
+    public void deleteACommentByID() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String commentByIdEndpoint = credentialsManager.getCommentsByIdEndpoint().replace("<id>", id);
+
+        queryParamsComments = new HashMap<>();
+        queryParamsComments.put("id", id);
+
+        Response requestResponse = apiManager.delete(commentByIdEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of comments$")
     public void checkCommentsAmount() {
         int expectedAmountOfComments = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
@@ -108,5 +121,11 @@ public class CommentsSteps {
     public void checkCommentId() {
         String id = response.getResponse().jsonPath().getString("id");
         Assert.assertEquals(id, queryParamsComments.get("id"));
+    }
+
+    @Then("^comment should be deleted$")
+    public void checkDeleteComment() {
+        String status = response.getResponse().jsonPath().getString("status");
+        Assert.assertEquals(status, "trash");
     }
 }
