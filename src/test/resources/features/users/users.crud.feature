@@ -1,4 +1,4 @@
-@Users
+@Users @Regression
 Feature: Users
 
   @GetAllUsers @Smoke
@@ -116,3 +116,17 @@ Feature: Users
   Examples:
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
+
+  @RetrieveMeAsSubscriber @Smoke
+  Scenario Outline: A user with proper role should be able to retrieve your own user
+    Given An authorized user with "<User Role>" role
+    When I make a request to retrieve my own user
+    Then response should be "<Status Line>"
+    And response should be valid and have a body
+    And proper user id should be returned
+    And name should be correct
+    And description should be correct
+
+    Examples:
+      | User Role     | Status Line     |
+      | subscriber | HTTP/1.1 200 OK |

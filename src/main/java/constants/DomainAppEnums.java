@@ -7,7 +7,7 @@ public class DomainAppEnums {
 
         private final String userRole;
 
-        private UserRole(String userRole) {
+        UserRole(String userRole) {
             this.userRole = userRole;
         }
 
@@ -18,6 +18,25 @@ public class DomainAppEnums {
         @Override
         public String toString() {
             return userRole;
+        }
+    }
+
+    public enum UserNames {
+        USERNAME("testng");
+
+        private final String userName;
+
+        UserNames(String userName) {
+            this.userName = userName;
+        }
+
+        public String getUserName() {
+            return userName;
+        }
+
+        @Override
+        public String toString() {
+            return userName;
         }
     }
 }
