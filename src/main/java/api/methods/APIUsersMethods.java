@@ -8,7 +8,6 @@ import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import utils.LoggerManager;
 import utils.StringManager;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,9 +34,9 @@ public class APIUsersMethods {
             log.error("Failed to create user");
             return null;
         } else {
-            return response;
-        }
+            return response;      }
     }
+
     public static Response createAUniqueUser(String role) {
         Header header = APIAuthorizationMethods.getAuthHeader(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
         Headers authHeaders = new Headers(header);
@@ -60,7 +59,6 @@ public class APIUsersMethods {
         }
     }
 
-
     public static String deleteUserById(String userId) {
         Header header = APIAuthorizationMethods.getAuthHeader(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
         Headers authHeaders = new Headers(header);
@@ -78,5 +76,4 @@ public class APIUsersMethods {
             return null;
         }
     }
-
 }

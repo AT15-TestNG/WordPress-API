@@ -71,10 +71,3 @@ Feature: Statuses
       | subscriber    | HTTP/1.1 403 Forbidden | pending     | Cannot view status.|
       | subscriber    | HTTP/1.1 403 Forbidden | private     | Cannot view status.|
       | subscriber    | HTTP/1.1 403 Forbidden | trash       | Cannot view status.|
-
-
-
-
-
-
-

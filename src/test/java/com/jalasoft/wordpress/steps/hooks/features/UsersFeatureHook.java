@@ -29,7 +29,6 @@ public class UsersFeatureHook {
         }
         userId = response.getResponse().jsonPath().getString("id");
     }
-
     @Before(order = 1, value ="@CreateAnAppPassword or @GetAllAppPasswordsById or @GetAppPasswordsByIdByUuid")
     public void createAUniqueUser() {
         Response requestResponse = APIUsersMethods.createAUniqueUser(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
@@ -45,7 +44,6 @@ public class UsersFeatureHook {
     @Before(order = 1, value ="@GetStatusByNameSubscriberUser")
     public void beforeTestsWithSubscriberUser() {
         Response requestResponse = APIUsersMethods.createAPropertyUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
-
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
         } else {
@@ -55,7 +53,8 @@ public class UsersFeatureHook {
 
     }
 
-    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @GetStatusByNameSubscriberUser or @CreateAnAppPassword or @GetAllAppPasswordsById")
+    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @GetStatusByNameSubscriberUser")
+
     public void afterCreateAUserFeature() {
         String status = APIUsersMethods.deleteUserById(userId);
 
