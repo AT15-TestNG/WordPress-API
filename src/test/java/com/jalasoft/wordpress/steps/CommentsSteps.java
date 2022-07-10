@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import utils.StringManager;
 
 import java.util.HashMap;
 import java.util.List;
@@ -119,6 +120,26 @@ public class CommentsSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to create a duplicated comment$")
+    public void createDuplicatedComment() {
+        String id, commentByIdEndpoint;
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("post", 1);
+        jsonAsMap.put("author_name", "A WordPress Commenter");
+        jsonAsMap.put("author_email", "wapuu@wordpress.example");
+        jsonAsMap.put("content", "Example");
+
+        Response requestResponse = apiManager.post(credentialsManager.getCommentsEndpoint(), jsonAsMap, headers.getHeaders());
+        id = requestResponse.jsonPath().getString("id");
+
+        Response requestResponseDuplicated = apiManager.post(credentialsManager.getCommentsEndpoint(), jsonAsMap, headers.getHeaders());
+        response.setResponse(requestResponseDuplicated);
+
+        jsonAsMap.clear();
+        jsonAsMap.put("force", true);
+        commentByIdEndpoint = credentialsManager.getCommentsByIdEndpoint().replace("<id>", id);
+        apiManager.delete(commentByIdEndpoint, jsonAsMap, headers.getHeaders());
+    }
     @Then("^response should have proper amount of comments$")
     public void checkCommentsAmount() {
         int expectedAmountOfComments = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
