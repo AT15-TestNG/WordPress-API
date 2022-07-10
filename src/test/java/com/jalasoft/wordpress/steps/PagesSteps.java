@@ -35,6 +35,24 @@ public class PagesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve a pages with the ID \"(.*)\"$")
+    public void getPageById(String id) {
+        String pagesByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.get(pagesByIdEndpoint, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to delete a page with the ID \"(.*)\"$")
+    public void deletePageById(String id) {
+        String pagesByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.delete(pagesByIdEndpoint, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Given("^I make a request to create a page with the following query params$")
     public void createAPage(DataTable table) {
         List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
