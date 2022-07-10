@@ -39,3 +39,15 @@ Feature: Categories Negative Tests
     Examples:
       | User Role     | Status Line            | Code               | Message                                         |
       | administrator | HTTP/1.1 403 Forbidden | rest_cannot_delete | Sorry, you are not allowed to delete this term. |
+
+  @GetACategoryError404
+  Scenario Outline: A user with proper role should not be able to get a category with incorrect endpoint
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to retrieve a category using an invalid endpoint "<Endpoint>"
+    Then response should be "<Status Line>"
+    And response should be invalid and have a body with the following values
+      | code   |  message  |
+      | <Code> | <Message> |
+    Examples:
+      | User Role     | Status Line            | Code          | Message                                                 | Endpoint                               |
+      | administrator | HTTP/1.1 404 Not Found | rest_no_route | No route was found matching the URL and request method. | /wp/v2/categories/non-existingEndpoint |

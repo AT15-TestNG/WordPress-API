@@ -115,6 +115,12 @@ public class CategoriesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve a category using an invalid endpoint \"(.*?)\"$")
+    public void retrieveCategoryWithInvalidEndpoint(String invalidEndpoint) {
+        Response requestResponse = apiManager.get(invalidEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of categories$")
     public void checkCategoriesAmount() {
         int expectedAmountOfCategories = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
