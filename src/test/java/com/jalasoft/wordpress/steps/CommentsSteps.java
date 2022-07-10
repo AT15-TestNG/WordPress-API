@@ -102,6 +102,17 @@ public class CommentsSteps {
         }
     }
 
+    @Given("^I make a request to create a comment without specifying any post$")
+    public void createCommentWithoutPost() {
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("author_name", "TestNG");
+        jsonAsMap.put("author_email", "wapuu@wordpress.example");
+        jsonAsMap.put("content", "Comment without a Post");
+
+        Response requestResponse = apiManager.post(credentialsManager.getCommentsEndpoint(), jsonAsMap, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of comments$")
     public void checkCommentsAmount() {
         int expectedAmountOfComments = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));

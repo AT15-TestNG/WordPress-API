@@ -26,3 +26,16 @@ Feature: Comments Negative Tests
     Examples:
       | User Role     | Body Value          | Status Line              | Code              | Message                   |
       | administrator | invalid JSON format | HTTP/1.1 400 Bad Request | rest_invalid_json | Invalid JSON body passed. |
+
+  @CreateACommentWithoutPostError403
+  Scenario Outline: A user with proper role should not be able to create a comment without a related post
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to create a comment without specifying any post
+    Then response should be "<Status Line>"
+    And response should be invalid and have a body with the following values
+      | code   |  message  |
+      | <Code> | <Message> |
+    Examples:
+      | User Role     | Status Line            | Code                         | Message                                                           |
+      | administrator | HTTP/1.1 403 Forbidden | rest_comment_invalid_post_id | Sorry, you are not allowed to create this comment without a post. |
+
