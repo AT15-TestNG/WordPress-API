@@ -28,7 +28,7 @@ public class UsersFeatureHook {
         }
     }
 
-    @Before("@RetrieveMeAsSubscriber")
+    @Before("@RetrieveMeAsSubscriber or @UpdateMeAsSubscriber")
     public void beforeTestsWithSubscriberUser() {
         Response requestResponse = APIUsersMethods.createAUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
 
@@ -39,7 +39,7 @@ public class UsersFeatureHook {
         }
     }
 
-    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @RetrieveMeAsSubscriber")
+    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @RetrieveMeAsSubscriber or @UpdateMeAsSubscriber")
     public void afterCreateAUserFeature() {
         String id = response.getResponse().jsonPath().getString("id");
         String status = APIUsersMethods.deleteUserById(id);
