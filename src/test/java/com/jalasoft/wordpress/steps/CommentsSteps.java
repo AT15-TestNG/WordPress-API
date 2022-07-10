@@ -25,6 +25,7 @@ public class CommentsSteps {
         this.headers = headers;
         this.response = response;
     }
+    
     @Given("^I make a request to retrieve all comments$")
     public void getAllComments() {
         Response requestResponse = apiManager.get(credentialsManager.getCommentsEndpoint(), headers.getHeaders());
