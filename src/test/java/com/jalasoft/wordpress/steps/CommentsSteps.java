@@ -7,6 +7,7 @@ import framework.CredentialsManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
@@ -85,6 +86,20 @@ public class CommentsSteps {
 
         Response requestResponse = apiManager.delete(commentByIdEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to create a comment with invalid \"(.*?)\"$")
+    public void createCategoryWithInvalidBody(String bodyValue) {
+        String invalid_json;
+        Response requestResponse;
+
+        if (bodyValue.equals("invalid JSON format")) {
+            invalid_json = "/{}/";
+            requestResponse = apiManager.post(credentialsManager.getCommentsEndpoint(), headers.getHeaders(), ContentType.JSON, invalid_json);
+            response.setResponse(requestResponse);
+        } else {
+            Assert.fail("Response of a Comment with bad Body was not set");
+        }
     }
 
     @Then("^response should have proper amount of comments$")
