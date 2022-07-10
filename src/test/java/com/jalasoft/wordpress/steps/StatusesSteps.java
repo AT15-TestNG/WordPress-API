@@ -31,11 +31,22 @@ public class StatusesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve a status by its \"(.*?)\"$")
+    public void getStatusByName(String statusName) {
+        String statusByNameEndpoint = credentialsManager.getStatusesByNameEndpoint().replace("<status>", statusName);
+        Response requestResponse = apiManager.get(statusByNameEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response body has to have the following status$")
     public void verifyStatusInResponseBody(DataTable table) {
         statusesList = table.asMaps(String.class, Object.class);
         for (Object status : statusesList.get(0).values()) {
             Assert.assertTrue(response.getResponse().getBody().asString().contains(status.toString()), "wrong response body returned");
         }
+    }
+    @Then("^response body has to have the \"(.*?)\" sent in the request$")
+    public void verifyStatusName(String statusName) {
+       Assert.assertTrue(response.getResponse().getBody().asString().contains((statusName)), "wrong response status");
     }
 }
