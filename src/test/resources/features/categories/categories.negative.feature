@@ -27,3 +27,15 @@ Feature: Categories Negative Tests
     | User Role     | Body Value                   | Status Line              | Code                        | Message                    |
     | administrator | invalid JSON format          | HTTP/1.1 400 Bad Request | rest_invalid_json           | Invalid JSON body passed.  |
     | administrator | JSON with missing parameters | HTTP/1.1 400 Bad Request | rest_missing_callback_param | Missing parameter(s): name |
+
+  @DeleteCategoryError403
+  Scenario Outline: A user with proper role should not be able to delete the default category in WordPress
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to delete the default category
+    Then response should be "<Status Line>"
+    And response should be invalid and have a body with the following values
+      | code   |  message  |
+      | <Code> | <Message> |
+    Examples:
+      | User Role     | Status Line            | Code               | Message                                         |
+      | administrator | HTTP/1.1 403 Forbidden | rest_cannot_delete | Sorry, you are not allowed to delete this term. |

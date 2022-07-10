@@ -107,6 +107,14 @@ public class CategoriesSteps {
         }
     }
 
+    @Given("^I make a request to delete the default category$")
+    public void deleteDefaultCategory() {
+        String defaultCategoryEndpoint = "/wp/v2/categories/1";
+
+        Response requestResponse = apiManager.delete(defaultCategoryEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of categories$")
     public void checkCategoriesAmount() {
         int expectedAmountOfCategories = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
