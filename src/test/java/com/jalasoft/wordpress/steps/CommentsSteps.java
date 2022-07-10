@@ -43,7 +43,7 @@ public class CommentsSteps {
         response.setResponse(requestResponse);
     }
 
-    @Given("^I make a request to retrieve a comment")
+    @Given("^I make a request to retrieve a comment$")
     public void retrieveComment() {
         String id = response.getResponse().jsonPath().getString("id");
         String author_name = response.getResponse().jsonPath().getString("author_name");
@@ -110,6 +110,12 @@ public class CommentsSteps {
         jsonAsMap.put("content", "Comment without a Post");
 
         Response requestResponse = apiManager.post(credentialsManager.getCommentsEndpoint(), jsonAsMap, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to retrieve a comment using an invalid endpoint \"(.*?)\"$")
+    public void retrieveCategoryWithInvalidEndpoint(String invalidEndpoint) {
+        Response requestResponse = apiManager.get(invalidEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
 

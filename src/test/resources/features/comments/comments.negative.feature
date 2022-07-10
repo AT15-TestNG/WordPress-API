@@ -39,3 +39,15 @@ Feature: Comments Negative Tests
       | User Role     | Status Line            | Code                         | Message                                                           |
       | administrator | HTTP/1.1 403 Forbidden | rest_comment_invalid_post_id | Sorry, you are not allowed to create this comment without a post. |
 
+  @RetrieveACommentError404
+  Scenario Outline: A user with proper role should not be able to get a comment using an incorrect endpoint
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to retrieve a comment using an invalid endpoint "<Endpoint>"
+    Then response should be "<Status Line>"
+    And response should be invalid and have a body with the following values
+      | code   |  message  |
+      | <Code> | <Message> |
+    Examples:
+      | User Role     | Status Line            | Code                    | Message                                                 | Endpoint                             |
+      | administrator | HTTP/1.1 404 Not Found | rest_no_route           | No route was found matching the URL and request method. | /wp/v2/comments/non-existingEndpoint |
+      | administrator | HTTP/1.1 404 Not Found | rest_comment_invalid_id | Invalid comment ID.                                     | /wp/v2/comments/7777                 |
