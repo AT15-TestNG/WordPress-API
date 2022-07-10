@@ -109,9 +109,9 @@ Feature: Users
     Given An authorized user with "<User Role>" role
     When He makes a request to delete his own user
     Then response should be "<Status Line>"
-    And response should be valid and have a body
-    And user should be deleted
-    And proper deleted user id should be returned
+      And response should be valid and have a body
+      And user should be deleted
+      And proper deleted user id should be returned
 
   Examples:
     | User Role     | Status Line     |
@@ -122,11 +122,28 @@ Feature: Users
     Given An authorized user with "<User Role>" role
     When I make a request to retrieve my own user
     Then response should be "<Status Line>"
-    And response should be valid and have a body
-    And proper user id should be returned
-    And name should be correct
-    And description should be correct
+      And response should be valid and have a body
+      And proper user id should be returned
+      And name should be correct
+      And description should be correct
 
-    Examples:
-      | User Role     | Status Line     |
-      | subscriber | HTTP/1.1 200 OK |
+  Examples:
+    | User Role     | Status Line     |
+    | subscriber    | HTTP/1.1 200 OK |
+
+  @UpdateMeAsSubscriber @Smoke
+  Scenario Outline: A user with proper role should be able to update his own user
+    Given An authorized user with "<User Role>" role
+    When He makes a request to update his own user with the following query params
+      | first_name      | last_name                | description        |
+      | TESTNG Name     | TestNG Last Name Updated | TestNG description |
+    Then response should be "<Status Line>"
+      And response should be valid and have a body
+      And proper user id should be returned
+      And First Name should be correct
+      And Last Name should be correct
+      And description should be correct
+
+  Examples:
+    | User Role     | Status Line     |
+    | subscriber    | HTTP/1.1 200 OK |
