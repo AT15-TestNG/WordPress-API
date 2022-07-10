@@ -4,7 +4,9 @@ import framework.CredentialsManager;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Headers;
+import io.restassured.http.Method;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import utils.LoggerManager;
 
 import java.util.Map;
@@ -26,6 +28,9 @@ public class APIManager {
 
     private void initialize() {
         log.info("Initializing API Manager");
+        RestAssured.useRelaxedHTTPSValidation();
+//        RequestSpecification httpRequest = RestAssured.given();
+//        httpRequest.request(Method.GET, "/resource");
         RestAssured.baseURI = CredentialsManager.getInstance().getBaseURL();
         RestAssured.basePath = CredentialsManager.getInstance().getBasePath();
         RestAssured.port = CredentialsManager.getInstance().getAPIServicePort();
