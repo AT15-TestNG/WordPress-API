@@ -3,7 +3,8 @@ package constants;
 public class DomainAppEnums {
     public enum UserRole {
         SUBSCRIBER("subscriber"),
-        ADMINISTRATOR("administrator");
+        ADMINISTRATOR("administrator"),
+        ADMINISTRATORTEST("administratortest");
         private final String userRole;
         private UserRole(String userRole) {
             this.userRole = userRole;

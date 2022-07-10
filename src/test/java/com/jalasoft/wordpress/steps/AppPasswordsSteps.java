@@ -39,7 +39,6 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Given("^I make a request to retrieve all app passwords from the request user$")
     public void getAllAppPasswordsById() {
         String userId = scenarioContext.getScenarioContext().get("userId").toString();
@@ -47,7 +46,6 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.get(getAllAppPasswordsByIdEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Given("^I make a request to retrieve an app passwords from the request user by its uuid$")
     public void getAppPasswordsByIdByUuid() {
         String userId = scenarioContext.getScenarioContext().get("userId").toString();
@@ -56,7 +54,6 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.get(getAppPasswordsByIdEndpointByUuid, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Then("^name attribute should be the same as the value delivered$")
     public void verifyName() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("name"), queryParams.get("name"), "wrong name value returned");

@@ -52,9 +52,7 @@ public class UsersFeatureHook {
         userId = response.getResponse().jsonPath().getString("id");
 
     }
-
     @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @GetStatusByNameSubscriberUser")
-
     public void afterCreateAUserFeature() {
         String status = APIUsersMethods.deleteUserById(userId);
 
