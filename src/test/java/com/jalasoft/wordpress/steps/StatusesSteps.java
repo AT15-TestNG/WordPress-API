@@ -31,6 +31,13 @@ public class StatusesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^(?:I make|the user makes) a request to retrieve all statuses without authentication$")
+    public void getAllStatusesWithoutToken() {
+        String statusesEndpoint = credentialsManager.getStatusesEndpoint();
+        Response requestResponse = apiManager.get(statusesEndpoint);
+        response.setResponse(requestResponse);
+    }
+
     @Given("^I make a request to retrieve a status by its \"(.*?)\"$")
     public void getStatusByName(String statusName) {
         String statusByNameEndpoint = credentialsManager.getStatusesByNameEndpoint().replace("<status>", statusName);
@@ -48,5 +55,10 @@ public class StatusesSteps {
     @Then("^response body has to have the \"(.*?)\" sent in the request$")
     public void verifyStatusName(String statusName) {
        Assert.assertTrue(response.getResponse().getBody().asString().contains((statusName)), "wrong response status");
+    }
+
+    @Then("^response body should contain the \"(.*?)\"$")
+    public void verifyErrorMessage(String errorMessage) {
+        Assert.assertTrue(response.getResponse().getBody().asString().contains((errorMessage)), "wrong response status");
     }
 }
