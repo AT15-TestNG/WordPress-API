@@ -7,6 +7,7 @@ import framework.CredentialsManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
@@ -85,6 +86,25 @@ public class CategoriesSteps {
 
         Response requestResponse = apiManager.delete(categoryByIdEndpoint, jsonAsMap, headers.getHeaders());
         response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to create a category with invalid \"(.*?)\"$")
+    public void createCategoryWithInvalidBody(String bodyValue) {
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        String invalid_json;
+        Response requestResponse;
+
+        if (bodyValue.equals("JSON with missing parameters")) {
+            jsonAsMap.put("Bad Request", "Bad Request");
+            requestResponse = apiManager.post(credentialsManager.getCategoriesEndpoint(), jsonAsMap, headers.getHeaders());
+            response.setResponse(requestResponse);
+        } else if (bodyValue.equals("invalid JSON format")) {
+            invalid_json = "/{}/";
+            requestResponse = apiManager.post(credentialsManager.getCategoriesEndpoint(), headers.getHeaders(), ContentType.JSON, invalid_json);
+            response.setResponse(requestResponse);
+        } else {
+            Assert.fail("Category with bad body was not created");
+        }
     }
 
     @Then("^response should have proper amount of categories$")

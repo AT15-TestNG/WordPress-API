@@ -47,5 +47,19 @@ public class APISteps {
         Assert.assertEquals(response.getResponse().jsonPath().get("code"), queryParams.get("code"), "wrong code value returned");
         Assert.assertEquals(response.getResponse().jsonPath().get("error_description"), queryParams.get("error_description"), "wrong error description value returned");
     }
+
+    @Then("^response should be invalid and have a body with the following values$")
+    public void verifyInvalidResponseWithBodyValues(DataTable table) {
+        String expectedContentType = ContentType.JSON.withCharset(StandardCharsets.UTF_8);
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        Map<String, Object> queryParams = queryParamsList.get(0);
+
+        Assert.assertTrue(Status.FAILURE.matches(response.getResponse().getStatusCode()), "invalid status code returned");
+        Assert.assertFalse(response.getResponse().getBody().asString().isEmpty(), "response body is empty");
+        Assert.assertEquals(response.getResponse().getContentType(), expectedContentType, "wrong content type returned");
+
+        Assert.assertEquals(response.getResponse().jsonPath().getString("code"), queryParams.get("code"), "wrong code value returned");
+        Assert.assertEquals(response.getResponse().jsonPath().getString("message"), queryParams.get("message"), "wrong message value returned");
+    }
 }
 
