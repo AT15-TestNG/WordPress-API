@@ -19,7 +19,7 @@ public class CategoriesFeatureHook {
     @After("@CreateACategory or @RetrieveACategory or @UpdateACategory")
     public void afterCreateACategory() {
         String id = response.getResponse().jsonPath().getString("id");
-        Boolean deleted = APICategoriesMethods.deleteCategoryById(id);
+        boolean deleted = APICategoriesMethods.deleteCategoryById(id);
 
         Assert.assertTrue(deleted, "Category was not deleted");
     }

@@ -6,14 +6,16 @@ import framework.CredentialsManager;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import utils.LoggerManager;
 import utils.StringManager;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class APICategoriesMethods {
-    public static final APIManager apiManager = APIManager.getInstance();
-    public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
+    private static final LoggerManager log = LoggerManager.getInstance();
+    private static final APIManager apiManager = APIManager.getInstance();
+    private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
 
     public static boolean deleteCategoryById(String categoryId) {
         String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
@@ -29,6 +31,7 @@ public class APICategoriesMethods {
         if (response.jsonPath().get("deleted")) {
             return response.jsonPath().get("deleted");
         } else {
+            log.error("Failed to delete category");
             return false;
         }
     }
@@ -47,6 +50,7 @@ public class APICategoriesMethods {
         Response response = apiManager.post(categoryEndpoint, jsonAsMap, authHeaders);
 
         if (response.jsonPath().getString("id") == null) {
+            log.error("Failed to create category");
             return null;
         } else {
             return response;
