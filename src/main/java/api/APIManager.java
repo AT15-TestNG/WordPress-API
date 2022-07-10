@@ -70,4 +70,9 @@ public class APIManager {
     public Response delete(String endpoint, Headers headers) {
         return RestAssured.given().headers(headers).delete(endpoint);
     }
+
+    public Response delete(String endpoint, Map<String, Object> queryParams, Headers headers) {
+        return RestAssured.given().queryParams(queryParams).headers(headers).delete(endpoint);
+    }
 }
+
