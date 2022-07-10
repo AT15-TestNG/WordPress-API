@@ -59,7 +59,7 @@ public class APISteps {
         Assert.assertEquals(response.getResponse().getContentType(), expectedContentType, "wrong content type returned");
 
         Assert.assertEquals(response.getResponse().jsonPath().getString("code"), queryParams.get("code"), "wrong code value returned");
-        Assert.assertEquals(response.getResponse().jsonPath().getString("message"), queryParams.get("message"), "wrong message value returned");
+        Assert.assertTrue(response.getResponse().jsonPath().getString("message").contains(queryParams.get("message").toString()), "wrong message value returned");
     }
 }
 

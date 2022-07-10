@@ -7,8 +7,10 @@ import framework.CredentialsManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import utils.StringManager;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +44,7 @@ public class CommentsSteps {
         response.setResponse(requestResponse);
     }
 
-    @Given("^I make a request to retrieve a comment")
+    @Given("^I make a request to retrieve a comment$")
     public void retrieveComment() {
         String id = response.getResponse().jsonPath().getString("id");
         String author_name = response.getResponse().jsonPath().getString("author_name");
@@ -85,6 +87,72 @@ public class CommentsSteps {
 
         Response requestResponse = apiManager.delete(commentByIdEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to create a comment with invalid \"(.*?)\"$")
+    public void createCategoryWithInvalidBody(String bodyValue) {
+        String invalid_json;
+        Response requestResponse;
+
+        if (bodyValue.equals("invalid JSON format")) {
+            invalid_json = "/{}/";
+            requestResponse = apiManager.post(credentialsManager.getCommentsEndpoint(), headers.getHeaders(), ContentType.JSON, invalid_json);
+            response.setResponse(requestResponse);
+        } else {
+            Assert.fail("Response of a Comment with bad Body was not set");
+        }
+    }
+
+    @Given("^I make a request to create a comment without specifying any post$")
+    public void createCommentWithoutPost() {
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("author_name", "TestNG");
+        jsonAsMap.put("author_email", "wapuu@wordpress.example");
+        jsonAsMap.put("content", "Comment without a Post");
+
+        Response requestResponse = apiManager.post(credentialsManager.getCommentsEndpoint(), jsonAsMap, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to retrieve a comment using an invalid endpoint \"(.*?)\"$")
+    public void retrieveCategoryWithInvalidEndpoint(String invalidEndpoint) {
+        Response requestResponse = apiManager.get(invalidEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to create a duplicated comment$")
+    public void createDuplicatedComment() {
+        String id, commentByIdEndpoint;
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("post", 1);
+        jsonAsMap.put("author_name", "A WordPress Commenter");
+        jsonAsMap.put("author_email", "wapuu@wordpress.example");
+        jsonAsMap.put("content", "Example");
+
+        Response requestResponse = apiManager.post(credentialsManager.getCommentsEndpoint(), jsonAsMap, headers.getHeaders());
+        id = requestResponse.jsonPath().getString("id");
+
+        Response requestResponseDuplicated = apiManager.post(credentialsManager.getCommentsEndpoint(), jsonAsMap, headers.getHeaders());
+        response.setResponse(requestResponseDuplicated);
+
+        jsonAsMap.clear();
+        jsonAsMap.put("force", true);
+        commentByIdEndpoint = credentialsManager.getCommentsByIdEndpoint().replace("<id>", id);
+        apiManager.delete(commentByIdEndpoint, jsonAsMap, headers.getHeaders());
+    }
+
+    @Given("^I make a request to delete a trashed comment without using force=true$")
+    public void deleteTrashedCommentError410() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String commentByIdEndpoint = credentialsManager.getCommentsByIdEndpoint().replace("<id>", id);
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("force", true);
+
+        apiManager.delete(commentByIdEndpoint, headers.getHeaders());
+        Response requestResponse = apiManager.delete(commentByIdEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+
+        apiManager.delete(commentByIdEndpoint, jsonAsMap, headers.getHeaders());
     }
 
     @Then("^response should have proper amount of comments$")
