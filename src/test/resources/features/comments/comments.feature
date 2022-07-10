@@ -59,3 +59,16 @@ Feature: Comments
     Examples:
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
+
+  @DeleteAComment @Smoke
+  Scenario Outline: A user with proper role should be able to delete a comment
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to delete a comment
+    Then response should be "<Status Line>"
+    And response should be valid and have a body
+    And proper comment id should be returned
+    And comment should be deleted
+
+    Examples:
+      | User Role     | Status Line     |
+      | administrator | HTTP/1.1 200 OK |
