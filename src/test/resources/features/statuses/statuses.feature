@@ -56,5 +56,22 @@ Feature: Statuses
       | administrator | HTTP/1.1 404 Not Found | invalidName | Invalid status.|
 
 
+  @GetStatusByNameSubscriberUser @Regression
+  Scenario Outline: A user with subscriber role should not be able to retrieve a Status with status name different than publish
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to retrieve a status by its "<Status Name>"
+    Then response should be "<Status Line>"
+      And response should be invalid and have a body
+      And response body should contain the "<Error Message>"
+
+    Examples:
+      | User Role     | Status Line            | Status Name | Error Message      |
+      | subscriber    | HTTP/1.1 403 Forbidden | future      | Cannot view status.|
+      | subscriber    | HTTP/1.1 403 Forbidden | draft       | Cannot view status.|
+      | subscriber    | HTTP/1.1 403 Forbidden | pending     | Cannot view status.|
+      | subscriber    | HTTP/1.1 403 Forbidden | private     | Cannot view status.|
+      | subscriber    | HTTP/1.1 403 Forbidden | trash       | Cannot view status.|
+
+
 
 

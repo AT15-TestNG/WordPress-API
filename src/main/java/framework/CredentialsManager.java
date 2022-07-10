@@ -88,6 +88,12 @@ public class CredentialsManager {
     public String getStatusesByNameEndpoint() {
         return getEnvironmentSetting("api.endpoint.statusesByName");
     }
+    public String getUsersByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.usersById");
+    }
+    public String getUsersEndpoint() {
+        return getEnvironmentSetting("api.endpoint.users");
+    }
 
     public String getUserName(String userRole) {
         return getEnvironmentSetting("userRole.username".replace("userRole", userRole));
