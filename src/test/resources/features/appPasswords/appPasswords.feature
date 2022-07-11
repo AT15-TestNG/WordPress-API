@@ -1,6 +1,7 @@
 @AppPasswords @Acceptance
 Feature: App_Passwords
 
+
   @Before_CreateAnUniqueUserAdministrator @After_DeleteUserById @Smoke
   Scenario: A user with proper role should be able to create an app password
     Given I am authorized with a user with "administrator" role
@@ -11,6 +12,7 @@ Feature: App_Passwords
       And response should be valid and have a body
       And name attribute should be the same as the value delivered
 
+
   @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Smoke
   Scenario: A user with proper role should be able to retrieve all te app passwords from the request user
     Given I am authorized with a user with "administrator" role
@@ -18,6 +20,7 @@ Feature: App_Passwords
     Then response should be "HTTP/1.1 200 OK"
       And response should be valid and have a body
       And item with the name of the app-password created should be retrieved
+
 
   @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Smoke
   Scenario: A user with proper role should be able to retrieve an specific app passwords from the request user
@@ -97,6 +100,7 @@ Feature: App_Passwords
     Then response should be "HTTP/1.1 403 Forbidden"
       And response should be invalid and have a body
       And response body should contain the "Sorry, you are not allowed to list application passwords for this user."
+
 
 
 

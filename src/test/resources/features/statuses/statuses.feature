@@ -1,6 +1,7 @@
 @Statuses @Acceptance
 Feature: Statuses
 
+
   @Smoke
   Scenario Outline: A user with proper role should be able to retrieve all statuses
     Given I am authorized with a user with "<User Role>" role
@@ -14,6 +15,7 @@ Feature: Statuses
     Examples:
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
+
 
   @Smoke
   Scenario Outline: A user with proper role should be able to retrieve a status by its status name
@@ -32,6 +34,7 @@ Feature: Statuses
       | administrator | HTTP/1.1 200 OK | private     |
       | administrator | HTTP/1.1 200 OK | trash       |
 
+
   @Regression
   Scenario Outline: A user with proper role should not be able to retrieve all the statuses without authentication
     Given I make a request to retrieve all statuses without authentication
@@ -42,6 +45,7 @@ Feature: Statuses
     Examples:
       | Status Line               | Error Message               |
       | HTTP/1.1 401 Unauthorized | MISSING_AUTHORIZATION_HEADER|
+
 
   @Regression
   Scenario Outline: A user with proper role should not be able to retrieve a Status with an invalid status Name
@@ -54,6 +58,7 @@ Feature: Statuses
     Examples:
       | User Role     | Status Line            | Status Name | Error Message  |
       | administrator | HTTP/1.1 404 Not Found | invalidName | Invalid status.|
+
 
 
   @Before_CreateUserWithSubscriberRole @After_DeleteUserById @Regression
