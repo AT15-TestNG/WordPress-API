@@ -1,4 +1,4 @@
-@Comments @Negative
+@Comments @Negative @Regression
 Feature: Comments Negative Tests
 
   @GetAllCommentsError401
