@@ -25,19 +25,21 @@ public class UsersFeatureHook {
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
-            id = requestResponse.jsonPath().getString("id");
+            id = response.getResponse().jsonPath().getString("id");
+            System.out.println("id: " + id);
         } else {
             Assert.fail("User was not created");
         }
     }
 
-    @Before("@RetrieveMeAsSubscriber or @UpdateMeAsSubscriber or @DeleteMeAsSubscriber or @CreateAnExistentUserById")
+    @Before("@RetrieveMeAsSubscriber or @UpdateMeAsSubscriber or @DeleteMeAsSubscriber or @CreateAnExistentUserById " +
+            "or @RetrieveUserByIdAsSubscriber")
     public void beforeTestsWithSubscriberUser() {
         Response requestResponse = APIUsersMethods.createAUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
-            id = requestResponse.jsonPath().getString("id");
+            id = response.getResponse().jsonPath().getString("id");
         } else {
             Assert.fail("User was not created");
         }
@@ -46,8 +48,13 @@ public class UsersFeatureHook {
     @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe " +
             "or @UpdateMe or @RetrieveMeAsSubscriber or @UpdateMeAsSubscriber " +
             "or @UpdateUserByIdAsSubscriber or @DeleteAUserByIdWithMissingParameters " +
-            "or @DeleteAUserByIdAsSubscriber or @DeleteMeAsSubscriber or @CreateAnExistentUserById")
+            "or @DeleteAUserByIdAsSubscriber or @DeleteMeAsSubscriber or @CreateAnExistentUserById " +
+            "or @RetrieveUserByIdAsSubscriber")
     public void afterCreateAUserFeature() {
+        if(Objects.nonNull(response.getResponse().jsonPath().getString("id"))) {
+            id = response.getResponse().jsonPath().getString("id");
+        }
+
         String status = APIUsersMethods.deleteUserById(id);
 
         Assert.assertEquals(status, "true", "User was not deleted");

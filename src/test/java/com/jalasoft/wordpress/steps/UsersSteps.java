@@ -250,8 +250,8 @@ public class UsersSteps {
 
     @Then("^role should be correct$")
     public void checkRole() {
-        String role = response.getResponse().jsonPath().getString("role");
-        Assert.assertEquals(role, queryParams.get("role"));
+        String role = response.getResponse().jsonPath().getString("roles[0]");
+        Assert.assertEquals(role, queryParams.get("roles"));
     }
 
     @Then("^user should be deleted$")

@@ -1,4 +1,4 @@
-@Users @Negative
+@Users @Negative @Regression
 Feature: Users Negative Tests
 
   @GetUserByNonExistentAndInvalidId
@@ -140,3 +140,29 @@ Feature: Users Negative Tests
     Examples:
       | User Role     | Status Line            | Status | Code                | Message                              |
       | administrator | HTTP/1.1 409 Conflict  | 409    | existing_user_login | Sorry, that username already exists! |
+
+  @GetAllUsersAsSubscriber @Bug
+  Scenario Outline: A subscriber user with authorization should not be able to retrieve all users
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to retrieve all users
+    Then response should be "<Status Line>"
+      And response should be invalid and have a body with the following keys and values
+      | status    | code   |  message  |
+      | <Status>  | <Code> | <Message> |
+
+    Examples:
+      | User Role  | Status Line            | Status | Code                  | Message                                   |
+      | subscriber | HTTP/1.1 403 Forbidden | 403    | rest_user_cannot_view | Sorry, you are not allowed to list users. |
+
+  @RetrieveUserByIdAsSubscriber @Bug
+  Scenario Outline: A subscriber user with authorization should not be able to retrieve a user by Id
+    Given An authorized user with "<User Role>" role
+    When I make a request to retrieve a user by Id
+    Then response should be "<Status Line>"
+    And response should be invalid and have a body with the following keys and values
+      | status    | code   |  message  |
+      | <Status>  | <Code> | <Message> |
+
+    Examples:
+      | User Role  | Status Line            | Status | Code                  | Message                                   |
+      | subscriber | HTTP/1.1 403 Forbidden | 403    | rest_user_cannot_view | Sorry, you are not allowed to list users. |
