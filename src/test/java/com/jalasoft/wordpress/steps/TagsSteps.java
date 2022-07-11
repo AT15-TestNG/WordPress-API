@@ -28,7 +28,7 @@ public class TagsSteps {
     }
 
     @Given("^I make a request to retrieve all tags$")
-    public void getAllCategories() {
+    public void getAllTags() {
         Response requestResponse = apiManager.get(credentialsManager.getTagsEndpoint(), headers.getHeaders());
         response.setResponse(requestResponse);
     }
@@ -56,6 +56,33 @@ public class TagsSteps {
         Response requestResponse = apiManager.get(tagByIdEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
+    @Given("^I make a request to update a tag with the following query params$")
+    public void updateTagById(DataTable table) {
+        String id = response.getResponse().jsonPath().getString("id");
+
+        queryParamsTag = new HashMap<>();
+        queryParamsTag.put("id", id);
+
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        queryParamsTag.putAll(queryParamsList.get(0));
+
+        String tagByIdEndpoint = credentialsManager.getTagsByIdEndpoint().replace("<id>", id);
+
+        Response requestResponse = apiManager.put(tagByIdEndpoint, queryParamsList.get(0), headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+    @Given("^I make a request to delete a tag$")
+    public void deleteTagById() {
+        String id = response.getResponse().jsonPath().getString("id");
+
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("force", true);
+
+        String tagByIdEndpoint = credentialsManager.getTagsByIdEndpoint().replace("<id>", id);
+
+        Response requestResponse = apiManager.delete(tagByIdEndpoint, jsonAsMap, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
     @Then("^response should have proper amount of tags$")
     public void verifyTagsAmount() {
         int expectedAmountOfTags = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
@@ -71,5 +98,13 @@ public class TagsSteps {
     public void verifyProperTagId() {
         String tagId = queryParamsTag.get("id").toString();
         Assert.assertEquals(response.getResponse().jsonPath().getString("id"), tagId);
+    }
+    @Then("^proper description should be returned$")
+    public void verifyProperDescription() {
+        Assert.assertEquals(response.getResponse().jsonPath().getString("description"), queryParamsTag.get("description"), "wrong description returned");
+    }
+    @Then("^the tag should be deleted$")
+    public void checkDeletedCategory() {
+        Assert.assertTrue(response.getResponse().jsonPath().get("deleted"), "tag was not deleted");
     }
 }

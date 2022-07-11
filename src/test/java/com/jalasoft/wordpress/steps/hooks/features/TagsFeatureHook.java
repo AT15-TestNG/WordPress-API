@@ -16,16 +16,16 @@ public class TagsFeatureHook {
         this.response = response;
     }
 
-    @After("@CreateATag or RetrieveATag")
+    @After("@CreateATag or @RetrieveATag or @UpdateATag")
     public void afterCreateACategory() {
         String id = response.getResponse().jsonPath().getString("id");
-        Boolean deleted = APITagsMethods.deleteTagById(id);
+        boolean deleted = APITagsMethods.deleteTagById(id);
 
         Assert.assertTrue(deleted, "Tag was not deleted");
     }
-    @Before("@RetrieveATag")
-    public void beforeRetrieveACategory() {
-        String name = "Category Name Example";
+    @Before("@RetrieveATag or @UpdateATag or @DeleteATag")
+    public void beforeRetrieveATag() {
+        String name = "Tag Name Example";
 
         Response requestResponse = APITagsMethods.createATag(name);
 
