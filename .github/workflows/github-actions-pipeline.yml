@@ -53,10 +53,10 @@ jobs:
       - name: Build API Testing framework
         run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Smoke"
       - name: Publish cucumber Smoke report
-          uses: deblockt/cucumber-report-annotations-action@v1.7
-          with:
-            access-token: ${{ secrets.GITHUB_TOKEN }}
-            path: "build/cucumber/*.json"
+        uses: deblockt/cucumber-report-annotations-action@v1.7
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          path: "build/cucumber/*.json"
 
   RunRegressionTests:
     runs-on: ubuntu-20.04
