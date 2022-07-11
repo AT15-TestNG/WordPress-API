@@ -18,9 +18,9 @@ public class UsersFeatureHook {
         this.response = response;
     }
 
-    @Before(order = 1, value ="@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser or @DeleteMe or @CreateAnAppPassword or @GetAllAppPasswordsById")
+    @Before(order = 1, value ="@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser or @DeleteMe")
     public void beforeRetrieveAUserFeature() {
-        Response requestResponse = APIUsersMethods.createAUser(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
+        Response requestResponse = APIUsersMethods.createAPropertyUser(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
@@ -30,9 +30,21 @@ public class UsersFeatureHook {
         userId = response.getResponse().jsonPath().getString("id");
     }
 
-    @Before("@GetStatusByNameSubscriberUser")
+    @Before(order = 1, value ="@CreateAnAppPassword or @GetAllAppPasswordsById")
+    public void createAUniqueUser() {
+        Response requestResponse = APIUsersMethods.createAUniqueUser(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
+
+        if (Objects.nonNull(requestResponse)) {
+            response.setResponse(requestResponse);
+        } else {
+            Assert.fail("User was not created");
+        }
+        userId = response.getResponse().jsonPath().getString("id");
+    }
+
+    @Before(order = 1, value ="@GetStatusByNameSubscriberUser")
     public void beforeTestsWithSubscriberUser() {
-        Response requestResponse = APIUsersMethods.createAUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
+        Response requestResponse = APIUsersMethods.createAPropertyUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
@@ -43,7 +55,7 @@ public class UsersFeatureHook {
 
     }
 
-    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @GetStatusByNameSubscriberUser or @CreateAnAppPassword")
+    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @GetStatusByNameSubscriberUser or @CreateAnAppPassword or @GetAllAppPasswordsById")
     public void afterCreateAUserFeature() {
         String status = APIUsersMethods.deleteUserById(userId);
 

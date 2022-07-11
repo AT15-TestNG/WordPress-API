@@ -4,6 +4,7 @@ import framework.CredentialsManager;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Headers;
+import io.restassured.parsing.Parser;
 import io.restassured.response.Response;;
 import utils.LoggerManager;
 
@@ -29,6 +30,7 @@ public class APIManager {
         RestAssured.baseURI = CredentialsManager.getInstance().getBaseURL();
         RestAssured.basePath = CredentialsManager.getInstance().getBasePath();
         RestAssured.port = CredentialsManager.getInstance().getAPIServicePort();
+        RestAssured.registerParser("text/html", Parser.JSON);
     }
 
     public Response get(String endpoint) {
