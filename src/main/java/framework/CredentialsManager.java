@@ -105,4 +105,8 @@ public class CredentialsManager {
     public String getRetrieveMeEndpoint() {
         return getEnvironmentSetting("api.endpoint.retrieveMe");
     }
+
+    public String getTypesEndpoint() {
+        return getEnvironmentSetting("api.endpoint.types");
+    }
 }
