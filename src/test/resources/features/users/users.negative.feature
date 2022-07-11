@@ -107,10 +107,23 @@ Feature: Users Negative Tests
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a user by Id
     Then response should be "<Status Line>"
-    And response should be invalid and have a body with the following keys and values
+      And response should be invalid and have a body with the following keys and values
       | status    | code   |  message  |
       | <Status>  | <Code> | <Message> |
 
     Examples:
-      | User Role     | Status Line                  | Status | Code                     | Message                                         |
-      | subscriber    | HTTP/1.1 403 Forbidden       | 403    | rest_user_cannot_delete  | Sorry, you are not allowed to delete this user. |
+      | User Role     | Status Line            | Status | Code                     | Message                                         |
+      | subscriber    | HTTP/1.1 403 Forbidden | 403    | rest_user_cannot_delete  | Sorry, you are not allowed to delete this user. |
+
+  @DeleteMeAsSubscriber @Test
+  Scenario Outline: A subscriber user with authorization should not be able to delete your own user
+    Given An authorized user with "<User Role>" role
+    When He makes a request to delete his own user
+    Then response should be "<Status Line>"
+      And response should be invalid and have a body with the following keys and values
+      | status    | code   |  message  |
+      | <Status>  | <Code> | <Message> |
+
+    Examples:
+      | User Role     | Status Line            | Status | Code                     | Message                                         |
+      | subscriber    | HTTP/1.1 403 Forbidden | 403    | rest_user_cannot_delete  | Sorry, you are not allowed to delete this user. |
