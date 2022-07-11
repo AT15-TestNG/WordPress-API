@@ -18,7 +18,6 @@ public class UsersFeatureHook {
         this.response = response;
     }
 
-
     @Before(order = 1, value ="@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser or @DeleteMe or @CreateAnAppPassword or @GetAllAppPasswordsById")
     public void beforeRetrieveAUserFeature() {
         Response requestResponse = APIUsersMethods.createAPropertyUser(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
@@ -51,9 +50,8 @@ public class UsersFeatureHook {
             Assert.fail("User was not created");
         }
         userId = response.getResponse().jsonPath().getString("id");
-
     }
-    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @GetStatusByNameSubscriberUser or @CreateAnAppPassword")
+    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @GetStatusByNameSubscriberUser or @CreateAnAppPassword or @GetAllAppPasswordsById")
     public void afterCreateAUserFeature() {
         String status = APIUsersMethods.deleteUserById(userId);
 

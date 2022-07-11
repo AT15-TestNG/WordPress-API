@@ -4,10 +4,7 @@ import framework.CredentialsManager;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Headers;
-<<<<<<< HEAD
 import io.restassured.parsing.Parser;
-=======
->>>>>>> c08a4cc (T136-Create_App_Password_By_Id added)
 import io.restassured.response.Response;;
 import utils.LoggerManager;
 import java.util.Map;
@@ -29,10 +26,6 @@ public class APIManager {
 
     private void initialize() {
         log.info("Initializing API Manager");
-<<<<<<< HEAD
-        RestAssured.useRelaxedHTTPSValidation();
-=======
->>>>>>> c08a4cc (T136-Create_App_Password_By_Id added)
         RestAssured.baseURI = CredentialsManager.getInstance().getBaseURL();
         RestAssured.basePath = CredentialsManager.getInstance().getBasePath();
         RestAssured.port = CredentialsManager.getInstance().getAPIServicePort();
