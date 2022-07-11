@@ -115,7 +115,7 @@ Feature: Users Negative Tests
       | User Role     | Status Line            | Status | Code                     | Message                                         |
       | subscriber    | HTTP/1.1 403 Forbidden | 403    | rest_user_cannot_delete  | Sorry, you are not allowed to delete this user. |
 
-  @DeleteMeAsSubscriber @Test
+  @DeleteMeAsSubscriber
   Scenario Outline: A subscriber user with authorization should not be able to delete your own user
     Given An authorized user with "<User Role>" role
     When He makes a request to delete his own user
@@ -127,3 +127,16 @@ Feature: Users Negative Tests
     Examples:
       | User Role     | Status Line            | Status | Code                     | Message                                         |
       | subscriber    | HTTP/1.1 403 Forbidden | 403    | rest_user_cannot_delete  | Sorry, you are not allowed to delete this user. |
+
+  @CreateAnExistentUserById @Bug
+  Scenario Outline: A user with proper role should not be able to create an existent user
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to create an existent user
+    Then response should be "<Status Line>"
+      And response should be invalid and have a body with the following keys and values
+      | status    | code   |  message  |
+      | <Status>  | <Code> | <Message> |
+
+    Examples:
+      | User Role     | Status Line            | Status | Code                | Message                              |
+      | administrator | HTTP/1.1 409 Conflict  | 409    | existing_user_login | Sorry, that username already exists! |

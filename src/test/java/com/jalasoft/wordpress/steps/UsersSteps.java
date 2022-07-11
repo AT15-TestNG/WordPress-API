@@ -45,6 +45,23 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to create an existent user$")
+    public void createAnExistentUser() {
+        String username = response.getResponse().jsonPath().getString("username");
+        String email = response.getResponse().jsonPath().getString("email");
+        String password = "password";
+
+        queryParams = new HashMap<>();
+        queryParams.put("username", username);
+        queryParams.put("email", email);
+        queryParams.put("password", password);
+
+        String usersEndpoint = credentialsManager.getUsersEndpoint();
+
+        Response requestResponse = apiManager.post(usersEndpoint, queryParams, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Given("^I make a request to retrieve a user by Id$")
     public void getUserById() {
         String id = response.getResponse().jsonPath().getString("id");
