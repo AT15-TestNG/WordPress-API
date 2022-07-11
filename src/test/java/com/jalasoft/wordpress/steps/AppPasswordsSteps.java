@@ -89,6 +89,13 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.delete(appPasswordsByIdEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
+    @Given("^I make a request to retrieve all app passwords from the request user without authentication$")
+    public void getAllAppPasswordsByIdWithoutToken() {
+        String userId = response.getResponse().jsonPath().getString("id");;
+        String appPasswordsByIdEndpoint = credentialsManager.getAppPasswordsByIdEndpoint().replace("<user_id>", userId);
+        Response requestResponse = apiManager.get(appPasswordsByIdEndpoint);
+        response.setResponse(requestResponse);
+    }
 
     @Then("^name attribute should be the same as the value delivered$")
     public void verifyName() {

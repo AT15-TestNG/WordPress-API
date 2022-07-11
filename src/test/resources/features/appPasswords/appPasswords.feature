@@ -56,6 +56,13 @@ Feature: App_Passwords
     And response should be valid and have a body
     And returned deleted attribute should be "true"
 
+  @Before_CreateAnUniqueUserAdministrator @After_DeleteUserById @Regression
+  Scenario: A user with proper role should not be able to retrieve all the app passwords from the request user without authentication
+    Given I make a request to retrieve all app passwords from the request user without authentication
+    Then response should be "HTTP/1.1 401 Unauthorized"
+    And response should be invalid and have a body
+    And response body should contain the "MISSING_AUTHORIZATION_HEADER"
+
 
 
 
