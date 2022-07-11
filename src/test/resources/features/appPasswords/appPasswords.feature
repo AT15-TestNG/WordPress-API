@@ -89,6 +89,15 @@ Feature: App_Passwords
     And response should be invalid and have a body
     And response body should contain the "Each application name should be unique."
 
+  @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Smoke
+  Scenario: A user with subscriber role should not be able to get all app password of any other user
+    Given I create a user with a subscriber role
+      And I am authorized with a user with "subscriber" role
+    When I make a request to retrieve all app passwords from the request user
+    Then response should be "HTTP/1.1 403 Forbidden"
+      And response should be invalid and have a body
+      And response body should contain the "Sorry, you are not allowed to list application passwords for this user."
+
 
 
 

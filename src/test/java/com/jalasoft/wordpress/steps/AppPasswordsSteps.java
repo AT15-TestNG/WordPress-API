@@ -4,6 +4,8 @@ import api.APIManager;
 import api.http.HttpHeaders;
 import api.http.HttpResponse;
 import api.http.HttpScenarioContext;
+import api.methods.APIUsersMethods;
+import constants.DomainAppEnums;
 import framework.CredentialsManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -14,6 +16,7 @@ import org.testng.Assert;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class AppPasswordsSteps {
     private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
@@ -126,6 +129,16 @@ public class AppPasswordsSteps {
         String postsEndpoint = credentialsManager.getAppPasswordsByIdEndpoint().replace("<user_id>", userId);
         Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
+    }
+    @Given("^I create a user with a subscriber role$")
+    public void CreateAnUserWithSubscriberRole() {
+        Response requestResponse = APIUsersMethods.createAPropertyUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
+
+        if (Objects.nonNull(requestResponse)) {
+            response.setResponse(requestResponse);
+        } else {
+            Assert.fail("User was not created");
+        }
     }
 
     @Then("^name attribute should be the same as the value delivered$")
