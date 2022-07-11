@@ -66,10 +66,20 @@ public class AppPasswordsSteps {
 
         String appPasswordsByIdByUuidEndpoint = credentialsManager.getAppPasswordsByIByUuidEndpoint().replace("<user_id>", userId).replace("<uuid>",uuid);
 
-        Response requestResponse = apiManager.post(appPasswordsByIdByUuidEndpoint, queryParams, headers.getHeaders());
+        Response requestResponse = apiManager.put(appPasswordsByIdByUuidEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to delete an app passwords from the request user by its uuid$")
+    public void DeleteAnAppPasswordByIdByUuid() {
+        String userId = scenarioContext.getScenarioContext().get("userId").toString();
+        String uuid = scenarioContext.getScenarioContext().get("uuid").toString();
+
+        String appPasswordsByIdByUuidEndpoint = credentialsManager.getAppPasswordsByIByUuidEndpoint().replace("<user_id>", userId).replace("<uuid>",uuid);
+
+        Response requestResponse = apiManager.delete(appPasswordsByIdByUuidEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
     @Then("^name attribute should be the same as the value delivered$")
     public void verifyName() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("name"), queryParams.get("name"), "wrong name value returned");
@@ -82,5 +92,9 @@ public class AppPasswordsSteps {
     @Then("^item with the uuid of the app-password created should be retrieved$")
     public void verifyUuidRetrieved() {
         Assert.assertTrue(response.getResponse().body().asString().contains(scenarioContext.getScenarioContext().get("uuid").toString()), "uuid value not found");
+    }
+    @Then("^returned deleted attribute should be \"(.*?)\"$")
+    public void verifyDeletedRetrieved(String isDeleted) {
+        Assert.assertEquals(response.getResponse().jsonPath().getString("deleted"), isDeleted, "app-password was not deleted");
     }
 }

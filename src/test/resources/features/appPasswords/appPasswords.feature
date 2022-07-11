@@ -1,7 +1,7 @@
 @AppPasswords @Acceptance
 Feature: App_Passwords
 
-  @CreateAnAppPassword @Smoke
+  @Before_CreateAnUniqueUserAdministrator @After_DeleteUserById @Smoke
   Scenario: A user with proper role should be able to create an app password
     Given I am authorized with a user with "administrator" role
     When I make a request to create an app password with the following query params
@@ -11,7 +11,7 @@ Feature: App_Passwords
       And response should be valid and have a body
       And name attribute should be the same as the value delivered
 
-  @GetAllAppPasswordsById @GetAllAppPasswordsById2 @Smoke
+  @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Smoke
   Scenario: A user with proper role should be able to retrieve all te app passwords from the request user
     Given I am authorized with a user with "administrator" role
     When I make a request to retrieve all app passwords from the request user
@@ -19,7 +19,7 @@ Feature: App_Passwords
       And response should be valid and have a body
       And item with the name of the app-password created should be retrieved
 
-  @GetAppPasswordsByIdByUuid @GetAppPasswordsByIdByUuid2 @Smoke
+  @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Smoke
   Scenario: A user with proper role should be able to retrieve an specific app passwords from the request user
     Given I am authorized with a user with "administrator" role
     When I make a request to retrieve an app passwords from the request user by its uuid
@@ -28,16 +28,26 @@ Feature: App_Passwords
       And item with the name of the app-password created should be retrieved
       And item with the uuid of the app-password created should be retrieved
 
-  @UpdateAppPasswordsByIdByUuid @UpdateAppPasswordsByIdByUuid2 @Smoke
+  @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Smoke
   Scenario: A user with proper role should be able to update an specific app passwords from the request user
     Given I am authorized with a user with "administrator" role
     When I make a request to update an app passwords from the request user by its uuid with the following parameters
       | name               |
       | newUniqueAppName   |
     Then response should be "HTTP/1.1 200 OK"
-    And response should be valid and have a body
-    And name attribute should be the same as the value delivered
-    And item with the uuid of the app-password created should be retrieved
+      And response should be valid and have a body
+      And name attribute should be the same as the value delivered
+      And item with the uuid of the app-password created should be retrieved
+
+  @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Smoke
+  Scenario: A user with proper role should be able to delete an specific app passwords from the request user
+    Given I am authorized with a user with "administrator" role
+    When I make a request to delete an app passwords from the request user by its uuid
+    Then response should be "HTTP/1.1 200 OK"
+      And response should be valid and have a body
+      And returned deleted attribute should be "true"
+      And item with the uuid of the app-password created should be retrieved
+
 
 
 
