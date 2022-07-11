@@ -93,4 +93,7 @@ public class CredentialsManager {
     public int getAPIServicePort() {
         return Integer.parseInt(getEnvironmentSetting("api.service.port"));
     }
+    public String getTagsEndpoint() {
+        return getEnvironmentSetting("api.endpoint.tags");
+    }
 }
