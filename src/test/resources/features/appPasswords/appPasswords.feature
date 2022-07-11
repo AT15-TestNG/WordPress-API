@@ -81,6 +81,14 @@ Feature: App_Passwords
     And response should be invalid and have a body
     And response body should contain the "Application password not found."
 
+  @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Smoke
+  Scenario: A user with proper role should not be able to create an app password with the same name than other app password
+    Given I am authorized with a user with "administrator" role
+    When I make a request to create an app password with the same name than the already app password created
+    Then response should be "HTTP/1.1 409 Conflict"
+    And response should be invalid and have a body
+    And response body should contain the "Each application name should be unique."
+
 
 
 

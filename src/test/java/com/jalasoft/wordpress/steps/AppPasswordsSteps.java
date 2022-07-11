@@ -11,6 +11,7 @@ import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class AppPasswordsSteps {
     private static  final APIManager apiManager = APIManager.getInstance();
     private final HttpHeaders headers;
     private final HttpResponse response;
-    private Map<String, Object> queryParams;
+    private Map<String, Object> queryParams = new HashMap<>();
     private final HttpScenarioContext scenarioContext;
 
     public AppPasswordsSteps(HttpHeaders headers, HttpResponse response, HttpScenarioContext scenarioContext) {
@@ -115,6 +116,15 @@ public class AppPasswordsSteps {
         String uuid = "100";
         String getAppPasswordsByIdEndpointByUuid = credentialsManager.getAppPasswordsByIByUuidEndpoint().replace("<user_id>",userId).replace("<uuid>",uuid);
         Response requestResponse = apiManager.get(getAppPasswordsByIdEndpointByUuid, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+    @Given("^I make a request to create an app password with the same name than the already app password created$")
+    public void CreateAnAppPasswordByIdWithNotUniqueName() {
+        String userId = scenarioContext.getScenarioContext().get("userId").toString();
+        Object name = scenarioContext.getScenarioContext().get("name");
+        queryParams.put("name", name);
+        String postsEndpoint = credentialsManager.getAppPasswordsByIdEndpoint().replace("<user_id>", userId);
+        Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
     }
 
