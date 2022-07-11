@@ -57,6 +57,19 @@ public class AppPasswordsSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to update an app passwords from the request user by its uuid with the following parameters$")
+    public void UpdateAnAppPasswordByIdByUuid(DataTable table) {
+        String userId = scenarioContext.getScenarioContext().get("userId").toString();
+        String uuid = scenarioContext.getScenarioContext().get("uuid").toString();
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        queryParams = queryParamsList.get(0);
+
+        String appPasswordsByIdByUuidEndpoint = credentialsManager.getAppPasswordsByIByUuidEndpoint().replace("<user_id>", userId).replace("<uuid>",uuid);
+
+        Response requestResponse = apiManager.post(appPasswordsByIdByUuidEndpoint, queryParams, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^name attribute should be the same as the value delivered$")
     public void verifyName() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("name"), queryParams.get("name"), "wrong name value returned");
