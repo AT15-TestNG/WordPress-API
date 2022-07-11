@@ -162,6 +162,20 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to delete a user by Id with missing parameters$")
+    public void deleteUserByIdWithMissingParameters() {
+        String id = response.getResponse().jsonPath().getString("id");
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+        queryParams.put("reassign", 1);
+
+        String usersByIdEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.delete(usersByIdEndpoint, queryParams, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Then("^proper user id should be returned$")
     public void checkUserId() {
         String id = response.getResponse().jsonPath().getString("id");

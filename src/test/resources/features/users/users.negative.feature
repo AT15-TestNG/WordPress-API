@@ -74,8 +74,8 @@ Feature: Users Negative Tests
       | User Role  | Status Line            | Status | Code             | Message                                       |
       | subscriber | HTTP/1.1 403 Forbidden | 403    | rest_cannot_edit | Sorry, you are not allowed to edit this user. |
 
-  @DeleteAUserByNonExistentAndInvalidId @Test
-  Scenario Outline: A user with proper role should be able to delete a User by Id
+  @DeleteAUserByNonExistentAndInvalidId
+  Scenario Outline: A user with proper role should not be able to delete a User by non-existent or invalid Id
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a user with the Id "<Id>"
     Then response should be "<Status Line>"
@@ -87,3 +87,16 @@ Feature: Users Negative Tests
       | User Role     | Id    | Status Line            | Status | Code                 | Message                                                 |
       | administrator | 12345 | HTTP/1.1 404 Not Found | 404    | rest_user_invalid_id | Invalid user ID.                                        |
       | administrator | abc   | HTTP/1.1 404 Not Found | 404    | rest_no_route        | No route was found matching the URL and request method. |
+
+  @DeleteAUserByIdWithMissingParameters
+  Scenario Outline: A user with proper role should not be able to delete a User by Id with missing parameters
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to delete a user by Id with missing parameters
+    Then response should be "<Status Line>"
+      And response should be invalid and have a body with the following keys and values
+      | status    | code   |  message  |
+      | <Status>  | <Code> | <Message> |
+
+    Examples:
+      | User Role     | Status Line                  | Status | Code                     | Message                                                    |
+      | administrator | HTTP/1.1 501 Not Implemented | 501    | rest_trash_not_supported | Users do not support trashing. Set 'force=true' to delete. |
