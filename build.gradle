@@ -39,7 +39,6 @@ task executeFeatures(type: Test) {
         javaexec {
             mainClass = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            systemProperty "cucumber.publish.quiet", true
             args = [
                     '--plugin', 'pretty',
                     '--plugin', 'me.jvt.cucumber.report.PrettyReports:reports',
@@ -49,6 +48,25 @@ task executeFeatures(type: Test) {
                     '--glue', 'com.jalasoft.wordpress',
                     'src/test/resources/features',
                     '--tags', cucumberOptions
+            ]
+        }
+    }
+}
+
+task reExecuteFeatures(type: Test) {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            mainClass = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'me.jvt.cucumber.report.PrettyReports:reports/rerun',
+                    '--plugin', 'html:reports/rerun/cucumber-reports/cucumber-report.html',
+                    '--plugin', 'json:build/cucumber/rerun/cucumber.json',
+                    '--plugin', 'rerun:build/cucumber/rerun.txt',
+                    '--glue', 'com.jalasoft.wordpress',
+                    '@build/cucumber/rerun.txt'
             ]
         }
     }
