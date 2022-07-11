@@ -1,4 +1,4 @@
-@Posts @Negative
+@Posts @Negative @Regression
 Feature: Pages Negative Tests
 
   @UpdateAPostWithInvalidId
