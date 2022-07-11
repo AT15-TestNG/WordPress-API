@@ -96,4 +96,7 @@ public class CredentialsManager {
     public String getTagsEndpoint() {
         return getEnvironmentSetting("api.endpoint.tags");
     }
+    public String getTagsByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.tagsById");
+    }
 }
