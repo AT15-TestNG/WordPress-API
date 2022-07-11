@@ -1,4 +1,4 @@
-@Pages @Negative
+@Pages @Negative @Regression
 Feature: Pages Negative Tests
 
   @UpdateAPageWithInvalidId

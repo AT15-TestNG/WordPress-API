@@ -2,7 +2,7 @@ name: WordPress CI
 on:
   push:
     branches:
-      - 'pull_request'
+      - 'pull_request push'
   pull_request:
     types: [synchronize]
 env:
@@ -52,8 +52,13 @@ jobs:
         run: chmod +x gradlew
       - name: Build API Testing framework
         run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Smoke"
+      - name: Publish cucumber Smoke report
+        uses: deblockt/cucumber-report-annotations-action@v1.7
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          path: "build/cucumber/*.json"
 
-  RunAcceptanceTests:
+  RunRegressionTests:
     runs-on: ubuntu-20.04
     needs: RunSmokeTests
     steps:
@@ -68,12 +73,12 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: Run Tests
-        run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Acceptance"
-      - name: Publish cucumber report
+        run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Regression and not @Bug"
+      - name: Publish cucumber Regression report
         uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
-          path: "build/cucumber/cucumber.json"
+          path: "build/cucumber/*.json"
 
 #      - name: Deploy report to Github Pages
 #        if: always()
