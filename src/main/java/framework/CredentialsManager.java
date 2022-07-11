@@ -82,6 +82,25 @@ public class CredentialsManager {
         return getEnvironmentSetting("api.endpoint.postsById");
     }
 
+    public String getStatusesEndpoint() {
+        return getEnvironmentSetting("api.endpoint.statuses");
+    }
+    public String getStatusesByNameEndpoint() {
+        return getEnvironmentSetting("api.endpoint.statusesByName");
+    }
+    public String getUsersByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.usersById");
+    }
+    public String getAppPasswordsByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.appPasswordsById");
+    }
+    public String getAppPasswordsByIByUuidEndpoint() {
+        return getEnvironmentSetting("api.endpoint.appPasswordsByIdByUuid");
+    }
+    public String getUsersEndpoint() {
+        return getEnvironmentSetting("api.endpoint.users");
+    }
+
     public String getUserName(String userRole) {
         return getEnvironmentSetting("userRole.username".replace("userRole", userRole));
     }

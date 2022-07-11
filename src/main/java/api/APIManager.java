@@ -4,7 +4,8 @@ import framework.CredentialsManager;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Headers;
-import io.restassured.response.Response;
+import io.restassured.parsing.Parser;
+import io.restassured.response.Response;;
 import utils.LoggerManager;
 
 import java.util.Map;
@@ -29,6 +30,7 @@ public class APIManager {
         RestAssured.baseURI = CredentialsManager.getInstance().getBaseURL();
         RestAssured.basePath = CredentialsManager.getInstance().getBasePath();
         RestAssured.port = CredentialsManager.getInstance().getAPIServicePort();
+        RestAssured.registerParser("text/html", Parser.JSON);
     }
 
     public Response get(String endpoint) {
@@ -69,5 +71,8 @@ public class APIManager {
 
     public Response delete(String endpoint, Headers headers) {
         return RestAssured.given().headers(headers).delete(endpoint);
+    }
+    public Response delete(String endpoint, Map<String, Object> queryParams, Headers headers) {
+        return RestAssured.given().queryParams(queryParams).headers(headers).delete(endpoint);
     }
 }

@@ -28,4 +28,13 @@ public class APISteps {
         Assert.assertFalse(response.getResponse().getBody().asString().isEmpty(), "response body is empty");
         Assert.assertEquals(response.getResponse().getContentType(), expectedContentType, "wrong content type returned");
     }
+
+    @Then("^response should be invalid and have a body$")
+    public void verifyInvalidResponseAndBody() {
+        String expectedContentType = ContentType.JSON.withCharset(StandardCharsets.UTF_8);
+
+        Assert.assertTrue(Status.FAILURE.matches(response.getResponse().getStatusCode()), "invalid status code returned");
+        Assert.assertFalse(response.getResponse().getBody().asString().isEmpty(), "response body is empty");
+        Assert.assertEquals(response.getResponse().getContentType(), expectedContentType, "wrong content type returned");
+    }
 }
