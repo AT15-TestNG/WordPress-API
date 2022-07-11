@@ -109,4 +109,8 @@ public class CredentialsManager {
     public String getTypesEndpoint() {
         return getEnvironmentSetting("api.endpoint.types");
     }
+
+    public String getTypeByNameEndpoint() {
+        return getEnvironmentSetting("api.endpoint.typesByName");
+    }
 }

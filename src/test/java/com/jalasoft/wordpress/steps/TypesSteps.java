@@ -30,6 +30,13 @@ public class TypesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve a post type$")
+    public void getPostType() {
+        String typeByNameEndpoint = credentialsManager.getTypeByNameEndpoint().replace("<type>", "post");
+        Response requestResponse = apiManager.get(typeByNameEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of types$")
     public void verifyTypesAmount() {
         Assert.assertNotNull(response.getResponse().jsonPath().get("post"), "Response does not have any posts");
@@ -40,5 +47,10 @@ public class TypesSteps {
         Assert.assertNotNull(response.getResponse().jsonPath().get("wp_template"), "Response does not have any wp_templates");
         Assert.assertNotNull(response.getResponse().jsonPath().get("wp_template_part"), "Response does not have any wp_template_part");
         Assert.assertNotNull(response.getResponse().jsonPath().get("wp_navigation"), "Response does not have any wp_navigation");
+    }
+
+    @Then("^response should be a post type$")
+    public void verifyPostType() {
+        Assert.assertEquals(response.getResponse().jsonPath().getString("name"), "Posts", "Response is not a post type");
     }
 }
