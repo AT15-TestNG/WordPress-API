@@ -2,9 +2,16 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wordpress-testng&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=wordpress-testng)
 # WordPress API v2 Testing Framework
 
-This framework was implemented to test the WordPress API v2.
+This framework was implemented to test the [WordPress API](http://18.208.160.75/) with the [
+WordPress REST API Authentication](https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/) enabled, running in an AWS server.
 
-The following dependencies were used:
+
+### Software Under Test (SUT)
+
+[WordPress API Docs](https://developer.wordpress.org/rest-api/reference/)
+
+### Dependencies
+
 * [Rest Assured](https://rest-assured.io/)
 * [TestNG](https://testng.org/)
 * [Cucumber](https://cucumber.io/)
