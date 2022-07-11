@@ -63,7 +63,7 @@ Feature: App_Passwords
     And response should be invalid and have a body
     And response body should contain the "MISSING_AUTHORIZATION_HEADER"
 
-  @Smoke
+  @Regression
   Scenario: A user with proper role should not be able to create an app password by an invalid user id
     Given I am authorized with a user with "administrator" role
     When I make a request to create an app password with an invalid user id and the following query params
@@ -72,6 +72,14 @@ Feature: App_Passwords
     Then response should be "HTTP/1.1 404 Not Found"
     And response should be invalid and have a body
     And response body should contain the "Invalid user ID."
+
+  @Before_CreateAnUniqueUserAdministrator @After_DeleteUserById @Regression
+  Scenario: A user with proper role should not be able to retrieve an app password by an invalid app password uuid
+    Given I am authorized with a user with "administrator" role
+    When I make a request to retrieve an app passwords from the request user by an non existent uuid
+    Then response should be "HTTP/1.1 404 Not Found"
+    And response should be invalid and have a body
+    And response body should contain the "Application password not found."
 
 
 

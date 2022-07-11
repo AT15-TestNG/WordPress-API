@@ -91,7 +91,7 @@ public class AppPasswordsSteps {
     }
     @Given("^I make a request to retrieve all app passwords from the request user without authentication$")
     public void getAllAppPasswordsByIdWithoutToken() {
-        String userId = response.getResponse().jsonPath().getString("id");;
+        String userId = response.getResponse().jsonPath().getString("id");
         String appPasswordsByIdEndpoint = credentialsManager.getAppPasswordsByIdEndpoint().replace("<user_id>", userId);
         Response requestResponse = apiManager.get(appPasswordsByIdEndpoint);
         response.setResponse(requestResponse);
@@ -106,6 +106,15 @@ public class AppPasswordsSteps {
         String postsEndpoint = credentialsManager.getAppPasswordsByIdEndpoint().replace("<user_id>", userId);
 
         Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to retrieve an app passwords from the request user by an non existent uuid$")
+    public void getAppPasswordsByIdByNonExistentUuid() {
+        String userId = response.getResponse().jsonPath().getString("id");
+        String uuid = "100";
+        String getAppPasswordsByIdEndpointByUuid = credentialsManager.getAppPasswordsByIByUuidEndpoint().replace("<user_id>",userId).replace("<uuid>",uuid);
+        Response requestResponse = apiManager.get(getAppPasswordsByIdEndpointByUuid, headers.getHeaders());
         response.setResponse(requestResponse);
     }
 
