@@ -30,7 +30,7 @@ public class UsersFeatureHook {
         userId = response.getResponse().jsonPath().getString("id");
     }
 
-    @Before(order = 1, value ="@CreateAnAppPassword or @GetAllAppPasswordsById")
+    @Before(order = 1, value ="@CreateAnAppPassword or @GetAllAppPasswordsById or @GetAppPasswordsByIdByUuid")
     public void createAUniqueUser() {
         Response requestResponse = APIUsersMethods.createAUniqueUser(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
 

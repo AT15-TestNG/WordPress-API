@@ -18,12 +18,14 @@ public class AppPasswordsFeatureHook {
         this.scenarioContext = scenarioContext;
     }
 
-    @Before(order = 2, value ="@GetAllAppPasswordsById2")
+    @Before(order = 2, value ="@GetAllAppPasswordsById2 or @GetAppPasswordsByIdByUuid2")
     public void CreateAnAppPasswordById() {
         String userId = response.getResponse().jsonPath().getString("id");
         scenarioContext.addScenarioContext("userId",userId);
         Response requestResponse = APIAppPasswordsMethods.CreateAnAppPasswordById(userId);
         scenarioContext.addScenarioContext("name", requestResponse.jsonPath().getString("name"));
+        scenarioContext.addScenarioContext("uuid", requestResponse.jsonPath().getString("uuid"));
+
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
         } else {

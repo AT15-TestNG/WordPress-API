@@ -48,13 +48,26 @@ public class AppPasswordsSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve an app passwords from the request user by its uuid$")
+    public void getAppPasswordsByIdByUuid() {
+        String userId = scenarioContext.getScenarioContext().get("userId").toString();
+        String uuid = scenarioContext.getScenarioContext().get("uuid").toString();
+        String getAppPasswordsByIdEndpointByUuid = credentialsManager.getAppPasswordsByIByUuidEndpoint().replace("<user_id>",userId).replace("<uuid>",uuid);
+        Response requestResponse = apiManager.get(getAppPasswordsByIdEndpointByUuid, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^name attribute should be the same as the value delivered$")
     public void verifyName() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("name"), queryParams.get("name"), "wrong name value returned");
     }
     @Then("^item with the name of the app-password created should be retrieved$")
     public void verifyNameRetrieved() {
-        List<Long> idList = response.getResponse().jsonPath().getList("name");
-        Assert.assertTrue(idList.contains(scenarioContext.getScenarioContext().get("name").toString()), "name value not found");
+        Assert.assertTrue(response.getResponse().body().asString().contains(scenarioContext.getScenarioContext().get("name").toString()), "name value not found");
+    }
+
+    @Then("^item with the uuid of the app-password created should be retrieved$")
+    public void verifyUuidRetrieved() {
+        Assert.assertTrue(response.getResponse().body().asString().contains(scenarioContext.getScenarioContext().get("uuid").toString()), "uuid value not found");
     }
 }
