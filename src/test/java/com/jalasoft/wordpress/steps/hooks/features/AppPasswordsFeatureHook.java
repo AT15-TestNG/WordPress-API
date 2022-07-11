@@ -17,8 +17,7 @@ public class AppPasswordsFeatureHook {
         this.response = response;
         this.scenarioContext = scenarioContext;
     }
-
-    @Before(order = 2, value ="@GetAllAppPasswordsById2 or @GetAppPasswordsByIdByUuid2")
+    @Before(order = 2, value ="@Before_CreateAnAppPasswordById")
     public void CreateAnAppPasswordById() {
         String userId = response.getResponse().jsonPath().getString("id");
         scenarioContext.addScenarioContext("userId",userId);

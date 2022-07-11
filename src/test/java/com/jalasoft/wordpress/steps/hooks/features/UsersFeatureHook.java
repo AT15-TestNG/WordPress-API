@@ -1,6 +1,7 @@
 package com.jalasoft.wordpress.steps.hooks.features;
 
 import api.http.HttpResponse;
+import api.http.HttpScenarioContext;
 import api.methods.APIUsersMethods;
 import constants.DomainAppEnums;
 import io.cucumber.java.After;
@@ -13,9 +14,10 @@ import java.util.Objects;
 public class UsersFeatureHook {
     private final HttpResponse response;
     private String userId;
-
-    public UsersFeatureHook(HttpResponse response) {
+    private final HttpScenarioContext scenarioContext;
+    public UsersFeatureHook(HttpResponse response, HttpScenarioContext scenarioContext) {
         this.response = response;
+        this.scenarioContext = scenarioContext;
     }
 
     @Before(order = 1, value ="@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser or @DeleteMe")
@@ -30,7 +32,7 @@ public class UsersFeatureHook {
         userId = response.getResponse().jsonPath().getString("id");
     }
 
-    @Before(order = 1, value ="@CreateAnAppPassword or @GetAllAppPasswordsById or @GetAppPasswordsByIdByUuid")
+    @Before(order = 1, value ="@Before_CreateAnUniqueUserAdministrator")
     public void createAUniqueUser() {
         Response requestResponse = APIUsersMethods.createAUniqueUser(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
 
@@ -42,8 +44,8 @@ public class UsersFeatureHook {
         userId = response.getResponse().jsonPath().getString("id");
     }
 
-    @Before(order = 1, value ="@GetStatusByNameSubscriberUser")
-    public void beforeTestsWithSubscriberUser() {
+    @Before(order = 1, value ="@Before_CreateUserWithSubscriberRole")
+    public void createUserWithSubscriberRole() {
         Response requestResponse = APIUsersMethods.createAPropertyUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
 
         if (Objects.nonNull(requestResponse)) {
@@ -54,10 +56,17 @@ public class UsersFeatureHook {
         userId = response.getResponse().jsonPath().getString("id");
 
     }
-
-    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @GetStatusByNameSubscriberUser or @CreateAnAppPassword or @GetAllAppPasswordsById")
+    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @After_DeleteUserById")
     public void afterCreateAUserFeature() {
         String status = APIUsersMethods.deleteUserById(userId);
+
+        Assert.assertEquals(status, "true", "User was not deleted");
+    }
+    @After("@After_DeleteSubscriberUserById")
+    public void deleteSubscriberUser() {
+        String subscriberUserId = scenarioContext.getScenarioContext().get("subscriberUserId").toString();
+
+        String status = APIUsersMethods.deleteUserById(subscriberUserId);
 
         Assert.assertEquals(status, "true", "User was not deleted");
     }
