@@ -1,4 +1,4 @@
-@Types @Regression
+@Types
 Feature: Posts
 
   @GetAllTypes @Smoke
@@ -14,7 +14,7 @@ Feature: Posts
       | administrator | HTTP/1.1 200 OK |
       | subscriber    | HTTP/1.1 200 OK |
 
-  @GetTypesByName @Smoke @Test
+  @GetTypesByName @Smoke
   Scenario Outline: A user with proper role should be able to retrieve a post type
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a post type

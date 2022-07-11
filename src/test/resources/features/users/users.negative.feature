@@ -1,4 +1,4 @@
-@Users @Negative
+@Users @Negative @Regression
 Feature: Users Negative Tests
 
   @GetUserByNonExistentAndInvalidId

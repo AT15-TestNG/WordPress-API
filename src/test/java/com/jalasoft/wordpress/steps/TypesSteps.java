@@ -37,6 +37,13 @@ public class TypesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve a type by name \"(.*?)\"$")
+    public void getTypeByName(String typeName) {
+        String typeByNameEndpoint = credentialsManager.getTypeByNameEndpoint().replace("<type>", typeName);
+        Response requestResponse = apiManager.get(typeByNameEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^response should have proper amount of types$")
     public void verifyTypesAmount() {
         Assert.assertNotNull(response.getResponse().jsonPath().get("post"), "Response does not have any posts");
