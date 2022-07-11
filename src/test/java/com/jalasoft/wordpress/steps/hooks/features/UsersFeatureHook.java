@@ -1,6 +1,7 @@
 package com.jalasoft.wordpress.steps.hooks.features;
 
 import api.http.HttpResponse;
+import api.http.HttpScenarioContext;
 import api.methods.APIUsersMethods;
 import constants.DomainAppEnums;
 import io.cucumber.java.After;
@@ -13,9 +14,11 @@ import java.util.Objects;
 public class UsersFeatureHook {
     private final HttpResponse response;
     private String userId;
+    private final HttpScenarioContext scenarioContext;
 
-    public UsersFeatureHook(HttpResponse response) {
+    public UsersFeatureHook(HttpResponse response, HttpScenarioContext scenarioContext) {
         this.response = response;
+        this.scenarioContext = scenarioContext;
     }
 
     @Before(order = 1, value ="@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser or @DeleteMe")
@@ -59,6 +62,14 @@ public class UsersFeatureHook {
     @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @After_DeleteUserById")
     public void afterCreateAUserFeature() {
         String status = APIUsersMethods.deleteUserById(userId);
+
+        Assert.assertEquals(status, "true", "User was not deleted");
+    }
+    @After("@After_DeleteSubscriberUserById")
+    public void deleteSubscriberUser() {
+        String subscriberUserId = scenarioContext.getScenarioContext().get("subscriberUserId").toString();
+
+        String status = APIUsersMethods.deleteUserById(subscriberUserId);
 
         Assert.assertEquals(status, "true", "User was not deleted");
     }

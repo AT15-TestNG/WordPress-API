@@ -89,7 +89,7 @@ Feature: App_Passwords
     And response should be invalid and have a body
     And response body should contain the "Each application name should be unique."
 
-  @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Regression
+  @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @After_DeleteSubscriberUserById @Regression
   Scenario: A user with subscriber role should not be able to get all app password of any other user
     Given I create a user with a subscriber role
       And I am authorized with a user with "subscriber" role

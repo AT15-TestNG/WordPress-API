@@ -133,6 +133,7 @@ public class AppPasswordsSteps {
     @Given("^I create a user with a subscriber role$")
     public void CreateAnUserWithSubscriberRole() {
         Response requestResponse = APIUsersMethods.createAPropertyUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
+        scenarioContext.addScenarioContext("subscriberUserId",requestResponse.jsonPath().get("id"));
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
