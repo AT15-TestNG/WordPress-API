@@ -150,6 +150,18 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to delete a user with the Id \"(.*?)\"$")
+    public void deleteUserByNonExistentAndInvalidId(String id) {
+        String usersByIdEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+        queryParams = new HashMap<>();
+        queryParams.put("reassign", 1);
+        queryParams.put("force", true);
+
+        Response requestResponse = apiManager.delete(usersByIdEndpoint, queryParams, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Then("^proper user id should be returned$")
     public void checkUserId() {
         String id = response.getResponse().jsonPath().getString("id");

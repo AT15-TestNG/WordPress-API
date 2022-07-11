@@ -59,7 +59,7 @@ Feature: Users Negative Tests
       | User Role     | Status Line              | Status | Code                        | Message                        |
       | administrator | HTTP/1.1 400 Bad Request | 400    | rest_missing_callback_param | Missing parameter(s): password |
 
-  @UpdateUserByIdAsSubscriber @Test
+  @UpdateUserByIdAsSubscriber
   Scenario Outline: A user without authorization should not be able to update a user by Id
     Given I am authorized with a user with "<User Role>" role
     When I make a request to update a user with the following query params
@@ -73,3 +73,16 @@ Feature: Users Negative Tests
     Examples:
       | User Role  | Status Line            | Status | Code             | Message                                       |
       | subscriber | HTTP/1.1 403 Forbidden | 403    | rest_cannot_edit | Sorry, you are not allowed to edit this user. |
+
+  @DeleteAUserByNonExistentId
+  Scenario Outline: A user with proper role should be able to delete a User by Id
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to delete a user with the Id "<Id>"
+    Then response should be "<Status Line>"
+      And response should be invalid and have a body with the following keys and values
+      | status    | code   |  message  |
+      | <Status>  | <Code> | <Message> |
+
+    Examples:
+      | User Role     | Id    | Status Line            | Status | Code                 | Message          |
+      | administrator | 12345 | HTTP/1.1 404 Not Found | 404    | rest_user_invalid_id | Invalid user ID. |
