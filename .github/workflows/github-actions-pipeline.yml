@@ -31,7 +31,6 @@ jobs:
         with:
           java-version: '16.0.2'
           distribution: 'adopt'
-          fetch-depth: 0
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: SonarQube Scan
@@ -69,7 +68,6 @@ jobs:
         with:
           java-version: '16.0.2'
           distribution: 'adopt'
-          fetch-depth: 0
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: Run Tests
