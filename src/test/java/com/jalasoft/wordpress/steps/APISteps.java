@@ -32,7 +32,7 @@ public class APISteps {
         Assert.assertEquals(response.getResponse().getContentType(), expectedContentType, "wrong content type returned");
     }
 
-    @Then("^response should be valid and have a body with the following fields$")
+    @Then("^response should be invalid and have a body with the following fields$")
     public void verifyInvalidResponseAndBody(DataTable table) {
         String expectedContentType = ContentType.JSON.withCharset(StandardCharsets.UTF_8);
         List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
@@ -42,8 +42,10 @@ public class APISteps {
         Assert.assertFalse(response.getResponse().getBody().asString().isEmpty(), "response body is empty");
         Assert.assertEquals(response.getResponse().getContentType(), expectedContentType, "wrong content type returned");
 
-        Assert.assertEquals(response.getResponse().jsonPath().getString("code"), queryParams.get("code"), "wrong code value returned");
-        Assert.assertEquals(response.getResponse().jsonPath().getString("message"), queryParams.get("message"), "wrong message value returned");
+        Assert.assertEquals(response.getResponse().jsonPath().get("status").toString(), queryParams.get("status"), "wrong status value returned");
+        Assert.assertEquals(response.getResponse().jsonPath().get("error"), queryParams.get("error"), "wrong error value returned");
+        Assert.assertEquals(response.getResponse().jsonPath().get("code"), queryParams.get("code"), "wrong code value returned");
+        Assert.assertEquals(response.getResponse().jsonPath().get("error_description"), queryParams.get("error_description"), "wrong error description value returned");
     }
 
     @Then("^response should be invalid and have a body with the following keys and values$")
@@ -56,9 +58,8 @@ public class APISteps {
         Assert.assertFalse(response.getResponse().getBody().asString().isEmpty(), "response body is empty");
         Assert.assertEquals(response.getResponse().getContentType(), expectedContentType, "wrong content type returned");
 
-        Assert.assertEquals(response.getResponse().jsonPath().get("status"), queryParams.get("status"), "wrong status value returned");
+        Assert.assertEquals(response.getResponse().jsonPath().get("data.status").toString(), queryParams.get("status"), "wrong status value returned");
         Assert.assertEquals(response.getResponse().jsonPath().get("error"), queryParams.get("error"), "wrong error value returned");
         Assert.assertEquals(response.getResponse().jsonPath().get("code"), queryParams.get("code"), "wrong code value returned");
-        Assert.assertEquals(response.getResponse().jsonPath().get("error_description"), queryParams.get("error_description"), "wrong error description value returned");
     }
 }
