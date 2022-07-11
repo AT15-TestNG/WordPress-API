@@ -44,7 +44,7 @@ Feature: Users Negative Tests
       | User Role     | Status Line            | Status | Code                    | Message                                         |
       | subscriber    | HTTP/1.1 403 Forbidden | 403    | rest_cannot_create_user | Sorry, you are not allowed to create new users. |
 
-  @CreateUserWithMissingParameters @Test
+  @CreateUserWithMissingParameters
   Scenario Outline: A user with proper role should receive "400 Bad Request" when trying to create a user with missing parameters
     Given I am authorized with a user with "<User Role>" role
     When I make a request to create a user with the following query params
@@ -58,3 +58,18 @@ Feature: Users Negative Tests
     Examples:
       | User Role     | Status Line              | Status | Code                        | Message                        |
       | administrator | HTTP/1.1 400 Bad Request | 400    | rest_missing_callback_param | Missing parameter(s): password |
+
+  @UpdateUserByIdAsSubscriber @Test
+  Scenario Outline: A user without authorization should not be able to update a user by Id
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to update a user with the following query params
+      | first_name      | last_name                | description        |
+      | TESTNG Name     | TestNG Last Name Updated | TestNG description |
+    Then response should be "<Status Line>"
+      And response should be invalid and have a body with the following keys and values
+      | status    | code   |  message  |
+      | <Status>  | <Code> | <Message> |
+
+    Examples:
+      | User Role  | Status Line            | Status | Code             | Message                                       |
+      | subscriber | HTTP/1.1 403 Forbidden | 403    | rest_cannot_edit | Sorry, you are not allowed to edit this user. |

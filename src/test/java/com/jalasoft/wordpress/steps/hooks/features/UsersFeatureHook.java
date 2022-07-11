@@ -12,17 +12,19 @@ import java.util.Objects;
 
 public class UsersFeatureHook {
     private final HttpResponse response;
+    private String id;
 
     public UsersFeatureHook(HttpResponse response) {
         this.response = response;
     }
 
-    @Before("@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser or @DeleteMe")
+    @Before("@RetrieveAUser or @RetrieveMe or @UpdateUser or @UpdateMe or @DeleteAUser or @DeleteMe or @UpdateUserByIdAsSubscriber")
     public void beforeRetrieveAUserFeature() {
         Response requestResponse = APIUsersMethods.createAUser(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
+            id = requestResponse.jsonPath().getString("id");
         } else {
             Assert.fail("User was not created");
         }
@@ -34,14 +36,14 @@ public class UsersFeatureHook {
 
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
+            id = requestResponse.jsonPath().getString("id");
         } else {
             Assert.fail("User was not created");
         }
     }
 
-    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @RetrieveMeAsSubscriber or @UpdateMeAsSubscriber")
+    @After("@CreateUser or @RetrieveAUser or @UpdateUser or @RetrieveMe or @UpdateMe or @RetrieveMeAsSubscriber or @UpdateMeAsSubscriber or @UpdateUserByIdAsSubscriber")
     public void afterCreateAUserFeature() {
-        String id = response.getResponse().jsonPath().getString("id");
         String status = APIUsersMethods.deleteUserById(id);
 
         Assert.assertEquals(status, "true", "User was not deleted");
