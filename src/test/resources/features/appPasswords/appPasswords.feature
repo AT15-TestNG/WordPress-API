@@ -63,6 +63,16 @@ Feature: App_Passwords
     And response should be invalid and have a body
     And response body should contain the "MISSING_AUTHORIZATION_HEADER"
 
+  @Smoke
+  Scenario: A user with proper role should not be able to create an app password by an invalid user id
+    Given I am authorized with a user with "administrator" role
+    When I make a request to create an app password with an invalid user id and the following query params
+      | name          |
+      | uniqueAppName |
+    Then response should be "HTTP/1.1 404 Not Found"
+    And response should be invalid and have a body
+    And response body should contain the "Invalid user ID."
+
 
 
 

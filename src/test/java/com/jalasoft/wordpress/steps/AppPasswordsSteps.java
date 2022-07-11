@@ -97,6 +97,18 @@ public class AppPasswordsSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to create an app password with an invalid user id and the following query params$")
+    public void CreateAnAppPasswordByNonexistentId(DataTable table) {
+        String userId = "10000000";
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        queryParams = queryParamsList.get(0);
+
+        String postsEndpoint = credentialsManager.getAppPasswordsByIdEndpoint().replace("<user_id>", userId);
+
+        Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^name attribute should be the same as the value delivered$")
     public void verifyName() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("name"), queryParams.get("name"), "wrong name value returned");
