@@ -48,6 +48,15 @@ Feature: App_Passwords
       And returned deleted attribute should be "true"
       And item with the uuid of the app-password created should be retrieved
 
+  @Before_CreateAnUniqueUserAdministrator @Before_CreateAnAppPasswordById @After_DeleteUserById @Smoke
+  Scenario: A user with proper role should be able to delete all app passwords from the request user
+    Given I am authorized with a user with "administrator" role
+    When I make a request to delete all app passwords from the request user
+    Then response should be "HTTP/1.1 200 OK"
+    And response should be valid and have a body
+    And returned deleted attribute should be "true"
+
+
 
 
 

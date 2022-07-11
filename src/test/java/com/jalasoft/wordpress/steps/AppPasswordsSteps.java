@@ -80,6 +80,16 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.delete(appPasswordsByIdByUuidEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
+    @Given("^I make a request to delete all app passwords from the request user$")
+    public void DeleteAllAppPasswordById() {
+        String userId = scenarioContext.getScenarioContext().get("userId").toString();
+
+        String appPasswordsByIdEndpoint = credentialsManager.getAppPasswordsByIdEndpoint().replace("<user_id>", userId);
+
+        Response requestResponse = apiManager.delete(appPasswordsByIdEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Then("^name attribute should be the same as the value delivered$")
     public void verifyName() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("name"), queryParams.get("name"), "wrong name value returned");
