@@ -74,7 +74,7 @@ Feature: Users Negative Tests
       | User Role  | Status Line            | Status | Code             | Message                                       |
       | subscriber | HTTP/1.1 403 Forbidden | 403    | rest_cannot_edit | Sorry, you are not allowed to edit this user. |
 
-  @DeleteAUserByNonExistentId
+  @DeleteAUserByNonExistentAndInvalidId @Test
   Scenario Outline: A user with proper role should be able to delete a User by Id
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a user with the Id "<Id>"
@@ -84,5 +84,6 @@ Feature: Users Negative Tests
       | <Status>  | <Code> | <Message> |
 
     Examples:
-      | User Role     | Id    | Status Line            | Status | Code                 | Message          |
-      | administrator | 12345 | HTTP/1.1 404 Not Found | 404    | rest_user_invalid_id | Invalid user ID. |
+      | User Role     | Id    | Status Line            | Status | Code                 | Message                                                 |
+      | administrator | 12345 | HTTP/1.1 404 Not Found | 404    | rest_user_invalid_id | Invalid user ID.                                        |
+      | administrator | abc   | HTTP/1.1 404 Not Found | 404    | rest_no_route        | No route was found matching the URL and request method. |
