@@ -1,4 +1,4 @@
-@Users @Negative
+@Users @Negative @Regression
 Feature: Users Negative Tests
 
   @GetUserByNonExistentAndInvalidId
@@ -15,7 +15,7 @@ Feature: Users Negative Tests
     | administrator | 12345 | HTTP/1.1 404 Not Found | rest_user_invalid_id | Invalid user ID.                                        |
     | administrator | abc   | HTTP/1.1 404 Not Found | rest_no_route        | No route was found matching the URL and request method. |
 
-  @GetUsersWithInvalidToken @Test
+  @GetUsersWithInvalidToken
   Scenario Outline: A user without authorization should not be able to retrieve all users
     Given I am using a token with "<Token Value>"
     When I make a request to retrieve all users
