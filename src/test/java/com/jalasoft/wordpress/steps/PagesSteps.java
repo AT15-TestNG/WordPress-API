@@ -44,12 +44,30 @@ public class PagesSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to retrieve a post with the ID \"(.*)\"$")
+    public void getPostById(String id) {
+        String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.get(postsByIdEndpoint, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Given("^I make a request to delete a page with the ID \"(.*)\"$")
     public void deletePageById(String id) {
         String pagesByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", id);
         Headers authHeaders = headers.getHeaders();
 
         Response requestResponse = apiManager.delete(pagesByIdEndpoint, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to delete a post with the ID \"(.*)\"$")
+    public void deletePostById(String id) {
+        String postByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.delete(postByIdEndpoint, authHeaders);
         response.setResponse(requestResponse);
     }
 
