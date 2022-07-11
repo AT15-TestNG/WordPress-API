@@ -1,4 +1,4 @@
-@Categories @Negative
+@Categories @Negative @Regression
 Feature: Categories Negative Tests
 
   @GetAllCategoriesError401
@@ -63,3 +63,15 @@ Feature: Categories Negative Tests
     Examples:
       | User Role     | Status Line                  | Code                     | Message                                                    |
       | administrator | HTTP/1.1 501 Not Implemented | rest_trash_not_supported | Terms do not support trashing. Set 'force=true' to delete. |
+
+  @GetACategoryError404Bug @Bug
+  Scenario Outline: A user with proper role should not be able to get a category with incorrect endpoint
+    Given I am authorized with a user with "<User Role>" role
+    When I make a request to retrieve a category using an invalid endpoint "<Endpoint>"
+    Then response should be "<Status Line>"
+    And response should be invalid and have a body with the following values
+      | code   |  message  |
+      | <Code> | <Message> |
+    Examples:
+      | User Role     | Status Line            | Code                     | Message              | Endpoint               |
+      | administrator | HTTP/1.1 404 Not Found | rest_category_invalid_id | Invalid category ID. | /wp/v2/categories/7777 |
