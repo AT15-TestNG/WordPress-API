@@ -45,6 +45,23 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to create an existent user$")
+    public void createAnExistentUser() {
+        String username = response.getResponse().jsonPath().getString("username");
+        String email = response.getResponse().jsonPath().getString("email");
+        String password = "password";
+
+        queryParams = new HashMap<>();
+        queryParams.put("username", username);
+        queryParams.put("email", email);
+        queryParams.put("password", password);
+
+        String usersEndpoint = credentialsManager.getUsersEndpoint();
+
+        Response requestResponse = apiManager.post(usersEndpoint, queryParams, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
     @Given("^I make a request to retrieve a user by Id$")
     public void getUserById() {
         String id = response.getResponse().jsonPath().getString("id");
@@ -150,6 +167,32 @@ public class UsersSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to delete a user with the Id \"(.*?)\"$")
+    public void deleteUserByNonExistentAndInvalidId(String id) {
+        String usersByIdEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+        queryParams = new HashMap<>();
+        queryParams.put("reassign", 1);
+        queryParams.put("force", true);
+
+        Response requestResponse = apiManager.delete(usersByIdEndpoint, queryParams, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to delete a user by Id with missing parameters$")
+    public void deleteUserByIdWithMissingParameters() {
+        String id = response.getResponse().jsonPath().getString("id");
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+        queryParams.put("reassign", 1);
+
+        String usersByIdEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.delete(usersByIdEndpoint, queryParams, authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Then("^proper user id should be returned$")
     public void checkUserId() {
         String id = response.getResponse().jsonPath().getString("id");
@@ -207,8 +250,8 @@ public class UsersSteps {
 
     @Then("^role should be correct$")
     public void checkRole() {
-        String role = response.getResponse().jsonPath().getString("role");
-        Assert.assertEquals(role, queryParams.get("role"));
+        String role = response.getResponse().jsonPath().getString("roles[0]");
+        Assert.assertEquals(role, queryParams.get("roles"));
     }
 
     @Then("^user should be deleted$")
