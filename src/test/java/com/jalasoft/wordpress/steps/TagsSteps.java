@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,15 +42,34 @@ public class TagsSteps {
         Response requestResponse = apiManager.post(tagsEndpoint, queryParamsTag, headers.getHeaders());
         response.setResponse(requestResponse);
     }
+    @Given("^I make a request to retrieve a tag")
+    public void getTagById() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String name = response.getResponse().jsonPath().getString("name");
+
+        queryParamsTag = new HashMap<>();
+        queryParamsTag.put("id", id);
+        queryParamsTag.put("name", name);
+
+        String tagByIdEndpoint = credentialsManager.getTagsByIdEndpoint().replace("<id>", id);
+
+        Response requestResponse = apiManager.get(tagByIdEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
     @Then("^response should have proper amount of tags$")
-    public void checkCategoriesAmount() {
-        int expectedAmountOfCategories = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
-        int actualAmountOfCategories = response.getResponse().jsonPath().getList("$").size();
-        Assert.assertEquals(expectedAmountOfCategories, actualAmountOfCategories);
+    public void verifyTagsAmount() {
+        int expectedAmountOfTags = Integer.parseInt(response.getResponse().getHeaders().getValue("X-WP-Total"));
+        int actualAmountOfTags = response.getResponse().jsonPath().getList("$").size();
+        Assert.assertEquals(expectedAmountOfTags, actualAmountOfTags);
     }
     @Then("^name should be correct$")
-    public void checkCategoryName() {
+    public void verifyTagName() {
         String TagName = response.getResponse().jsonPath().getString("name");
         Assert.assertEquals(queryParamsTag.get("name"), TagName, "wrong tag name returned");
+    }
+    @Then("^proper tag id should be returned$")
+    public void verifyProperTagId() {
+        String tagId = queryParamsTag.get("id").toString();
+        Assert.assertEquals(response.getResponse().jsonPath().getString("id"), tagId);
     }
 }

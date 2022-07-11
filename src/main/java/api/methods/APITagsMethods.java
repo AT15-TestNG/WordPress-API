@@ -30,4 +30,22 @@ public class APITagsMethods {
             return false;
         }
     }
+    public static Response createATag(String name) {
+        String userRole = "administrator";
+        Header header = APIAuthorizationMethods.getAuthHeader(userRole);
+        Headers authHeaders = new Headers(header);
+
+        String tagEndpoint = credentialsManager.getTagsEndpoint();
+
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("name", name);
+
+        Response response = apiManager.post(tagEndpoint, jsonAsMap, authHeaders);
+
+        if (response.jsonPath().getString("id") == null) {
+            return null;
+        } else {
+            return response;
+        }
+    }
 }
