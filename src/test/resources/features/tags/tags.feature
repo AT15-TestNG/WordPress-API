@@ -1,4 +1,4 @@
-@Tags
+@Tags @Regression
 Feature: Tags
 
   @GetAllTags @Smoke
@@ -69,7 +69,7 @@ Feature: Tags
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
 
-  @GetAllTagsAsSubscriber @Subscriber
+  @GetAllTagsAsSubscriber @Subscriber @Smoke
   Scenario Outline: A user with proper role should be able to retrieve all tags
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve all tags
@@ -81,7 +81,7 @@ Feature: Tags
       | User Role  | Status Line     |
       | subscriber | HTTP/1.1 200 OK |
 
-  @RetrieveATagAsSubscriber @Subscriber
+  @RetrieveATagAsSubscriber @Subscriber @Smoke
   Scenario Outline: A user with proper role should be able to retrieve a tag
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a tag

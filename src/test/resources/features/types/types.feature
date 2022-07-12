@@ -1,4 +1,4 @@
-@Types
+@Types @Regression
 Feature: Posts
 
   @GetAllTypes @Smoke

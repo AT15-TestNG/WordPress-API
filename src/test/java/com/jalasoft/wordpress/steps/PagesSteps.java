@@ -120,6 +120,21 @@ public class PagesSteps {
         pageId = requestResponse.jsonPath().getString("id");
     }
 
+    @Given("^I make a request to update a page with the ID \"(.*)\" and the following query parameters$")
+    public void updatePageById(String id, DataTable table) {
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        queryParams.putAll(queryParamsList.get(0));
+
+        String pagesByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.put(pagesByIdEndpoint, queryParamsList.get(0), authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Given("^I make a request to delete a page$")
     public void deletePageById() {
         String id = response.getResponse().jsonPath().getString("id");

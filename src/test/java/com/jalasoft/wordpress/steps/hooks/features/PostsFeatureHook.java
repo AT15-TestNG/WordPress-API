@@ -17,7 +17,8 @@ public class PostsFeatureHook {
         this.response = response;
     }
 
-    @Before("@RetrieveAPost or @UpdateAPost or @DeleteAPost or @RetrieveAPostAsSub or @UpdateAPostAsSub or @CreateAPostAsSub or @DeleteAPostAsSub")
+    @Before("@RetrieveAPost or @UpdateAPost or @DeleteAPost or @RetrieveAPostAsSub or @UpdateAPostAsSub or @CreateAPostAsSub or @DeleteAPostAsSub or @UpdateAPostWithInvalidId " +
+    "or @RetrieveAPostWithInvalidId or @RetrieveAPostWithInvalidIdAsSub or @CreateAPostWithInvalidIdAsSub or @DeleteAPostWithInvalidIdAsSub")
     public void beforeRetrieveAPostFeature() {
         String content = "TestNG WordPress Post content";
         String title = "TestNG WordPress Post title";
@@ -40,7 +41,9 @@ public class PostsFeatureHook {
         Assert.assertTrue(status, "Post was not deleted");
     }
 
-    @After("@RetrieveAPostAsSub or @UpdateAPostAsSub or @CreateAPostAsSub")
+    @After("@RetrieveAPostAsSub or @UpdateAPostAsSub or @CreateAPostAsSub or @DeleteAPostAsSub or @UpdateAPostWithInvalidId " +
+            "or @RetrieveAPostWithInvalidId or @RetrieveAPostWithInvalidIdAsSub " +
+            "or @CreateAPostWithInvalidIdAsSub or @DeleteAPostWithInvalidIdAsSub")
     public void afterCreateAPostFeatureAsSubscriber() {
         boolean status = APIPostsMethods.deletePostById(postId);
         Assert.assertTrue(status, "Post was not deleted");
