@@ -17,7 +17,7 @@ public class ScenarioHooks {
     @Before(order = 1)
     public void beforeScenario(Scenario scenario) {
         log.info("Scenario: --> " + scenario.getName());
-        disableOtherJavaLoggers();
+        //disableOtherJavaLoggers();
     }
 
     @After(order = 1)
