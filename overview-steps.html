@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script>
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<title>Cucumber Reports (no 1.0) - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+        <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+        <th>Number</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>WordPress</td>
+        <td>1.0</td>
+      <td>12 Jul 2022, 01:51</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+  </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Steps Statistics</h2>
+      <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+  </div>
+</div>
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Average duration</th>
+            <th>Max duration</th>
+            <th>Total durations</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.APISteps.verifyResponseStatusLine(java.lang.String)</td>
+              <td>15</td>
+              <td class="duration" data-value="384791">0.000</td>
+              <td class="duration" data-value="384791">0.001</td>
+              <td class="duration" data-value="5771867">0.005</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.APISteps.verifyValidResponseAndBody()</td>
+              <td>15</td>
+              <td class="duration" data-value="424825">0.000</td>
+              <td class="duration" data-value="424825">0.001</td>
+              <td class="duration" data-value="6372388">0.006</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.AuthorizationSteps.changeToken(java.lang.String)</td>
+              <td>5</td>
+              <td class="duration" data-value="136092324">0.136</td>
+              <td class="duration" data-value="136092324">0.142</td>
+              <td class="duration" data-value="680461621">0.680</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.AuthorizationSteps.getToken(java.lang.String)</td>
+              <td>10</td>
+              <td class="duration" data-value="348787858">0.348</td>
+              <td class="duration" data-value="348787858">2.135</td>
+              <td class="duration" data-value="3487878587">3.487</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.createAPost(io.cucumber.datatable.DataTable)</td>
+              <td>1</td>
+              <td class="duration" data-value="141909396">0.141</td>
+              <td class="duration" data-value="141909396">0.141</td>
+              <td class="duration" data-value="141909396">0.141</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.deletePostById()</td>
+              <td>1</td>
+              <td class="duration" data-value="171046466">0.171</td>
+              <td class="duration" data-value="171046466">0.171</td>
+              <td class="duration" data-value="171046466">0.171</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.getAllPosts()</td>
+              <td>1</td>
+              <td class="duration" data-value="123307773">0.123</td>
+              <td class="duration" data-value="123307773">0.123</td>
+              <td class="duration" data-value="123307773">0.123</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.getPostById()</td>
+              <td>1</td>
+              <td class="duration" data-value="172818466">0.172</td>
+              <td class="duration" data-value="172818466">0.172</td>
+              <td class="duration" data-value="172818466">0.172</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.updatePostById(io.cucumber.datatable.DataTable)</td>
+              <td>1</td>
+              <td class="duration" data-value="150615621">0.150</td>
+              <td class="duration" data-value="150615621">0.150</td>
+              <td class="duration" data-value="150615621">0.150</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.verifyContent()</td>
+              <td>3</td>
+              <td class="duration" data-value="12331641">0.012</td>
+              <td class="duration" data-value="12331641">0.015</td>
+              <td class="duration" data-value="36994923">0.036</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.verifyExcerpt()</td>
+              <td>3</td>
+              <td class="duration" data-value="13890613">0.013</td>
+              <td class="duration" data-value="13890613">0.021</td>
+              <td class="duration" data-value="41671840">0.041</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.verifyPostId()</td>
+              <td>3</td>
+              <td class="duration" data-value="12193746">0.012</td>
+              <td class="duration" data-value="12193746">0.016</td>
+              <td class="duration" data-value="36581240">0.036</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.verifyPostIsDeleted()</td>
+              <td>1</td>
+              <td class="duration" data-value="22285465">0.022</td>
+              <td class="duration" data-value="22285465">0.022</td>
+              <td class="duration" data-value="22285465">0.022</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.verifyPostsAmount()</td>
+              <td>1</td>
+              <td class="duration" data-value="11892235">0.011</td>
+              <td class="duration" data-value="11892235">0.011</td>
+              <td class="duration" data-value="11892235">0.011</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.PostsSteps.verifyTitle()</td>
+              <td>3</td>
+              <td class="duration" data-value="15019835">0.015</td>
+              <td class="duration" data-value="15019835">0.016</td>
+              <td class="duration" data-value="45059505">0.045</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkDeletedUserId()</td>
+              <td>2</td>
+              <td class="duration" data-value="6774851">0.006</td>
+              <td class="duration" data-value="6774851">0.007</td>
+              <td class="duration" data-value="13549702">0.013</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkEmail()</td>
+              <td>1</td>
+              <td class="duration" data-value="8184461">0.008</td>
+              <td class="duration" data-value="8184461">0.008</td>
+              <td class="duration" data-value="8184461">0.008</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkRole()</td>
+              <td>1</td>
+              <td class="duration" data-value="54897506">0.054</td>
+              <td class="duration" data-value="54897506">0.054</td>
+              <td class="duration" data-value="54897506">0.054</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkUserDeleted()</td>
+              <td>2</td>
+              <td class="duration" data-value="8945266">0.008</td>
+              <td class="duration" data-value="8945266">0.012</td>
+              <td class="duration" data-value="17890533">0.017</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkUserDescription()</td>
+              <td>6</td>
+              <td class="duration" data-value="6535882">0.006</td>
+              <td class="duration" data-value="6535882">0.010</td>
+              <td class="duration" data-value="39215297">0.039</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkUserFirstName()</td>
+              <td>3</td>
+              <td class="duration" data-value="6702748">0.006</td>
+              <td class="duration" data-value="6702748">0.006</td>
+              <td class="duration" data-value="20108246">0.020</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkUserId()</td>
+              <td>6</td>
+              <td class="duration" data-value="7841651">0.007</td>
+              <td class="duration" data-value="7841651">0.014</td>
+              <td class="duration" data-value="47049908">0.047</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkUserLastName()</td>
+              <td>3</td>
+              <td class="duration" data-value="11962907">0.011</td>
+              <td class="duration" data-value="11962907">0.023</td>
+              <td class="duration" data-value="35888723">0.035</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkUserName()</td>
+              <td>3</td>
+              <td class="duration" data-value="7631950">0.007</td>
+              <td class="duration" data-value="7631950">0.013</td>
+              <td class="duration" data-value="22895852">0.022</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkUsername()</td>
+              <td>1</td>
+              <td class="duration" data-value="10207476">0.010</td>
+              <td class="duration" data-value="10207476">0.010</td>
+              <td class="duration" data-value="10207476">0.010</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.checkUsersAmount()</td>
+              <td>1</td>
+              <td class="duration" data-value="1226309">0.001</td>
+              <td class="duration" data-value="1226309">0.001</td>
+              <td class="duration" data-value="1226309">0.001</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.createAUser(io.cucumber.datatable.DataTable)</td>
+              <td>1</td>
+              <td class="duration" data-value="140834842">0.140</td>
+              <td class="duration" data-value="140834842">0.140</td>
+              <td class="duration" data-value="140834842">0.140</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.deleteMe()</td>
+              <td>1</td>
+              <td class="duration" data-value="136563311">0.136</td>
+              <td class="duration" data-value="136563311">0.136</td>
+              <td class="duration" data-value="136563311">0.136</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.deleteUserById()</td>
+              <td>1</td>
+              <td class="duration" data-value="135205301">0.135</td>
+              <td class="duration" data-value="135205301">0.135</td>
+              <td class="duration" data-value="135205301">0.135</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.getAllUsers()</td>
+              <td>1</td>
+              <td class="duration" data-value="115050651">0.115</td>
+              <td class="duration" data-value="115050651">0.115</td>
+              <td class="duration" data-value="115050651">0.115</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.getUserById()</td>
+              <td>1</td>
+              <td class="duration" data-value="137490618">0.137</td>
+              <td class="duration" data-value="137490618">0.137</td>
+              <td class="duration" data-value="137490618">0.137</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.retrieveMyUser()</td>
+              <td>2</td>
+              <td class="duration" data-value="126794845">0.126</td>
+              <td class="duration" data-value="126794845">0.129</td>
+              <td class="duration" data-value="253589690">0.253</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.updateMyUser(io.cucumber.datatable.DataTable)</td>
+              <td>2</td>
+              <td class="duration" data-value="121328980">0.121</td>
+              <td class="duration" data-value="121328980">0.122</td>
+              <td class="duration" data-value="242657960">0.242</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.UsersSteps.updateUserById(io.cucumber.datatable.DataTable)</td>
+              <td>1</td>
+              <td class="duration" data-value="122524407">0.122</td>
+              <td class="duration" data-value="122524407">0.122</td>
+              <td class="duration" data-value="122524407">0.122</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterFailedScenario(io.cucumber.java.Scenario)</td>
+              <td>15</td>
+              <td class="duration" data-value="198212">0.000</td>
+              <td class="duration" data-value="198212">0.001</td>
+              <td class="duration" data-value="2973190">0.002</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</td>
+              <td>15</td>
+              <td class="duration" data-value="688790">0.000</td>
+              <td class="duration" data-value="688790">0.001</td>
+              <td class="duration" data-value="10331859">0.010</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.beforeScenario(io.cucumber.java.Scenario)</td>
+              <td>15</td>
+              <td class="duration" data-value="25034036">0.025</td>
+              <td class="duration" data-value="25034036">0.363</td>
+              <td class="duration" data-value="375510542">0.375</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.afterCreateAPostFeature()</td>
+              <td>3</td>
+              <td class="duration" data-value="388806214">0.388</td>
+              <td class="duration" data-value="388806214">0.467</td>
+              <td class="duration" data-value="1166418642">1.166</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.beforeRetrieveAPostFeature()</td>
+              <td>3</td>
+              <td class="duration" data-value="308047808">0.308</td>
+              <td class="duration" data-value="308047808">0.317</td>
+              <td class="duration" data-value="924143425">0.924</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature()</td>
+              <td>7</td>
+              <td class="duration" data-value="294577163">0.294</td>
+              <td class="duration" data-value="294577163">0.320</td>
+              <td class="duration" data-value="2062040145">2.062</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUserFeature()</td>
+              <td>6</td>
+              <td class="duration" data-value="302938592">0.302</td>
+              <td class="duration" data-value="302938592">0.353</td>
+              <td class="duration" data-value="1817631557">1.817</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeTestsWithSubscriberUser()</td>
+              <td>2</td>
+              <td class="duration" data-value="272282854">0.272</td>
+              <td class="duration" data-value="272282854">0.275</td>
+              <td class="duration" data-value="544565708">0.544</td>
+              <td class="passed">100.00%</td>
+            </tr>
+        </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>42</td>
+            <td>169</td>
+            <td class="duration">0.080</td>
+            <td class="duration">3.487</td>
+            <td class="duration">13.593</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>
