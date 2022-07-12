@@ -141,8 +141,8 @@ public class TagsSteps {
         String tagId = queryParamsTag.get("id").toString();
         Assert.assertEquals(response.getResponse().jsonPath().getString("id"), tagId);
     }
-    @Then("^proper description should be returned$")
-    public void verifyProperDescription() {
+    @Then("^proper tag description should be returned$")
+    public void verifyProperTagDescription() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("description"), queryParamsTag.get("description"), "wrong description returned");
     }
     @Then("^the tag should be deleted$")

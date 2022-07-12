@@ -6,7 +6,7 @@ Feature: Tags Negative tests
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a tag using an invalid id "<id>"
     Then response should be "<Status Line>"
-    And response should be invalid and have a body with the following values
+    And response should be invalid and have a body similar to the following values
       | code   |  message  |
       | <Code> | <Message> |
     Examples:
@@ -18,7 +18,7 @@ Feature: Tags Negative tests
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a tag without using force=true
     Then response should be "<Status Line>"
-    And response should be invalid and have a body with the following values
+    And response should be invalid and have a body similar to the following values
       | code   |  message  |
       | <Code> | <Message> |
     Examples:
@@ -30,7 +30,7 @@ Feature: Tags Negative tests
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a non-existing tag
     Then response should be "<Status Line>"
-    And response should be invalid and have a body with the following values
+    And response should be invalid and have a body similar to the following values
       | code   |  message  |
       | <Code> | <Message> |
     Examples:
@@ -44,7 +44,7 @@ Feature: Tags Negative tests
       | name                               |
       | TestNG Tag Example Subscriber |
     Then response should be "<Status Line>"
-    And response should be invalid and have a body with the following values
+    And response should be invalid and have a body similar to the following values
       | code   |  message  |
       | <Code> | <Message> |
 
@@ -59,7 +59,7 @@ Feature: Tags Negative tests
       | name                               | description                            |
       | TestNG Tag Subscriber Updated | TestNG Tag Subscriber Description |
     Then response should be "<Status Line>"
-    And response should be invalid and have a body with the following values
+    And response should be invalid and have a body similar to the following values
       | code   |  message  |
       | <Code> | <Message> |
 
@@ -72,7 +72,7 @@ Feature: Tags Negative tests
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a tag
     Then response should be "<Status Line>"
-    And response should be invalid and have a body with the following values
+    And response should be invalid and have a body similar to the following values
       | code   |  message  |
       | <Code> | <Message> |
 

@@ -7,53 +7,51 @@ import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import utils.LoggerManager;
+import utils.StringManager;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class APIPostsMethods {
+public class APICategoriesMethods {
+    private static final LoggerManager log = LoggerManager.getInstance();
     private static final APIManager apiManager = APIManager.getInstance();
     private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
-    private static final LoggerManager log = LoggerManager.getInstance();
 
-
-    public static boolean deletePostById(String postId) {
+    public static boolean deleteCategoryById(String categoryId) {
         String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
-
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("force", true);
 
-        String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", postId);
+        String categoryByIdEndpoint = credentialsManager.getCategoriesByIdEndpoint().replace("<id>", categoryId);
 
-        Response response = apiManager.delete(postsByIdEndpoint, jsonAsMap, authHeaders);
+        Response response = apiManager.delete(categoryByIdEndpoint, jsonAsMap, authHeaders);
 
         if (Objects.nonNull(response.jsonPath().getString("deleted"))) {
             return response.jsonPath().get("deleted");
         } else {
-            log.error("Failed to delete Post with id: " + postId);
+            log.error("Failed to delete category");
             return false;
         }
     }
 
-    public static Response createAPost(String content, String title, String excerpt) {
+    public static Response createACategory() {
         String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
-        String postsEndpoint = credentialsManager.getPostsEndpoint();
+        String categoryEndpoint = credentialsManager.getCategoriesEndpoint();
 
+        String name = "Category Name Example" + StringManager.generateStringDate();
         Map<String, Object> jsonAsMap = new HashMap<>();
-        jsonAsMap.put("content", content);
-        jsonAsMap.put("title", title);
-        jsonAsMap.put("excerpt", excerpt);
+        jsonAsMap.put("name", name);
 
-        Response response = apiManager.post(postsEndpoint, jsonAsMap, authHeaders);
+        Response response = apiManager.post(categoryEndpoint, jsonAsMap, authHeaders);
 
         if (response.jsonPath().getString("id") == null) {
-            log.error("Post was not created");
+            log.error("Failed to create category");
             return null;
         } else {
             return response;

@@ -3,8 +3,8 @@ plugins {
     id "org.sonarqube" version "3.4.0.2513"
 }
 
-group 'com.jalasoft'
-version '1.0-SNAPSHOT'
+group 'jalasoft'
+version '1.0'
 
 repositories {
     mavenCentral()
@@ -12,7 +12,6 @@ repositories {
 
 dependencies {
     testImplementation group: 'io.cucumber', name: 'cucumber-java', version: '7.4.1'
-    implementation group: 'me.jvt.cucumber', name: 'reporting-plugin', version: '7.3.0'
     testImplementation group: 'io.cucumber', name: 'cucumber-testng', version: '7.4.1'
     testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '7.4.1'
     implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.1.1'
@@ -20,10 +19,12 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.13.3'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.2'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.0-alpha7'
+    implementation group: 'me.jvt.cucumber', name: 'reporting-plugin', version: '7.3.0'
 }
 
 test {
     useTestNG()
+    setBuildNumber()
     systemProperty "envId", envId
 }
 configurations {
@@ -38,7 +39,6 @@ task executeFeatures(type: Test) {
         javaexec {
             mainClass = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            systemProperty "cucumber.publish.quiet", true
             args = [
                     '--plugin', 'pretty',
                     '--plugin', 'me.jvt.cucumber.report.PrettyReports:reports',
@@ -53,10 +53,35 @@ task executeFeatures(type: Test) {
     }
 }
 
+task reExecuteFeatures(type: Test) {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            mainClass = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'me.jvt.cucumber.report.PrettyReports:reports/rerun',
+                    '--plugin', 'html:reports/rerun/cucumber-reports/cucumber-report.html',
+                    '--plugin', 'json:build/cucumber/rerun/cucumber.json',
+                    '--plugin', 'rerun:build/cucumber/rerun.txt',
+                    '--glue', 'com.jalasoft.wordpress',
+                    '@build/cucumber/rerun.txt'
+            ]
+        }
+    }
+}
+
 sonarqube {
     properties {
         property "sonar.projectKey", "wordpress-testng"
         property "sonar.organization", "testng-wordpress"
         property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+def setBuildNumber() {
+    ant.propertyfile(file: "cucumber-reporting.properties") {
+        entry(key: "buildNumber", value: buildNumber)
     }
 }
