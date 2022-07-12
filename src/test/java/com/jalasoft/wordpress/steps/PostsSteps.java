@@ -21,6 +21,7 @@ public class PostsSteps {
     private final HttpHeaders headers;
     private final HttpResponse response;
     private Map<String, Object> queryParams;
+    private String postId;
 
     public PostsSteps(HttpHeaders headers, HttpResponse response) {
         this.headers = headers;
@@ -43,6 +44,7 @@ public class PostsSteps {
 
         Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
+        postId = requestResponse.jsonPath().getString("id");
     }
 
     @Given("^I make a request to retrieve a post$")
@@ -82,6 +84,21 @@ public class PostsSteps {
         response.setResponse(requestResponse);
     }
 
+    @Given("^I make a request to update a post with the following query params and the ID \"(.*)\"$")
+    public void updatePageById(String id, DataTable table) {
+        queryParams = new HashMap<>();
+        queryParams.put("id", id);
+
+        List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
+        queryParams.putAll(queryParamsList.get(0));
+
+        String postByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", id);
+        Headers authHeaders = headers.getHeaders();
+
+        Response requestResponse = apiManager.put(postByIdEndpoint, queryParamsList.get(0), authHeaders);
+        response.setResponse(requestResponse);
+    }
+
     @Given("^I make a request to delete a post$")
     public void deletePostById() {
         String id = response.getResponse().jsonPath().getString("id");
@@ -89,6 +106,7 @@ public class PostsSteps {
         queryParams = new HashMap<>();
         queryParams.put("id", id);
         queryParams.put("status", "trash");
+        queryParams.put("force", true);
 
         String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", id);
         Headers authHeaders = headers.getHeaders();

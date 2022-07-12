@@ -47,7 +47,6 @@ Or you can run the tests with a specific tag and a specific scenario:
 $ gradle clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Tag and @Scenario"
 ```
 
-
 Run the following command to run regression tests:
 ```
 $ gradle clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Regression and not @Bug"
