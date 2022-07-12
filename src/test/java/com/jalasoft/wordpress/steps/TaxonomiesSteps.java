@@ -43,6 +43,11 @@ public class TaxonomiesSteps {
         Response requestResponse = apiManager.get(taxonomyByIdEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
+    @Given("^I make a request to retrieve a taxonomy using an invalid identifier \"(.*?)\"$")
+    public void retrieveTaxonomyWithInvalidEndpoint(String invalidEndpoint) {
+        Response requestResponse = apiManager.get(invalidEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
     @Then("^name should be correct$")
     public void verifyTaxonomyName() {
         String categoryName = response.getResponse().jsonPath().getString("name");
