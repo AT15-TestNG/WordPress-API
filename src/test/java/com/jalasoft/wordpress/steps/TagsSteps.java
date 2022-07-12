@@ -131,7 +131,7 @@ public class TagsSteps {
         int actualAmountOfTags = response.getResponse().jsonPath().getList("$").size();
         Assert.assertEquals(expectedAmountOfTags, actualAmountOfTags);
     }
-    @Then("^name should be correct$")
+    @Then("^proper tag name should be correct$")
     public void verifyTagName() {
         String TagName = response.getResponse().jsonPath().getString("name");
         Assert.assertEquals(queryParamsTag.get("name"), TagName, "wrong tag name returned");

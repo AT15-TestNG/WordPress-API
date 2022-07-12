@@ -19,7 +19,6 @@ Feature: Taxonomies
     Then response should be "<Status Line>"
     And response should be valid and have a body
     And proper taxonomy name should be correct
-
     Examples:
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |

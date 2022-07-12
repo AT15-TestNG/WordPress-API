@@ -21,7 +21,7 @@ Feature: Tags
       | TestNG Tag Example |
     Then response should be "<Status Line>"
     And response should be valid and have a body
-    And name should be correct
+    And proper tag name should be correct
 
     Examples:
       | User Role     | Status Line          |
@@ -35,7 +35,7 @@ Feature: Tags
     Then response should be "<Status Line>"
     And response should be valid and have a body
     And proper tag id should be returned
-    And name should be correct
+    And proper tag name should be correct
 
     Examples:
       | User Role     | Status Line     |
@@ -50,7 +50,7 @@ Feature: Tags
     Then response should be "<Status Line>"
     And response should be valid and have a body
     And proper tag id should be returned
-    And name should be correct
+    And proper tag name should be correct
     And proper description should be returned
 
     Examples:
@@ -103,7 +103,7 @@ Feature: Tags
     Then response should be "<Status Line>"
     And response should be valid and have a body
     And proper tag id should be returned
-    And name should be correct
+    And proper tag name should be correct
 
     Examples:
       | User Role  | Status Line     |
