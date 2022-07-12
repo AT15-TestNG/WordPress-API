@@ -99,4 +99,11 @@ public class CredentialsManager {
     public String getTagsByIdEndpoint() {
         return getEnvironmentSetting("api.endpoint.tagsById");
     }
+    public String getTaxonomiesEndpoint() {
+        return getEnvironmentSetting("api.endpoint.taxonomies");
+    }
+
+    public String getTaxonomiesByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.taxonomiesById");
+    }
 }

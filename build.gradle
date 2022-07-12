@@ -26,7 +26,6 @@ test {
     useTestNG()
     systemProperty "envId", envId
 }
-
 configurations {
     cucumberRuntime {
         extendsFrom testImplementation
