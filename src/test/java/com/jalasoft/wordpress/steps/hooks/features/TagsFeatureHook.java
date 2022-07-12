@@ -32,6 +32,7 @@ public class TagsFeatureHook {
         }
     }
     @Before("@RetrieveATag or @UpdateATag or @DeleteATag or @DeleteATagError501 or @RetrieveATagAsSubscriber or @UpdateATagAsSubscriber or @DeleteATagAsSubscriber")
+
     public void beforeRetrieveATag() {
         String name = "Tag Name Example";
 
