@@ -57,13 +57,6 @@ jobs:
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
           path: "build/cucumber/*.json"
-      - name: Deploy report to Github Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: .reports/cucumber-html-reports
 
   RunRegressionTests:
     runs-on: ubuntu-20.04
@@ -80,7 +73,7 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: Run Tests
-        run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Regression and not @Bug"
+        run: ./gradlew executeFeatures -PenvId="QA01" -PcucumberOptions="@Regression and not @Bug"
       - name: Publish cucumber Regression report
         uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
