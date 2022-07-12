@@ -81,21 +81,6 @@ Feature: Tags
       | User Role  | Status Line     |
       | subscriber | HTTP/1.1 200 OK |
 
-  @CreateATagAsSubscriber @Subscriber
-  Scenario Outline: A user with proper role should be able to create a tag
-    Given I am authorized with a user with "<User Role>" role
-    When I make a request to create a tag with the following query params
-      | name                               |
-      | TestNG Tag Example Subscriber |
-    Then response should be "<Status Line>"
-    And response should be invalid and have a body with the following values
-      | code   |  message  |
-      | <Code> | <Message> |
-
-    Examples:
-      | User Role  | Status Line            | Code               | Message                                                      |
-      | subscriber | HTTP/1.1 403 Forbidden | rest_cannot_create | Sorry, you are not allowed to create terms in this taxonomy. |
-
   @RetrieveATagAsSubscriber @Subscriber
   Scenario Outline: A user with proper role should be able to retrieve a tag
     Given I am authorized with a user with "<User Role>" role
