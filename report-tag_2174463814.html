@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports (no 1.0.3bd123) - Tag: @CreateUser</title>
+<title>Cucumber Reports (no 1.0.d9ed86) - Tag: @CreateUser</title>
 
 </head>
 <body>
@@ -75,8 +75,8 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>WordPress</td>
-        <td>1.0.3bd123</td>
-      <td>12 Jul 2022, 06:27</td>
+        <td>1.0.d9ed86</td>
+      <td>12 Jul 2022, 06:54</td>
     </tr>
   </tbody>
 </table>
@@ -136,12 +136,12 @@ $(document).ready(function() {
           <td >0</td>
           <td class="total">7</td>
 
-          <td  class="passed"    >1</td>
           <td >0</td>
+          <td  class="failed"    >1</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="594657914">0.594</td>
-          <td class="passed">Passed</td>
+          <td class="duration" data-value="563240655">0.563</td>
+          <td class="failed">Failed</td>
         </tr>
         </tbody>
 
@@ -185,12 +185,12 @@ $(document).ready(function() {
 </div>
 
 
-  <span class="lead-duration duration">0.594</span>
+  <span class="lead-duration duration">0.563</span>
 
 
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
+  <span data-toggle="collapse" class=" collapsable-control" data-target="#element-1">
 
-<div class="brief passed">
+<div class="brief failed">
   <span class="keyword indention">Scenario Outline</span>
   <span class="name">A user with proper role should be able to create a post</span>
 
@@ -201,7 +201,7 @@ $(document).ready(function() {
   </span>
   <div class="description indention"></div>
 
-  <div id="element-1" class="collapse collapsable-details ">
+  <div id="element-1" class="collapse collapsable-details  in ">
 
 
   <div class="inner-level hooks-element-before">
@@ -240,7 +240,7 @@ $(document).ready(function() {
 
 
 <div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-3">
+  <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-3">
 
 <div class="brief passed">
   <span class="keyword indention">Steps</span>
@@ -252,7 +252,7 @@ $(document).ready(function() {
 
   </div>
 
-  <div id="steps-3" class="inner-level collapse collapsable-details ">
+  <div id="steps-3" class="inner-level collapse collapsable-details  in ">
       <div class="step">
 
 
@@ -260,7 +260,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.249</span>
+  <span class="lead-duration duration">0.270</span>
 
 </div>
 
@@ -287,7 +287,7 @@ $(document).ready(function() {
   <span class="keyword indention">When</span>
   <span class="name">I make a request to create a user with the following query params</span>
 
-  <span class="lead-duration duration">0.284</span>
+  <span class="lead-duration duration">0.251</span>
 
 </div>
 
@@ -409,7 +409,7 @@ $(document).ready(function() {
   <span class="keyword indention">And</span>
   <span class="name">email should be correct</span>
 
-  <span class="lead-duration duration">0.004</span>
+  <span class="lead-duration duration">0.006</span>
 
 </div>
 
@@ -436,7 +436,7 @@ $(document).ready(function() {
   <span class="keyword indention">And</span>
   <span class="name">role should be correct</span>
 
-  <span class="lead-duration duration">0.052</span>
+  <span class="lead-duration duration">0.029</span>
 
 </div>
 
@@ -463,9 +463,9 @@ $(document).ready(function() {
 
 
   <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-4">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#after-4">
 
-<div class="brief passed">
+<div class="brief failed">
   <span class="keyword indention">Hooks</span>
   <span class="name"></span>
 
@@ -475,17 +475,32 @@ $(document).ready(function() {
 
     </div>
 
-    <div id="after-4" class="inner-level collapse collapsable-details ">
+    <div id="after-4" class="inner-level collapse collapsable-details  in ">
         <div class="hook">
-          <div class="brief passed">
+          <div class="brief failed">
             <span class="keyword indention">After</span>
               <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature()</span>
 
-  <span class="lead-duration duration">0.555</span>
+  <span class="lead-duration duration">0.278</span>
 
           </div>
 
 
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-5">
+          <a>Error message</a>
+      </div>
+      <div id="msg-5" class="collapse collapsable-details  in ">
+        <pre>java.lang.NullPointerException: Cannot invoke &quot;java.lang.CharSequence.toString()&quot; because &quot;replacement&quot; is null
+	at java.base/java.lang.String.replace(String.java:2159)
+	at api.methods.APIUsersMethods.deleteUserById(APIUsersMethods.java:47)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature(UsersFeatureHook.java:57)
+</pre>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -513,7 +528,7 @@ $(document).ready(function() {
             <span class="keyword indention">After</span>
               <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.001</span>
 
           </div>
 
