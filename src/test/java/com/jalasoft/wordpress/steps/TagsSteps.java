@@ -7,6 +7,7 @@ import framework.CredentialsManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
@@ -82,6 +83,49 @@ public class TagsSteps {
 
         Response requestResponse = apiManager.delete(tagByIdEndpoint, jsonAsMap, headers.getHeaders());
         response.setResponse(requestResponse);
+    }
+    @Given("^I make a request to create a tag with invalid \"(.*?)\"$")
+    public void createTagWithInvalidBody(String bodyValue) {
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        String invalid_json;
+        Response requestResponse;
+
+        if (bodyValue.equals("JSON with missing parameters")) {
+            jsonAsMap.put("Bad Request", "Bad Request");
+            requestResponse = apiManager.post(credentialsManager.getTagsEndpoint(), jsonAsMap, headers.getHeaders());
+            response.setResponse(requestResponse);
+        } else if (bodyValue.equals("invalid JSON format")) {
+            invalid_json = "/{}/";
+            requestResponse = apiManager.post(credentialsManager.getTagsEndpoint(), headers.getHeaders(), ContentType.JSON, invalid_json);
+            response.setResponse(requestResponse);
+        } else {
+            Assert.fail("Tag with bad body was not created");
+        }
+    }
+
+    @Given("^I make a request to delete a non-existing tag$")
+    public void deleteDefaultCategory() {
+        String defaultCategoryEndpoint = "/wp/v2/tags/123456987";
+
+        Response requestResponse = apiManager.delete(defaultCategoryEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+
+    @Given("^I make a request to retrieve a tag using an invalid id \"(.*?)\"$")
+    public void retrieveCategoryWithInvalidEndpoint(String invalidEndpoint) {
+        Response requestResponse = apiManager.get(invalidEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+    }
+    @Given("^I make a request to delete a tag without using force=true$")
+    public void deleteATagWithoutForcingTrue() {
+        String id = response.getResponse().jsonPath().getString("id");
+        String tagsByIdEndpoint = credentialsManager.getTagsByIdEndpoint().replace("<id>", id);
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("force", true);
+
+        Response requestResponse = apiManager.delete(tagsByIdEndpoint, headers.getHeaders());
+        response.setResponse(requestResponse);
+        apiManager.delete(tagsByIdEndpoint, jsonAsMap, headers.getHeaders());
     }
     @Then("^response should have proper amount of tags$")
     public void verifyTagsAmount() {

@@ -23,7 +23,7 @@ public class TagsFeatureHook {
 
         Assert.assertTrue(deleted, "Tag was not deleted");
     }
-    @Before("@RetrieveATag or @UpdateATag or @DeleteATag")
+    @Before("@RetrieveATag or @UpdateATag or @DeleteATag or @DeleteATagError501")
     public void beforeRetrieveATag() {
         String name = "Tag Name Example";
 
