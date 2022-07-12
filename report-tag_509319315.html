@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports  - Tag: @RetrieveAComment</title>
+<title>Cucumber Reports (no 1.0.5968a4) - Tag: @UpdateUser</title>
 
 </head>
 <body>
@@ -68,13 +68,15 @@ $(document).ready(function() {
   <thead>
     <tr>
       <th>Project</th>
+        <th>Number</th>
       <th>Date</th>
     </tr>
   </thead>
   <tbody>
     <tr class="info">
-      <td>No Name (add projectName to cucumber-reporting.properties)</td>
-      <td>12 Jul 2022, 03:06</td>
+      <td>WordPress</td>
+        <td>1.0.5968a4</td>
+      <td>12 Jul 2022, 03:08</td>
     </tr>
   </tbody>
 </table>
@@ -126,7 +128,7 @@ $(document).ready(function() {
 
         <tbody>
         <tr>
-          <td class="tagname">@RetrieveAComment</td>
+          <td class="tagname">@UpdateUser</td>
           <td      class="passed"    >8</td>
           <td >0</td>
           <td >0</td>
@@ -138,7 +140,7 @@ $(document).ready(function() {
           <td >0</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="638198505">0.638</td>
+          <td class="duration" data-value="462111079">0.462</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -171,26 +173,26 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_1_3891766274.html">Comments</a>
+      <a href="report-feature_1_470617094.html">Users</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_1896743507.html">@Comments</a>
-       <a href="report-tag_3902141305.html">@RetrieveAComment</a>
+       <a href="report-tag_4061775271.html">@Users</a>
+       <a href="report-tag_509319315.html">@UpdateUser</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.638</span>
+  <span class="lead-duration duration">0.462</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to retrieve a comment</span>
+  <span class="name">A user with proper role should be able to update a User by Id</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -235,9 +237,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">Before</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.CommentsFeatureHooks.beforeRetrieveAComment()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUserFeature()</span>
 
-  <span class="lead-duration duration">0.551</span>
+  <span class="lead-duration duration">0.451</span>
 
           </div>
 
@@ -274,7 +276,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.305</span>
+  <span class="lead-duration duration">0.226</span>
 
 </div>
 
@@ -299,9 +301,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to retrieve a comment</span>
+  <span class="name">I make a request to update a user with the following query params</span>
 
-  <span class="lead-duration duration">0.289</span>
+  <span class="lead-duration duration">0.211</span>
 
 </div>
 
@@ -311,6 +313,18 @@ $(document).ready(function() {
 
 
 
+          <table class="step-arguments">
+              <tr>
+                  <td>first_name</td>
+                  <td>last_name</td>
+                  <td>description</td>
+              </tr>
+              <tr>
+                  <td>TESTNG Name</td>
+                  <td>TestNG Last Name Updated</td>
+                  <td>TestNG description</td>
+              </tr>
+          </table>
 
 
 
@@ -380,61 +394,7 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">proper comment id should be returned</span>
-
-  <span class="lead-duration duration">0.018</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">proper postID should be returned</span>
-
-  <span class="lead-duration duration">0.006</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">proper author_name should be returned</span>
+  <span class="name">proper user id should be returned</span>
 
   <span class="lead-duration duration">0.007</span>
 
@@ -461,9 +421,63 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">proper content of a retrieve comment should be returned</span>
+  <span class="name">First Name should be correct</span>
 
-  <span class="lead-duration duration">0.009</span>
+  <span class="lead-duration duration">0.004</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">Last Name should be correct</span>
+
+  <span class="lead-duration duration">0.006</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">description should be correct</span>
+
+  <span class="lead-duration duration">0.004</span>
 
 </div>
 
@@ -506,9 +520,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.CommentsFeatureHooks.afterCreateAComment()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature()</span>
 
-  <span class="lead-duration duration">0.633</span>
+  <span class="lead-duration duration">0.442</span>
 
           </div>
 
@@ -540,7 +554,7 @@ $(document).ready(function() {
             <span class="keyword indention">After</span>
               <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.001</span>
 
           </div>
 
