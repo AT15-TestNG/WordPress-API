@@ -1,7 +1,6 @@
 package api.methods;
 
 import api.APIManager;
-import constants.DomainAppEnums;
 import framework.CredentialsManager;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
@@ -12,48 +11,49 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class APIPostsMethods {
+public class APIPagesMethods {
     private static final APIManager apiManager = APIManager.getInstance();
     private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
     private static final LoggerManager log = LoggerManager.getInstance();
 
 
-    public static boolean deletePostById(String postId) {
-        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
+    public static Boolean deletePageById(String pageId) {
+        String userRole = "administrator";
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("force", true);
 
-        String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", postId);
 
-        Response response = apiManager.delete(postsByIdEndpoint, jsonAsMap, authHeaders);
+        String pagesByIdEndpoint = credentialsManager.getPageByIdEndpoint().replace("<id>", pageId);
+
+        Response response = apiManager.delete(pagesByIdEndpoint, jsonAsMap, authHeaders);
 
         if (Objects.nonNull(response.jsonPath().getString("deleted"))) {
             return response.jsonPath().get("deleted");
         } else {
-            log.error("Failed to delete Post with id: " + postId);
+            log.error("Failed to delete Page with id: " + pageId);
             return false;
         }
     }
 
-    public static Response createAPost(String content, String title, String excerpt) {
-        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
+    public static Response createAPage(String content, String title, String excerpt) {
+        String userRole = "administrator";
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
-        String postsEndpoint = credentialsManager.getPostsEndpoint();
+        String pageEndpoint = credentialsManager.getPagesEndpoint();
 
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("content", content);
         jsonAsMap.put("title", title);
         jsonAsMap.put("excerpt", excerpt);
 
-        Response response = apiManager.post(postsEndpoint, jsonAsMap, authHeaders);
+        Response response = apiManager.post(pageEndpoint, jsonAsMap, authHeaders);
 
         if (response.jsonPath().getString("id") == null) {
-            log.error("Post was not created");
+            log.error("page was not created");
             return null;
         } else {
             return response;

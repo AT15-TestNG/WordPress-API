@@ -19,6 +19,7 @@ public class APIAuthorizationMethods {
         String tokenEndpoint = credentialsManager.getTokenEndpoint();
         Response response = apiManager.post(tokenEndpoint, ContentType.JSON, jsonAsMap);
         if ((response.jsonPath().get("token_type") == null) || (response.jsonPath().get("jwt_token") == null)) {
+            log.error("token was not created");
             return null;
         } else {
             String authorization = response.jsonPath().get("token_type") + " " + response.jsonPath().get("jwt_token");

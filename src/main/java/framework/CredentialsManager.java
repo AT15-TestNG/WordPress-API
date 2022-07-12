@@ -89,6 +89,14 @@ public class CredentialsManager {
         return getEnvironmentSetting("api.endpoint.users");
     }
 
+    public String getPagesEndpoint() {
+        return getEnvironmentSetting("api.endpoint.pages");
+    }
+
+    public String getPageByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.pagesById");
+    }
+
     public String getUserName(String userRole) {
         return getEnvironmentSetting("userRole.username".replace("userRole", userRole));
     }
@@ -97,5 +105,21 @@ public class CredentialsManager {
     }
     public int getAPIServicePort() {
         return Integer.parseInt(getEnvironmentSetting("api.service.port"));
+    }
+
+    public String getCategoriesEndpoint() {
+        return getEnvironmentSetting("api.endpoint.categories");
+    }
+
+    public String getCategoriesByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.categoriesById");
+    }
+
+    public String getCommentsEndpoint() {
+        return getEnvironmentSetting("api.endpoint.comments");
+    }
+
+    public String getCommentsByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.commentsById");
     }
 }
