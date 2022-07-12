@@ -148,7 +148,7 @@ public class TagsSteps {
         Assert.assertEquals(response.getResponse().jsonPath().getString("description"), queryParamsTag.get("description"), "wrong description returned");
     }
     @Then("^the tag should be deleted$")
-    public void checkDeletedCategory() {
+    public void checkDeletedTag() {
         Assert.assertTrue(response.getResponse().jsonPath().get("deleted"), "tag was not deleted");
     }
 }
