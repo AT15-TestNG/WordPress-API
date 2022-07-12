@@ -80,7 +80,7 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: Run Tests
-        run: ./gradlew executeFeatures -PenvId="QA01" -PcucumberOptions="@Regression and not @Bug"
+        run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Regression and not @Bug"
       - name: Publish cucumber Regression report
         uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
