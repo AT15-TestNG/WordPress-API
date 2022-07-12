@@ -1,4 +1,4 @@
-@Tags @Bugs
+@Tags @Bug @Regression
   Feature: Tags Bug
     @DeleteTagError404
     Scenario Outline: A user with proper role should not be able to delete a non-existing tag in WordPress
