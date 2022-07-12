@@ -24,7 +24,7 @@ Feature: Taxonomies
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
 
-  @GetATaxonomyError404
+  @GetATaxonomyError404 @Regression
   Scenario Outline: A user with proper role should not be able to get a taxonomy with non-existing identifier
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a taxonomy using an invalid identifier "<Non-existing-taxonomy>"
