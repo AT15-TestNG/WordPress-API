@@ -48,9 +48,9 @@ public class TaxonomiesSteps {
         Response requestResponse = apiManager.get(invalidEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-    @Then("^name should be correct$")
+    @Then("^proper taxonomy name should be correct$")
     public void verifyTaxonomyName() {
-        String categoryName = response.getResponse().jsonPath().getString("name");
-        Assert.assertEquals(queryParamsTaxonomies.get("name"), categoryName, "wrong taxonomy name returned");
+        String taxonomyName = response.getResponse().jsonPath().getString("name");
+        Assert.assertEquals(queryParamsTaxonomies.get("name"), taxonomyName, "wrong taxonomy name returned");
     }
 }

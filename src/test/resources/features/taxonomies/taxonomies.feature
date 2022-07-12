@@ -18,7 +18,7 @@ Feature: Taxonomies
     When I make a request to retrieve a taxonomy
     Then response should be "<Status Line>"
     And response should be valid and have a body
-    And name should be correct
+    And proper taxonomy name should be correct
 
     Examples:
       | User Role     | Status Line     |
@@ -40,7 +40,7 @@ Feature: Taxonomies
     When I make a request to retrieve a taxonomy
     Then response should be "<Status Line>"
     And response should be valid and have a body
-    And name should be correct
+    And proper taxonomy name should be correct
 
     Examples:
       | User Role  | Status Line     |
