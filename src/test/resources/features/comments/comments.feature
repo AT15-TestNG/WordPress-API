@@ -1,4 +1,4 @@
-@Comments
+@Comments @Regression
 Feature: Comments
 
   @GetAllComments @Smoke
@@ -73,7 +73,7 @@ Feature: Comments
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
 
-  @GetAllCommentsAsSubscriber @Subscriber
+  @GetAllCommentsAsSubscriber @Subscriber @Smoke
   Scenario Outline: A user with proper role should be able to retrieve all comments
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve all comments
@@ -85,7 +85,7 @@ Feature: Comments
       | User Role     | Status Line     |
       | subscriber    | HTTP/1.1 200 OK |
 
-  @CreateACommentAsSubscriber @Subscriber
+  @CreateACommentAsSubscriber @Subscriber @Smoke
   Scenario Outline: A user with proper role should be able to create a comment
     Given I am authorized with a user with "<User Role>" role
     When I make a request to create a comment with the following query params
@@ -101,7 +101,7 @@ Feature: Comments
       | User Role     | Status Line          |
       | subscriber    | HTTP/1.1 201 Created |
 
-  @RetrieveACommentAsSubscriber @Subscriber
+  @RetrieveACommentAsSubscriber @Subscriber @Smoke
   Scenario Outline: A user with proper role should be able to retrieve a comment
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a comment
@@ -114,7 +114,7 @@ Feature: Comments
       | User Role  | Status Line            | Code             | Message                                          |
       | subscriber | HTTP/1.1 403 Forbidden | rest_cannot_read | Sorry, you are not allowed to read this comment. |
 
-  @UpdateACommentAsSubscriber @Subscriber
+  @UpdateACommentAsSubscriber @Subscriber @Smoke
   Scenario Outline: A user with proper role should be able to update a comment
     Given I am authorized with a user with "<User Role>" role
     When I make a request to update a comment with the following query params
@@ -129,7 +129,7 @@ Feature: Comments
       | User Role  | Status Line            | Code             | Message                                          |
       | subscriber | HTTP/1.1 403 Forbidden | rest_cannot_edit | Sorry, you are not allowed to edit this comment. |
 
-  @DeleteACommentAsSubscriber @Subscriber
+  @DeleteACommentAsSubscriber @Subscriber @Smoke
   Scenario Outline: A user with proper role should be able to delete a comment
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a comment

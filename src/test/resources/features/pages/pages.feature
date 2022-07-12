@@ -1,7 +1,7 @@
 @Pages @Regression
 Feature: Pages
 
-  @GetAllPages @Smoke
+  @GetAllPages @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to retrieve all pages
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve all pages
@@ -75,7 +75,7 @@ Feature: Pages
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
 
-  @CreateAPageAsSub @Smoke
+  @CreateAPageAsSub @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to create a page
     Given I am authorized with a user with "<User Role>" role
     When I make a request to create a page with the following query params
@@ -87,7 +87,7 @@ Feature: Pages
       | User Role     | Status Line            |
       | subscriber    | HTTP/1.1 403 Forbidden |
 
-  @RetrieveAPageAsSub @Smoke
+  @RetrieveAPageAsSub @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to retrieve a page
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a page
@@ -97,7 +97,7 @@ Feature: Pages
       | User Role     | Status Line            |
       | subscriber    | HTTP/1.1 403 Forbidden |
 
-  @UpdateAPageAsSub @Smoke
+  @UpdateAPageAsSub @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to update a page
     Given I am authorized with a user with "<User Role>" role
     When I make a request to update a page with the following query params
@@ -109,7 +109,7 @@ Feature: Pages
       | User Role     | Status Line            |
       | subscriber    | HTTP/1.1 403 Forbidden |
 
-  @DeleteAPageAsSub @Smoke
+  @DeleteAPageAsSub @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to delete a page
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a page

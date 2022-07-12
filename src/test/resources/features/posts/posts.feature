@@ -1,7 +1,7 @@
 @Posts @Regression
 Feature: Posts
 
-  @GetAllPosts @Smoke
+  @GetAllPosts @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to retrieve all posts
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve all posts
@@ -75,7 +75,7 @@ Feature: Posts
     | User Role     | Status Line     |
     | administrator | HTTP/1.1 200 OK |
 
-  @CreateAPostAsSub @Smoke
+  @CreateAPostAsSub @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to create a post
     Given I am authorized with a user with "<User Role>" role
     When I make a request to create a post with the following query params
@@ -87,7 +87,7 @@ Feature: Posts
       | User Role     | Status Line            |
       | subscriber    | HTTP/1.1 403 Forbidden |
 
-  @RetrieveAPostAsSub @Smoke
+  @RetrieveAPostAsSub @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to retrieve a post
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a post
@@ -98,7 +98,7 @@ Feature: Posts
       | subscriber    | HTTP/1.1 403 Forbidden |
 
 
-  @UpdateAPostAsSub @Smoke
+  @UpdateAPostAsSub @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to update a post
     Given I am authorized with a user with "<User Role>" role
     When I make a request to update a post with the following query params
@@ -110,7 +110,7 @@ Feature: Posts
       | User Role     | Status Line            |
       | subscriber    | HTTP/1.1 403 Forbidden |
 
-  @DeleteAPostAsSub @Smoke
+  @DeleteAPostAsSub @Smoke @Subscriber
   Scenario Outline: A user with proper role should be able to delete a post
     Given I am authorized with a user with "<User Role>" role
     When I make a request to delete a post

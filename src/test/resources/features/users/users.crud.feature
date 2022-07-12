@@ -1,4 +1,4 @@
-@Users
+@Users @Regression
 Feature: Users
 
   @GetAllUsers @Smoke
