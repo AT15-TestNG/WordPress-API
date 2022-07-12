@@ -2,9 +2,7 @@ name: WordPress CI
 on:
   push:
     branches:
-      - 'pull_request push'
-  pull_request:
-    types: [synchronize]
+      - '**'
 env:
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_2 }}
 jobs:
@@ -19,6 +17,8 @@ jobs:
         run: echo "🖥️ Building..."
       - name: Cloning repository
         run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Github commit for reporting
+        run: echo "💡 The GitHub commit is 1.0."${GITHUB_SHA::6}
 
   CodeInspection:
     runs-on: ubuntu-20.04
@@ -34,8 +34,9 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: SonarQube Scan
-        run: ./gradlew sonarqube -PenvId="QA01"
-
+        run: |
+          export TAG_VERSION=1.0.${GITHUB_SHA::6}
+          ./gradlew sonarqube -PenvId="QA01" -PbuildNumber=$TAG_VERSION
   RunSmokeTests:
     runs-on: ubuntu-20.04
     needs: CodeInspection
@@ -50,7 +51,9 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: Build API Testing framework
-        run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Smoke"
+        run: |
+          export TAG_VERSION=1.0.${GITHUB_SHA::6}
+          ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Smoke" -PbuildNumber=$TAG_VERSION
       - name: Publish cucumber Smoke report
         uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
@@ -78,9 +81,23 @@ jobs:
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
       - name: Run Tests
-        run: ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Regression and not @Bug"
+        run: |
+          export TAG_VERSION=1.0.${GITHUB_SHA::6}
+          ./gradlew clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Regression and not @Bug" -PbuildNumber=$TAG_VERSION
       - name: Publish cucumber Regression report
         uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
           path: "build/cucumber/*.json"
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3.6.1
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Wordpress CI Report
+          to: agustin.mediotti@fundacion-jala.org, sergio.mendieta@fundacion-jala.org, adrian.oviedo@fundacion-jala.org, jimy.tastaca@fundacion-jala.org, saul.fuentes@fundacion-jala.org
+          from: WordPress CI
+          secure: true
+          body: Build job of ${{github.repository}} completed successfully!
