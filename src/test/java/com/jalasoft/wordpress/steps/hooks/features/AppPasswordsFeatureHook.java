@@ -24,7 +24,6 @@ public class AppPasswordsFeatureHook {
         Response requestResponse = APIAppPasswordsMethods.CreateAnAppPasswordById(userId);
         scenarioContext.addScenarioContext("name", requestResponse.jsonPath().getString("name"));
         scenarioContext.addScenarioContext("uuid", requestResponse.jsonPath().getString("uuid"));
-
         if (Objects.nonNull(requestResponse)) {
             response.setResponse(requestResponse);
         } else {
