@@ -93,4 +93,11 @@ public class CredentialsManager {
     public int getAPIServicePort() {
         return Integer.parseInt(getEnvironmentSetting("api.service.port"));
     }
+    public String getTaxonomiesEndpoint() {
+        return getEnvironmentSetting("api.endpoint.taxonomies");
+    }
+
+    public String getTaxonomiesByIdEndpoint() {
+        return getEnvironmentSetting("api.endpoint.taxonomiesById");
+    }
 }
