@@ -8,11 +8,9 @@ import java.util.List;
 
 public class HttpHeaders {
     private final List<Header> headers = new ArrayList<>();
-
     public void addHeader(Header header) {
         headers.add(header);
     }
-
     public Headers getHeaders() {
         return new Headers(headers);
     }

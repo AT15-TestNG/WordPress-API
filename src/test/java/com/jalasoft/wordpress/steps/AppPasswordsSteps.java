@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 public class AppPasswordsSteps {
     private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
     private static  final APIManager apiManager = APIManager.getInstance();
@@ -24,13 +23,11 @@ public class AppPasswordsSteps {
     private final HttpResponse response;
     private Map<String, Object> queryParams = new HashMap<>();
     private final HttpScenarioContext scenarioContext;
-
     public AppPasswordsSteps(HttpHeaders headers, HttpResponse response, HttpScenarioContext scenarioContext) {
         this.headers = headers;
         this.response = response;
         this.scenarioContext = scenarioContext;
     }
-
     @Given("^I make a request to create an app password with the following query params$")
     public void CreateAnAppPasswordById(DataTable table) {
         String userId = response.getResponse().jsonPath().getString("id");
@@ -42,7 +39,6 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Given("^I make a request to retrieve all app passwords from the request user$")
     public void getAllAppPasswordsById() {
         String userId = scenarioContext.getScenarioContext().get("userId").toString();
@@ -50,7 +46,6 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.get(getAllAppPasswordsByIdEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Given("^I make a request to retrieve an app passwords from the request user by its uuid$")
     public void getAppPasswordsByIdByUuid() {
         String userId = scenarioContext.getScenarioContext().get("userId").toString();
@@ -59,20 +54,16 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.get(getAppPasswordsByIdEndpointByUuid, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Given("^I make a request to update an app passwords from the request user by its uuid with the following parameters$")
     public void UpdateAnAppPasswordByIdByUuid(DataTable table) {
         String userId = scenarioContext.getScenarioContext().get("userId").toString();
         String uuid = scenarioContext.getScenarioContext().get("uuid").toString();
         List<Map<String, Object>> queryParamsList = table.asMaps(String.class, Object.class);
         queryParams = queryParamsList.get(0);
-
         String appPasswordsByIdByUuidEndpoint = credentialsManager.getAppPasswordsByIByUuidEndpoint().replace("<user_id>", userId).replace("<uuid>",uuid);
-
         Response requestResponse = apiManager.put(appPasswordsByIdByUuidEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Given("^I make a request to delete an app passwords from the request user by its uuid$")
     public void DeleteAnAppPasswordByIdByUuid() {
         String userId = scenarioContext.getScenarioContext().get("userId").toString();
@@ -86,9 +77,7 @@ public class AppPasswordsSteps {
     @Given("^I make a request to delete all app passwords from the request user$")
     public void DeleteAllAppPasswordById() {
         String userId = scenarioContext.getScenarioContext().get("userId").toString();
-
         String appPasswordsByIdEndpoint = credentialsManager.getAppPasswordsByIdEndpoint().replace("<user_id>", userId);
-
         Response requestResponse = apiManager.delete(appPasswordsByIdEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
@@ -99,7 +88,6 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.get(appPasswordsByIdEndpoint);
         response.setResponse(requestResponse);
     }
-
     @Given("^I make a request to create an app password with an invalid user id and the following query params$")
     public void CreateAnAppPasswordByNonexistentId(DataTable table) {
         String userId = "10000000";
@@ -111,7 +99,6 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Given("^I make a request to retrieve an app passwords from the request user by an non existent uuid$")
     public void getAppPasswordsByIdByNonExistentUuid() {
         String userId = response.getResponse().jsonPath().getString("id");
@@ -129,9 +116,9 @@ public class AppPasswordsSteps {
         Response requestResponse = apiManager.post(postsEndpoint, queryParams, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-    @Given("^I create a user with a subscriber role$")
+    @Given("^I create a user with a subscriber role for app password$")
     public void CreateAnUserWithSubscriberRole() {
-        Response requestResponse = APIUsersMethods.createAPropertyUser(DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
+        Response requestResponse = APIUsersMethods.createAPropertyUser(DomainAppEnums.UserRole.SUBSCRIBER2.getUserRole());
         scenarioContext.addScenarioContext("subscriberUserId",requestResponse.jsonPath().get("id"));
 
         if (Objects.nonNull(requestResponse)) {
@@ -140,7 +127,6 @@ public class AppPasswordsSteps {
             Assert.fail("User was not created");
         }
     }
-
     @Then("^name attribute should be the same as the value delivered$")
     public void verifyName() {
         Assert.assertEquals(response.getResponse().jsonPath().getString("name"), queryParams.get("name"), "wrong name value returned");

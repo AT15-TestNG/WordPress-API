@@ -20,17 +20,13 @@ public class APIUsersMethods {
     public static Response createAPropertyUser(String role) {
         Header header = APIAuthorizationMethods.getAuthHeader(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
         Headers authHeaders = new Headers(header);
-
         String usersEndpoint = credentialsManager.getUsersEndpoint();
-
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("username", credentialsManager.getUserName(role));
-        jsonAsMap.put("email", "serjmendieta@gmail.com");
+        jsonAsMap.put("email", "serjmendieta2@gmail.com");
         jsonAsMap.put("password", credentialsManager.getPassword(role));
-        jsonAsMap.put("roles", role);
-
+        jsonAsMap.put("roles", DomainAppEnums.UserRole.SUBSCRIBER.getUserRole());
         Response response = apiManager.post(usersEndpoint, jsonAsMap, authHeaders);
-
         if (response.jsonPath().getString("id") == null) {
             log.error("Failed to create user");
             return null;
@@ -41,17 +37,13 @@ public class APIUsersMethods {
     public static Response createAUniqueUser(String role) {
         Header header = APIAuthorizationMethods.getAuthHeader(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
         Headers authHeaders = new Headers(header);
-
         String usersEndpoint = credentialsManager.getUsersEndpoint();
-
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("username", credentialsManager.getUserName(role) + StringManager.getTimeStamp());
         jsonAsMap.put("email", "serjmendieta"+StringManager.getTimeStamp()+"@gmail.com");
         jsonAsMap.put("password", credentialsManager.getPassword(role));
         jsonAsMap.put("roles", role);
-
         Response response = apiManager.post(usersEndpoint, jsonAsMap, authHeaders);
-
         if (response.jsonPath().getString("id") == null) {
             log.error("Failed to create user");
             return null;
@@ -59,18 +51,14 @@ public class APIUsersMethods {
             return response;
         }
     }
-
-
     public static String deleteUserById(String userId) {
         Header header = APIAuthorizationMethods.getAuthHeader(DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole());
         Headers authHeaders = new Headers(header);
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("force", true);
         jsonAsMap.put("reassign", 1);
-
         String usersByIdEndpoint = credentialsManager.getUsersByIdEndpoint().replace("<id>", userId);
         Response response = apiManager.delete(usersByIdEndpoint, jsonAsMap, authHeaders);
-
         if (response.getBody().jsonPath().getString("deleted").equals("true")) {
             return response.jsonPath().getString("deleted");
         } else {
@@ -78,5 +66,4 @@ public class APIUsersMethods {
             return null;
         }
     }
-
 }

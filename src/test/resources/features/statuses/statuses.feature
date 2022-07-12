@@ -1,10 +1,6 @@
 @Statuses @Acceptance
 Feature: Statuses
 
-<<<<<<< HEAD
-=======
-
->>>>>>> app-password
   @Smoke
   Scenario Outline: A user with proper role should be able to retrieve all statuses
     Given I am authorized with a user with "<User Role>" role
@@ -19,10 +15,6 @@ Feature: Statuses
       | User Role     | Status Line     |
       | administrator | HTTP/1.1 200 OK |
 
-<<<<<<< HEAD
-=======
-
->>>>>>> app-password
   @Smoke
   Scenario Outline: A user with proper role should be able to retrieve a status by its status name
     Given I am authorized with a user with "<User Role>" role
@@ -40,31 +32,23 @@ Feature: Statuses
       | administrator | HTTP/1.1 200 OK | private     |
       | administrator | HTTP/1.1 200 OK | trash       |
 
-<<<<<<< HEAD
-=======
-
->>>>>>> app-password
   @Regression
   Scenario Outline: A user with proper role should not be able to retrieve all the statuses without authentication
     Given I make a request to retrieve all statuses without authentication
     Then response should be "<Status Line>"
-      And response should be invalid and have a body
+      And response to the statuses request should be invalid and have a body
       And response body should contain the "<Error Message>"
 
     Examples:
       | Status Line               | Error Message               |
       | HTTP/1.1 401 Unauthorized | MISSING_AUTHORIZATION_HEADER|
 
-<<<<<<< HEAD
-=======
-
->>>>>>> app-password
   @Regression
   Scenario Outline: A user with proper role should not be able to retrieve a Status with an invalid status Name
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a status by its "<Status Name>"
     Then response should be "<Status Line>"
-      And response should be invalid and have a body
+      And response to the statuses request should be invalid and have a body
       And response body should contain the "<Error Message>"
 
     Examples:
@@ -72,25 +56,21 @@ Feature: Statuses
       | administrator | HTTP/1.1 404 Not Found | invalidName | Invalid status.|
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> app-password
   @Before_CreateUserWithSubscriberRole @After_DeleteUserById @Regression
   Scenario Outline: A user with subscriber role should not be able to retrieve a Status with status name different than publish
     Given I am authorized with a user with "<User Role>" role
     When I make a request to retrieve a status by its "<Status Name>"
     Then response should be "<Status Line>"
-      And response should be invalid and have a body
+      And response to the statuses request should be invalid and have a body
       And response body should contain the "<Error Message>"
 
     Examples:
       | User Role     | Status Line            | Status Name | Error Message      |
-      | subscriber    | HTTP/1.1 403 Forbidden | future      | Cannot view status.|
-      | subscriber    | HTTP/1.1 403 Forbidden | draft       | Cannot view status.|
-      | subscriber    | HTTP/1.1 403 Forbidden | pending     | Cannot view status.|
-      | subscriber    | HTTP/1.1 403 Forbidden | private     | Cannot view status.|
-      | subscriber    | HTTP/1.1 403 Forbidden | trash       | Cannot view status.|
+      | subscriber2    | HTTP/1.1 403 Forbidden | future      | Cannot view status.|
+      | subscriber2    | HTTP/1.1 403 Forbidden | draft       | Cannot view status.|
+      | subscriber2   | HTTP/1.1 403 Forbidden | pending     | Cannot view status.|
+      | subscriber2    | HTTP/1.1 403 Forbidden | private     | Cannot view status.|
+      | subscriber2    | HTTP/1.1 403 Forbidden | trash       | Cannot view status.|
 
 
 
