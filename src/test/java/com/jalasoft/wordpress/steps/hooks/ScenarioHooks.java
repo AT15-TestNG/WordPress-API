@@ -28,7 +28,7 @@ public class ScenarioHooks {
     @After(order = 2)
     public void afterFailedScenario(Scenario scenario) {
         if(scenario.getStatus().toString().equalsIgnoreCase("failed")) {
-            System.out.println("Scenario has failed !!!");
+            System.out.println(scenario.getName() + " scenario has failed");
         }
     }
 }

@@ -7,18 +7,18 @@ import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import utils.LoggerManager;
+import utils.StringManager;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class APIPostsMethods {
+public class APICommentsMethods {
+    private static final LoggerManager log = LoggerManager.getInstance();
     private static final APIManager apiManager = APIManager.getInstance();
     private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
-    private static final LoggerManager log = LoggerManager.getInstance();
 
-
-    public static boolean deletePostById(String postId) {
+    public static boolean deleteCommentById(String commentId) {
         String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
@@ -26,34 +26,35 @@ public class APIPostsMethods {
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("force", true);
 
-        String postsByIdEndpoint = credentialsManager.getPostsByIdEndpoint().replace("<id>", postId);
+        String commentsEndpoint = credentialsManager.getCommentsByIdEndpoint().replace("<id>", commentId);
 
-        Response response = apiManager.delete(postsByIdEndpoint, jsonAsMap, authHeaders);
+        Response response = apiManager.delete(commentsEndpoint,jsonAsMap, authHeaders);
 
         if (Objects.nonNull(response.jsonPath().getString("deleted"))) {
             return response.jsonPath().get("deleted");
         } else {
-            log.error("Failed to delete Post with id: " + postId);
+            log.error("Failed to delete comment");
             return false;
         }
     }
 
-    public static Response createAPost(String content, String title, String excerpt) {
+    public static Response createAComment() {
         String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
-        String postsEndpoint = credentialsManager.getPostsEndpoint();
-
+        String content = "Content TestNG Example" + StringManager.generateStringDate();
+        String author_name = "TestNG" + StringManager.generateStringDate();
         Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("post", 1);
+        jsonAsMap.put("author_name", author_name);
+        jsonAsMap.put("author_email", "wapuu@wordpress.example");
         jsonAsMap.put("content", content);
-        jsonAsMap.put("title", title);
-        jsonAsMap.put("excerpt", excerpt);
 
-        Response response = apiManager.post(postsEndpoint, jsonAsMap, authHeaders);
+        Response response = apiManager.post(credentialsManager.getCommentsEndpoint(), jsonAsMap, authHeaders);
 
         if (response.jsonPath().getString("id") == null) {
-            log.error("Post was not created");
+            log.error("Failed to create comment");
             return null;
         } else {
             return response;

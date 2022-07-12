@@ -13,11 +13,9 @@ import java.util.Objects;
 
 public class AuthorizationSteps {
     private final HttpHeaders headers;
-
     public AuthorizationSteps(HttpHeaders headers) {
         this.headers = headers;
     }
-
     @Given("^I am authorized with a user with \"(.*?)\" role$")
     public void getToken(String userRole) {
         Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole);
@@ -43,7 +41,6 @@ public class AuthorizationSteps {
         Map<String, String> tokenValues = new HashMap<>();
         tokenValues.put("incorrect JWT format", "bearer 123456");
         tokenValues.put("invalid JWT signature", "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJzc2Fob25lcm8iLCJpYXQiOjE2NTcxMTQxNTksImV4cCI6MTgxNDc5NDE1OX0.BOOwhosxHZvu7AGkzoWmHOla22nmkzCIMX7J-7_k4Ma");
-
         headers.addHeader(new Header("Authorization", tokenValues.get(tokenValue)));
     }
 }
