@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports (no 1.0.3f609c) - Tag: @GetAllTypes</title>
+<title>Cucumber Reports (no 1.0.0c2e5c) - Tag: @CreateAPage</title>
 
 </head>
 <body>
@@ -75,8 +75,8 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>WordPress</td>
-        <td>1.0.3f609c</td>
-      <td>12 Jul 2022, 04:24</td>
+        <td>1.0.0c2e5c</td>
+      <td>12 Jul 2022, 04:26</td>
     </tr>
   </tbody>
 </table>
@@ -128,19 +128,19 @@ $(document).ready(function() {
 
         <tbody>
         <tr>
-          <td class="tagname">@GetAllTypes</td>
-          <td      class="passed"    >10</td>
+          <td class="tagname">@CreateAPage</td>
+          <td      class="passed"    >7</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
-          <td class="total">10</td>
+          <td class="total">7</td>
 
-          <td  class="passed"    >2</td>
+          <td  class="passed"    >1</td>
           <td >0</td>
-          <td class="total">2</td>
+          <td class="total">1</td>
 
-          <td class="duration" data-value="458475610">0.458</td>
+          <td class="duration" data-value="422319878">0.422</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -173,26 +173,27 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_1_1908964534.html">Posts</a>
+      <a href="report-feature_2_1220219148.html">Pages</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4061040664.html">@Types</a>
-       <a href="report-tag_3057911917.html">@GetAllTypes</a>
+       <a href="report-tag_4056622947.html">@Pages</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_2964351635.html">@CreateAPage</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.208</span>
+  <span class="lead-duration duration">0.422</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to retrieve all types</span>
+  <span class="name">A user with proper role should be able to create a page</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -260,7 +261,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.090</span>
+  <span class="lead-duration duration">0.200</span>
 
 </div>
 
@@ -285,9 +286,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to retrieve all types</span>
+  <span class="name">I make a request to create a page with the following query params</span>
 
-  <span class="lead-duration duration">0.056</span>
+  <span class="lead-duration duration">0.198</span>
 
 </div>
 
@@ -297,6 +298,18 @@ $(document).ready(function() {
 
 
 
+          <table class="step-arguments">
+              <tr>
+                  <td>content</td>
+                  <td>title</td>
+                  <td>excerpt</td>
+              </tr>
+              <tr>
+                  <td>TestNG WordPress Page Content</td>
+                  <td>TestNG WordPress Title</td>
+                  <td>TestNG WordPress Excerpt</td>
+              </tr>
+          </table>
 
 
 
@@ -312,7 +325,7 @@ $(document).ready(function() {
 
 <div class="brief step-name-Then passed">
   <span class="keyword indention">Then</span>
-  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
+  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 201 Created</span>&quot;</span>
 
   <span class="lead-duration duration">0.000</span>
 
@@ -366,9 +379,63 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">response should have proper amount of types</span>
+  <span class="name">page content should be correct</span>
 
-  <span class="lead-duration duration">0.061</span>
+  <span class="lead-duration duration">0.010</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">page title should be correct</span>
+
+  <span class="lead-duration duration">0.006</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">page excerpt should be correct</span>
+
+  <span class="lead-duration duration">0.006</span>
 
 </div>
 
@@ -411,25 +478,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterFailedScenario(io.cucumber.java.Scenario)</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PagesFeatureHook.afterCreateAPageFeature()</span>
 
-  <span class="lead-duration duration">0.000</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</span>
-
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.376</span>
 
           </div>
 
@@ -440,251 +491,6 @@ $(document).ready(function() {
 
 
         </div>
-    </div>
-  </div>
-
-  </div>
-</div>
-
-
-<div class="element">
-    <div class="indention">
-      <b>Feature:</b>
-      <a href="report-feature_1_1908964534.html">Posts</a>
-    </div>
-
-
-<div class="tags indention">
-    <b>Tags:</b>
-       <a href="report-tag_4061040664.html">@Types</a>
-       <a href="report-tag_3057911917.html">@GetAllTypes</a>
-       <a href="report-tag_4059758862.html">@Smoke</a>
-</div>
-
-
-  <span class="lead-duration duration">0.249</span>
-
-
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-5">
-
-<div class="brief passed">
-  <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to retrieve all types</span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-  </span>
-  <div class="description indention"></div>
-
-  <div id="element-5" class="collapse collapsable-details ">
-
-
-  <div class="inner-level hooks-element-before">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-6">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="before-6" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">Before</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.beforeScenario(io.cucumber.java.Scenario)</span>
-
-  <span class="lead-duration duration">0.000</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-    </div>
-  </div>
-
-
-
-<div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-7">
-
-<div class="brief passed">
-  <span class="keyword indention">Steps</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-  </div>
-
-  <div id="steps-7" class="inner-level collapse collapsable-details ">
-      <div class="step">
-
-
-<div class="brief step-name-Given passed">
-  <span class="keyword indention">Given</span>
-  <span class="name">I am authorized with a user with &quot;<span class="argument">subscriber</span>&quot; role</span>
-
-  <span class="lead-duration duration">0.092</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-When passed">
-  <span class="keyword indention">When</span>
-  <span class="name">I make a request to retrieve all types</span>
-
-  <span class="lead-duration duration">0.062</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-Then passed">
-  <span class="keyword indention">Then</span>
-  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
-
-  <span class="lead-duration duration">0.000</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">response should be valid and have a body</span>
-
-  <span class="lead-duration duration">0.000</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">response should have proper amount of types</span>
-
-  <span class="lead-duration duration">0.093</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-  </div>
-</div>
-
-
-
-
-  <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-8">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-8" class="inner-level collapse collapsable-details ">
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>

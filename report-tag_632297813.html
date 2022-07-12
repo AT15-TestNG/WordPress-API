@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports (no 1.0.3f609c) - Tag: @CreateUser</title>
+<title>Cucumber Reports (no 1.0.0c2e5c) - Tag: @UpdateACategory</title>
 
 </head>
 <body>
@@ -75,8 +75,8 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>WordPress</td>
-        <td>1.0.3f609c</td>
-      <td>12 Jul 2022, 04:24</td>
+        <td>1.0.0c2e5c</td>
+      <td>12 Jul 2022, 04:26</td>
     </tr>
   </tbody>
 </table>
@@ -128,7 +128,7 @@ $(document).ready(function() {
 
         <tbody>
         <tr>
-          <td class="tagname">@CreateUser</td>
+          <td class="tagname">@UpdateACategory</td>
           <td      class="passed"    >7</td>
           <td >0</td>
           <td >0</td>
@@ -140,7 +140,7 @@ $(document).ready(function() {
           <td >0</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="237482031">0.237</td>
+          <td class="duration" data-value="510584371">0.510</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -173,26 +173,26 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_2_470617094.html">Users</a>
+      <a href="report-feature_1602662978.html">Categories</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4061775271.html">@Users</a>
-       <a href="report-tag_2174463814.html">@CreateUser</a>
+       <a href="report-tag_2101727867.html">@Categories</a>
+       <a href="report-tag_632297813.html">@UpdateACategory</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.237</span>
+  <span class="lead-duration duration">0.510</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to create a post</span>
+  <span class="name">A user with proper role should be able to update a category</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -234,6 +234,22 @@ $(document).ready(function() {
 
 
         </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.CategoriesFeatureHook.beforeRetrieveACategory()</span>
+
+  <span class="lead-duration duration">0.417</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
     </div>
   </div>
 
@@ -260,7 +276,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.082</span>
+  <span class="lead-duration duration">0.217</span>
 
 </div>
 
@@ -285,9 +301,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to create a user with the following query params</span>
+  <span class="name">I make a request to update a category with the following query params</span>
 
-  <span class="lead-duration duration">0.090</span>
+  <span class="lead-duration duration">0.271</span>
 
 </div>
 
@@ -299,16 +315,12 @@ $(document).ready(function() {
 
           <table class="step-arguments">
               <tr>
-                  <td>username</td>
-                  <td>email</td>
-                  <td>password</td>
-                  <td>roles</td>
+                  <td>name</td>
+                  <td>description</td>
               </tr>
               <tr>
-                  <td>admin_test</td>
-                  <td>administrate@email.com</td>
-                  <td>admin_test</td>
-                  <td>administrator</td>
+                  <td>TestNG Category Updated</td>
+                  <td>TestNG Category Description</td>
               </tr>
           </table>
 
@@ -326,7 +338,7 @@ $(document).ready(function() {
 
 <div class="brief step-name-Then passed">
   <span class="keyword indention">Then</span>
-  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 201 Created</span>&quot;</span>
+  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
 
   <span class="lead-duration duration">0.000</span>
 
@@ -380,34 +392,7 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">username should be correct</span>
-
-  <span class="lead-duration duration">0.007</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">email should be correct</span>
+  <span class="name">proper category id should be returned</span>
 
   <span class="lead-duration duration">0.006</span>
 
@@ -434,9 +419,36 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">role should be correct</span>
+  <span class="name">proper name should be returned</span>
 
-  <span class="lead-duration duration">0.049</span>
+  <span class="lead-duration duration">0.005</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">proper description should be returned</span>
+
+  <span class="lead-duration duration">0.007</span>
 
 </div>
 
@@ -479,9 +491,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.CategoriesFeatureHook.afterCreateACategory()</span>
 
-  <span class="lead-duration duration">0.245</span>
+  <span class="lead-duration duration">0.420</span>
 
           </div>
 

@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports (no 1.0.0c2e5c) - Tag: @RetrieveAPost</title>
+<title>Cucumber Reports (no 1.0.0c2e5c) - Tag: @GetAllCategories</title>
 
 </head>
 <body>
@@ -128,19 +128,19 @@ $(document).ready(function() {
 
         <tbody>
         <tr>
-          <td class="tagname">@RetrieveAPost</td>
-          <td      class="passed"    >8</td>
+          <td class="tagname">@GetAllCategories</td>
+          <td      class="passed"    >5</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
-          <td class="total">8</td>
+          <td class="total">5</td>
 
           <td  class="passed"    >1</td>
           <td >0</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="439793367">0.439</td>
+          <td class="duration" data-value="2396514250">2.396</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -173,27 +173,26 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_3_3203720170.html">Posts</a>
+      <a href="report-feature_1602662978.html">Categories</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4057052018.html">@Posts</a>
-       <a href="report-tag_2226523296.html">@Regression</a>
-       <a href="report-tag_2230395236.html">@RetrieveAPost</a>
+       <a href="report-tag_2101727867.html">@Categories</a>
+       <a href="report-tag_1757890374.html">@GetAllCategories</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.439</span>
+  <span class="lead-duration duration">2.396</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to retrieve a post</span>
+  <span class="name">A user with proper role should be able to retrieve all categories</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -224,23 +223,7 @@ $(document).ready(function() {
             <span class="keyword indention">Before</span>
               <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.beforeScenario(io.cucumber.java.Scenario)</span>
 
-  <span class="lead-duration duration">0.000</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">Before</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.beforeRetrieveAPostFeature()</span>
-
-  <span class="lead-duration duration">0.459</span>
+  <span class="lead-duration duration">0.310</span>
 
           </div>
 
@@ -277,7 +260,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.210</span>
+  <span class="lead-duration duration">2.160</span>
 
 </div>
 
@@ -302,9 +285,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to retrieve a post</span>
+  <span class="name">I make a request to retrieve all categories</span>
 
-  <span class="lead-duration duration">0.208</span>
+  <span class="lead-duration duration">0.223</span>
 
 </div>
 
@@ -331,7 +314,7 @@ $(document).ready(function() {
   <span class="keyword indention">Then</span>
   <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.001</span>
 
 </div>
 
@@ -358,7 +341,7 @@ $(document).ready(function() {
   <span class="keyword indention">And</span>
   <span class="name">response should be valid and have a body</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.001</span>
 
 </div>
 
@@ -383,90 +366,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">proper post id should be returned</span>
+  <span class="name">response should have proper amount of categories</span>
 
-  <span class="lead-duration duration">0.006</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">content should be correct</span>
-
-  <span class="lead-duration duration">0.005</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">title should be correct</span>
-
-  <span class="lead-duration duration">0.004</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">excerpt should be correct</span>
-
-  <span class="lead-duration duration">0.004</span>
+  <span class="lead-duration duration">0.008</span>
 
 </div>
 
@@ -509,22 +411,6 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.afterCreateAPostFeature()</span>
-
-  <span class="lead-duration duration">0.403</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
               <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterFailedScenario(io.cucumber.java.Scenario)</span>
 
   <span class="lead-duration duration">0.000</span>
@@ -543,7 +429,7 @@ $(document).ready(function() {
             <span class="keyword indention">After</span>
               <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.001</span>
 
           </div>
 

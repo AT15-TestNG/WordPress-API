@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports (no 1.0.3f609c) - Tag: @UpdateUser</title>
+<title>Cucumber Reports (no 1.0.0c2e5c) - Tag: @UpdateAPage</title>
 
 </head>
 <body>
@@ -75,8 +75,8 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>WordPress</td>
-        <td>1.0.3f609c</td>
-      <td>12 Jul 2022, 04:24</td>
+        <td>1.0.0c2e5c</td>
+      <td>12 Jul 2022, 04:26</td>
     </tr>
   </tbody>
 </table>
@@ -128,7 +128,7 @@ $(document).ready(function() {
 
         <tbody>
         <tr>
-          <td class="tagname">@UpdateUser</td>
+          <td class="tagname">@UpdateAPage</td>
           <td      class="passed"    >8</td>
           <td >0</td>
           <td >0</td>
@@ -140,7 +140,7 @@ $(document).ready(function() {
           <td >0</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="193354419">0.193</td>
+          <td class="duration" data-value="406269887">0.406</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -173,26 +173,27 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_2_470617094.html">Users</a>
+      <a href="report-feature_2_1220219148.html">Pages</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4061775271.html">@Users</a>
-       <a href="report-tag_509319315.html">@UpdateUser</a>
+       <a href="report-tag_4056622947.html">@Pages</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_2884479718.html">@UpdateAPage</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.193</span>
+  <span class="lead-duration duration">0.406</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to update a User by Id</span>
+  <span class="name">A user with proper role should be able to update a page</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -223,7 +224,7 @@ $(document).ready(function() {
             <span class="keyword indention">Before</span>
               <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.beforeScenario(io.cucumber.java.Scenario)</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.001</span>
 
           </div>
 
@@ -237,9 +238,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">Before</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUserFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PagesFeatureHook.beforeRetrieveAPageFeature()</span>
 
-  <span class="lead-duration duration">0.201</span>
+  <span class="lead-duration duration">0.427</span>
 
           </div>
 
@@ -276,7 +277,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.093</span>
+  <span class="lead-duration duration">0.202</span>
 
 </div>
 
@@ -301,9 +302,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to update a user with the following query params</span>
+  <span class="name">I make a request to update a page with the following query params</span>
 
-  <span class="lead-duration duration">0.072</span>
+  <span class="lead-duration duration">0.187</span>
 
 </div>
 
@@ -315,14 +316,14 @@ $(document).ready(function() {
 
           <table class="step-arguments">
               <tr>
-                  <td>first_name</td>
-                  <td>last_name</td>
-                  <td>description</td>
+                  <td>content</td>
+                  <td>title</td>
+                  <td>excerpt</td>
               </tr>
               <tr>
-                  <td>TESTNG Name</td>
-                  <td>TestNG Last Name Updated</td>
-                  <td>TestNG description</td>
+                  <td>TestNG WordPress Content Updated</td>
+                  <td>TestNG WordPress Title Updated</td>
+                  <td>TestNG WordPress Excerpt Updated</td>
               </tr>
           </table>
 
@@ -394,36 +395,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">proper user id should be returned</span>
+  <span class="name">proper page id should be returned</span>
 
-  <span class="lead-duration duration">0.006</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">First Name should be correct</span>
-
-  <span class="lead-duration duration">0.006</span>
+  <span class="lead-duration duration">0.004</span>
 
 </div>
 
@@ -448,9 +422,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">Last Name should be correct</span>
+  <span class="name">page content should be correct</span>
 
-  <span class="lead-duration duration">0.007</span>
+  <span class="lead-duration duration">0.004</span>
 
 </div>
 
@@ -475,9 +449,36 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">description should be correct</span>
+  <span class="name">page title should be correct</span>
 
-  <span class="lead-duration duration">0.006</span>
+  <span class="lead-duration duration">0.004</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">page excerpt should be correct</span>
+
+  <span class="lead-duration duration">0.003</span>
 
 </div>
 
@@ -520,9 +521,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PagesFeatureHook.afterCreateAPageFeature()</span>
 
-  <span class="lead-duration duration">0.180</span>
+  <span class="lead-duration duration">0.369</span>
 
           </div>
 
