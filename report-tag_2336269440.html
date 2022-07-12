@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports (no 1.0.0d8ff3) - Tag: @RetrieveAPost</title>
+<title>Cucumber Reports (no 1.0.0d8ff3) - Tag: @DeleteAUser</title>
 
 </head>
 <body>
@@ -128,19 +128,19 @@ $(document).ready(function() {
 
         <tbody>
         <tr>
-          <td class="tagname">@RetrieveAPost</td>
-          <td      class="passed"    >8</td>
+          <td class="tagname">@DeleteAUser</td>
+          <td      class="passed"    >6</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
-          <td class="total">8</td>
+          <td class="total">6</td>
 
           <td  class="passed"    >1</td>
           <td >0</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="596244648">0.596</td>
+          <td class="duration" data-value="519313743">0.519</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -173,27 +173,26 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_4_3203720170.html">Posts</a>
+      <a href="report-feature_7_470617094.html">Users</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4057052018.html">@Posts</a>
-       <a href="report-tag_2226523296.html">@Regression</a>
-       <a href="report-tag_2230395236.html">@RetrieveAPost</a>
+       <a href="report-tag_4061775271.html">@Users</a>
+       <a href="report-tag_2336269440.html">@DeleteAUser</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.596</span>
+  <span class="lead-duration duration">0.519</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to retrieve a post</span>
+  <span class="name">A user with proper role should be able to delete a User by Id</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -238,9 +237,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">Before</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.beforeRetrieveAPostFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUsersFeature()</span>
 
-  <span class="lead-duration duration">0.566</span>
+  <span class="lead-duration duration">0.529</span>
 
           </div>
 
@@ -277,7 +276,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.280</span>
+  <span class="lead-duration duration">0.269</span>
 
 </div>
 
@@ -302,9 +301,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to retrieve a post</span>
+  <span class="name">I make a request to delete a user by Id</span>
 
-  <span class="lead-duration duration">0.295</span>
+  <span class="lead-duration duration">0.238</span>
 
 </div>
 
@@ -383,36 +382,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">proper post id should be returned</span>
+  <span class="name">user should be deleted</span>
 
-  <span class="lead-duration duration">0.005</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">content should be correct</span>
-
-  <span class="lead-duration duration">0.005</span>
+  <span class="lead-duration duration">0.006</span>
 
 </div>
 
@@ -437,34 +409,7 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">title should be correct</span>
-
-  <span class="lead-duration duration">0.004</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">excerpt should be correct</span>
+  <span class="name">proper deleted user id should be returned</span>
 
   <span class="lead-duration duration">0.004</span>
 
@@ -506,22 +451,6 @@ $(document).ready(function() {
     </div>
 
     <div id="after-4" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.afterCreateAPostFeature()</span>
-
-  <span class="lead-duration duration">0.518</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
