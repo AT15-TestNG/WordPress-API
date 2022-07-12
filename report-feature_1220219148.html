@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports (no 1.0.09d7a6) - Tag: @Acceptance</title>
+<title>Cucumber Reports (no 1.0.710cd1) - Feature: Pages</title>
 
 </head>
 <body>
@@ -75,8 +75,8 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>WordPress</td>
-        <td>1.0.09d7a6</td>
-      <td>12 Jul 2022, 03:37</td>
+        <td>1.0.710cd1</td>
+      <td>12 Jul 2022, 03:38</td>
     </tr>
   </tbody>
 </table>
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 <div id="report-lead" class="container-fluid">
   <div class="col-md-10 col-md-offset-1">
-    <h2>Tag Report</h2>
+    <h2>Feature Report</h2>
   </div>
 </div>
 
@@ -108,7 +108,7 @@ $(document).ready(function() {
     <th colspan="2">Features</th>
   </tr>
   <tr>
-    <th>Tag</th>
+    <th>Feature</th>
     <th class="passed">Passed</th>
     <th class="failed">Failed</th>
     <th class="skipped">Skipped</th>
@@ -128,19 +128,19 @@ $(document).ready(function() {
 
         <tbody>
         <tr>
-          <td class="tagname">@Acceptance</td>
-          <td      class="passed"    >34</td>
+          <td class="tagname">Pages</td>
+          <td      class="passed"    >39</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
-          <td class="total">34</td>
+          <td class="total">39</td>
 
-          <td  class="passed"    >5</td>
+          <td  class="passed"    >6</td>
           <td >0</td>
-          <td class="total">5</td>
+          <td class="total">6</td>
 
-          <td class="duration" data-value="2881697101">2.881</td>
+          <td class="duration" data-value="5758248650">5.758</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -167,33 +167,46 @@ $(document).ready(function() {
 <div class="container-fluid" id="report">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <div class="elements">
+      <div class="feature">
 
+<div class="tags indention">
+    <b>Tags:</b>
+       <a href="report-tag_4056622947.html">@Pages</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+</div>
+
+
+<div class="brief passed">
+  <span class="keyword indention">Feature</span>
+  <span class="name">Pages</span>
+
+
+</div>
+
+        <div class="description indention"></div>
+
+        <div class="elements inner-level">
 
 <div class="element">
-    <div class="indention">
-      <b>Feature:</b>
-      <a href="report-feature_3203720170.html">Posts</a>
-    </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4057052018.html">@Posts</a>
-       <a href="report-tag_3873586870.html">@Acceptance</a>
-       <a href="report-tag_3053923271.html">@GetAllPosts</a>
+       <a href="report-tag_4056622947.html">@Pages</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_3053494200.html">@GetAllPages</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">2.002</span>
+  <span class="lead-duration duration">2.894</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to retrieve all posts</span>
+  <span class="name">A user with proper role should be able to retrieve all pages</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -229,7 +242,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">1.917</span>
+  <span class="lead-duration duration">2.599</span>
 
 </div>
 
@@ -254,9 +267,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to retrieve all posts</span>
+  <span class="name">I make a request to retrieve all pages</span>
 
-  <span class="lead-duration duration">0.061</span>
+  <span class="lead-duration duration">0.280</span>
 
 </div>
 
@@ -283,7 +296,7 @@ $(document).ready(function() {
   <span class="keyword indention">Then</span>
   <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
 
-  <span class="lead-duration duration">0.008</span>
+  <span class="lead-duration duration">0.002</span>
 
 </div>
 
@@ -310,7 +323,7 @@ $(document).ready(function() {
   <span class="keyword indention">And</span>
   <span class="name">response should be valid and have a body</span>
 
-  <span class="lead-duration duration">0.001</span>
+  <span class="lead-duration duration">0.000</span>
 
 </div>
 
@@ -335,9 +348,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">response should have proper amount of posts</span>
+  <span class="name">response should have proper amount of pages</span>
 
-  <span class="lead-duration duration">0.012</span>
+  <span class="lead-duration duration">0.011</span>
 
 </div>
 
@@ -369,29 +382,25 @@ $(document).ready(function() {
 
 
 <div class="element">
-    <div class="indention">
-      <b>Feature:</b>
-      <a href="report-feature_3203720170.html">Posts</a>
-    </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4057052018.html">@Posts</a>
-       <a href="report-tag_3873586870.html">@Acceptance</a>
-       <a href="report-tag_2964365476.html">@CreateAPost</a>
+       <a href="report-tag_4056622947.html">@Pages</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_3053494200.html">@GetAllPages</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.252</span>
+  <span class="lead-duration duration">0.550</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-3">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to create a post</span>
+  <span class="name">A user with proper role should be able to retrieve all pages</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -425,9 +434,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-Given passed">
   <span class="keyword indention">Given</span>
-  <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
+  <span class="name">I am authorized with a user with &quot;<span class="argument">subscriber</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.079</span>
+  <span class="lead-duration duration">0.295</span>
 
 </div>
 
@@ -452,9 +461,203 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to create a post with the following query params</span>
+  <span class="name">I make a request to retrieve all pages</span>
 
-  <span class="lead-duration duration">0.089</span>
+  <span class="lead-duration duration">0.249</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">response should be valid and have a body</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">response should have proper amount of pages</span>
+
+  <span class="lead-duration duration">0.004</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+  </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+
+
+<div class="element">
+
+
+<div class="tags indention">
+    <b>Tags:</b>
+       <a href="report-tag_4056622947.html">@Pages</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_2964351635.html">@CreateAPage</a>
+       <a href="report-tag_4059758862.html">@Smoke</a>
+</div>
+
+
+  <span class="lead-duration duration">0.577</span>
+
+
+  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-5">
+
+<div class="brief passed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">A user with proper role should be able to create a page</span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-5" class="collapse collapsable-details ">
+
+
+
+
+
+<div class="steps inner-level">
+  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-6">
+
+<div class="brief passed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </div>
+
+  <div id="steps-6" class="inner-level collapse collapsable-details ">
+      <div class="step">
+
+
+<div class="brief step-name-Given passed">
+  <span class="keyword indention">Given</span>
+  <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
+
+  <span class="lead-duration duration">0.268</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-When passed">
+  <span class="keyword indention">When</span>
+  <span class="name">I make a request to create a page with the following query params</span>
+
+  <span class="lead-duration duration">0.269</span>
 
 </div>
 
@@ -471,7 +674,7 @@ $(document).ready(function() {
                   <td>excerpt</td>
               </tr>
               <tr>
-                  <td>TestNG WordPress Post Content</td>
+                  <td>TestNG WordPress Page Content</td>
                   <td>TestNG WordPress Title</td>
                   <td>TestNG WordPress Excerpt</td>
               </tr>
@@ -545,36 +748,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">content should be correct</span>
+  <span class="name">page content should be correct</span>
 
-  <span class="lead-duration duration">0.033</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">title should be correct</span>
-
-  <span class="lead-duration duration">0.026</span>
+  <span class="lead-duration duration">0.014</span>
 
 </div>
 
@@ -599,9 +775,36 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">excerpt should be correct</span>
+  <span class="name">page title should be correct</span>
 
-  <span class="lead-duration duration">0.022</span>
+  <span class="lead-duration duration">0.015</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">page excerpt should be correct</span>
+
+  <span class="lead-duration duration">0.008</span>
 
 </div>
 
@@ -628,7 +831,7 @@ $(document).ready(function() {
 
 
   <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-5">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-7">
 
 <div class="brief passed">
   <span class="keyword indention">Hooks</span>
@@ -640,13 +843,13 @@ $(document).ready(function() {
 
     </div>
 
-    <div id="after-5" class="inner-level collapse collapsable-details ">
+    <div id="after-7" class="inner-level collapse collapsable-details ">
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.afterCreateAPostFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PagesFeatureHook.afterCreateAPageFeature()</span>
 
-  <span class="lead-duration duration">0.237</span>
+  <span class="lead-duration duration">0.620</span>
 
           </div>
 
@@ -665,29 +868,25 @@ $(document).ready(function() {
 
 
 <div class="element">
-    <div class="indention">
-      <b>Feature:</b>
-      <a href="report-feature_3203720170.html">Posts</a>
-    </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4057052018.html">@Posts</a>
-       <a href="report-tag_3873586870.html">@Acceptance</a>
-       <a href="report-tag_2230395236.html">@RetrieveAPost</a>
+       <a href="report-tag_4056622947.html">@Pages</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_2230381395.html">@RetrieveAPage</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.211</span>
+  <span class="lead-duration duration">0.640</span>
 
 
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-6">
+  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-8">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to retrieve a post</span>
+  <span class="name">A user with proper role should be able to retrieve a page</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -696,11 +895,11 @@ $(document).ready(function() {
   </span>
   <div class="description indention"></div>
 
-  <div id="element-6" class="collapse collapsable-details ">
+  <div id="element-8" class="collapse collapsable-details ">
 
 
   <div class="inner-level hooks-element-before">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-7">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-9">
 
 <div class="brief passed">
   <span class="keyword indention">Hooks</span>
@@ -712,13 +911,13 @@ $(document).ready(function() {
 
     </div>
 
-    <div id="before-7" class="inner-level collapse collapsable-details ">
+    <div id="before-9" class="inner-level collapse collapsable-details ">
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">Before</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.beforeRetrieveAPostFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PagesFeatureHook.beforeRetrieveAPageFeature()</span>
 
-  <span class="lead-duration duration">0.160</span>
+  <span class="lead-duration duration">0.535</span>
 
           </div>
 
@@ -735,7 +934,7 @@ $(document).ready(function() {
 
 
 <div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-8">
+  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-10">
 
 <div class="brief passed">
   <span class="keyword indention">Steps</span>
@@ -747,7 +946,7 @@ $(document).ready(function() {
 
   </div>
 
-  <div id="steps-8" class="inner-level collapse collapsable-details ">
+  <div id="steps-10" class="inner-level collapse collapsable-details ">
       <div class="step">
 
 
@@ -755,7 +954,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.091</span>
+  <span class="lead-duration duration">0.264</span>
 
 </div>
 
@@ -780,9 +979,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to retrieve a post</span>
+  <span class="name">I make a request to retrieve a page</span>
 
-  <span class="lead-duration duration">0.080</span>
+  <span class="lead-duration duration">0.324</span>
 
 </div>
 
@@ -809,7 +1008,7 @@ $(document).ready(function() {
   <span class="keyword indention">Then</span>
   <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
 
-  <span class="lead-duration duration">0.001</span>
+  <span class="lead-duration duration">0.000</span>
 
 </div>
 
@@ -861,36 +1060,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">proper post id should be returned</span>
+  <span class="name">proper page id should be returned</span>
 
-  <span class="lead-duration duration">0.019</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">content should be correct</span>
-
-  <span class="lead-duration duration">0.006</span>
+  <span class="lead-duration duration">0.010</span>
 
 </div>
 
@@ -915,9 +1087,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">title should be correct</span>
+  <span class="name">page content should be correct</span>
 
-  <span class="lead-duration duration">0.005</span>
+  <span class="lead-duration duration">0.008</span>
 
 </div>
 
@@ -942,9 +1114,36 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">excerpt should be correct</span>
+  <span class="name">page title should be correct</span>
 
-  <span class="lead-duration duration">0.005</span>
+  <span class="lead-duration duration">0.015</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">page excerpt should be correct</span>
+
+  <span class="lead-duration duration">0.016</span>
 
 </div>
 
@@ -971,7 +1170,7 @@ $(document).ready(function() {
 
 
   <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-9">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-11">
 
 <div class="brief passed">
   <span class="keyword indention">Hooks</span>
@@ -983,13 +1182,13 @@ $(document).ready(function() {
 
     </div>
 
-    <div id="after-9" class="inner-level collapse collapsable-details ">
+    <div id="after-11" class="inner-level collapse collapsable-details ">
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.afterCreateAPostFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PagesFeatureHook.afterCreateAPageFeature()</span>
 
-  <span class="lead-duration duration">0.249</span>
+  <span class="lead-duration duration">0.549</span>
 
           </div>
 
@@ -1008,29 +1207,25 @@ $(document).ready(function() {
 
 
 <div class="element">
-    <div class="indention">
-      <b>Feature:</b>
-      <a href="report-feature_3203720170.html">Posts</a>
-    </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4057052018.html">@Posts</a>
-       <a href="report-tag_3873586870.html">@Acceptance</a>
-       <a href="report-tag_2884493559.html">@UpdateAPost</a>
+       <a href="report-tag_4056622947.html">@Pages</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_2884479718.html">@UpdateAPage</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.205</span>
+  <span class="lead-duration duration">0.588</span>
 
 
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-10">
+  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-12">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to update a post</span>
+  <span class="name">A user with proper role should be able to update a page</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -1039,11 +1234,11 @@ $(document).ready(function() {
   </span>
   <div class="description indention"></div>
 
-  <div id="element-10" class="collapse collapsable-details ">
+  <div id="element-12" class="collapse collapsable-details ">
 
 
   <div class="inner-level hooks-element-before">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-11">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-13">
 
 <div class="brief passed">
   <span class="keyword indention">Hooks</span>
@@ -1055,13 +1250,13 @@ $(document).ready(function() {
 
     </div>
 
-    <div id="before-11" class="inner-level collapse collapsable-details ">
+    <div id="before-13" class="inner-level collapse collapsable-details ">
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">Before</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.beforeRetrieveAPostFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PagesFeatureHook.beforeRetrieveAPageFeature()</span>
 
-  <span class="lead-duration duration">0.160</span>
+  <span class="lead-duration duration">0.542</span>
 
           </div>
 
@@ -1078,7 +1273,7 @@ $(document).ready(function() {
 
 
 <div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-12">
+  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-14">
 
 <div class="brief passed">
   <span class="keyword indention">Steps</span>
@@ -1090,7 +1285,7 @@ $(document).ready(function() {
 
   </div>
 
-  <div id="steps-12" class="inner-level collapse collapsable-details ">
+  <div id="steps-14" class="inner-level collapse collapsable-details ">
       <div class="step">
 
 
@@ -1098,7 +1293,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.064</span>
+  <span class="lead-duration duration">0.271</span>
 
 </div>
 
@@ -1123,9 +1318,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to update a post with the following query params</span>
+  <span class="name">I make a request to update a page with the following query params</span>
 
-  <span class="lead-duration duration">0.089</span>
+  <span class="lead-duration duration">0.273</span>
 
 </div>
 
@@ -1164,7 +1359,7 @@ $(document).ready(function() {
   <span class="keyword indention">Then</span>
   <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
 
-  <span class="lead-duration duration">0.001</span>
+  <span class="lead-duration duration">0.000</span>
 
 </div>
 
@@ -1216,7 +1411,34 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">proper post id should be returned</span>
+  <span class="name">proper page id should be returned</span>
+
+  <span class="lead-duration duration">0.013</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">page content should be correct</span>
 
   <span class="lead-duration duration">0.010</span>
 
@@ -1243,36 +1465,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">content should be correct</span>
+  <span class="name">page title should be correct</span>
 
-  <span class="lead-duration duration">0.016</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">title should be correct</span>
-
-  <span class="lead-duration duration">0.007</span>
+  <span class="lead-duration duration">0.008</span>
 
 </div>
 
@@ -1297,9 +1492,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">excerpt should be correct</span>
+  <span class="name">page excerpt should be correct</span>
 
-  <span class="lead-duration duration">0.014</span>
+  <span class="lead-duration duration">0.008</span>
 
 </div>
 
@@ -1326,7 +1521,7 @@ $(document).ready(function() {
 
 
   <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-13">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-15">
 
 <div class="brief passed">
   <span class="keyword indention">Hooks</span>
@@ -1338,13 +1533,13 @@ $(document).ready(function() {
 
     </div>
 
-    <div id="after-13" class="inner-level collapse collapsable-details ">
+    <div id="after-15" class="inner-level collapse collapsable-details ">
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.afterCreateAPostFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PagesFeatureHook.afterCreateAPageFeature()</span>
 
-  <span class="lead-duration duration">0.198</span>
+  <span class="lead-duration duration">0.562</span>
 
           </div>
 
@@ -1363,29 +1558,25 @@ $(document).ready(function() {
 
 
 <div class="element">
-    <div class="indention">
-      <b>Feature:</b>
-      <a href="report-feature_3203720170.html">Posts</a>
-    </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4057052018.html">@Posts</a>
-       <a href="report-tag_3873586870.html">@Acceptance</a>
-       <a href="report-tag_2336117077.html">@DeleteAPost</a>
+       <a href="report-tag_4056622947.html">@Pages</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_2336103236.html">@DeleteAPage</a>
        <a href="report-tag_4059758862.html">@Smoke</a>
 </div>
 
 
-  <span class="lead-duration duration">0.209</span>
+  <span class="lead-duration duration">0.506</span>
 
 
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-14">
+  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-16">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">A user with proper role should be able to delete a post</span>
+  <span class="name">A user with proper role should be able to delete a page</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -1394,11 +1585,11 @@ $(document).ready(function() {
   </span>
   <div class="description indention"></div>
 
-  <div id="element-14" class="collapse collapsable-details ">
+  <div id="element-16" class="collapse collapsable-details ">
 
 
   <div class="inner-level hooks-element-before">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-15">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-17">
 
 <div class="brief passed">
   <span class="keyword indention">Hooks</span>
@@ -1410,13 +1601,13 @@ $(document).ready(function() {
 
     </div>
 
-    <div id="before-15" class="inner-level collapse collapsable-details ">
+    <div id="before-17" class="inner-level collapse collapsable-details ">
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">Before</span>
-              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PostsFeatureHook.beforeRetrieveAPostFeature()</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.PagesFeatureHook.beforeRetrieveAPageFeature()</span>
 
-  <span class="lead-duration duration">0.150</span>
+  <span class="lead-duration duration">0.542</span>
 
           </div>
 
@@ -1433,7 +1624,7 @@ $(document).ready(function() {
 
 
 <div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-16">
+  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-18">
 
 <div class="brief passed">
   <span class="keyword indention">Steps</span>
@@ -1445,7 +1636,7 @@ $(document).ready(function() {
 
   </div>
 
-  <div id="steps-16" class="inner-level collapse collapsable-details ">
+  <div id="steps-18" class="inner-level collapse collapsable-details ">
       <div class="step">
 
 
@@ -1453,7 +1644,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
 
-  <span class="lead-duration duration">0.076</span>
+  <span class="lead-duration duration">0.243</span>
 
 </div>
 
@@ -1478,9 +1669,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I make a request to delete a post</span>
+  <span class="name">I make a request to delete a page</span>
 
-  <span class="lead-duration duration">0.116</span>
+  <span class="lead-duration duration">0.249</span>
 
 </div>
 
@@ -1534,7 +1725,7 @@ $(document).ready(function() {
   <span class="keyword indention">And</span>
   <span class="name">response should be valid and have a body</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.001</span>
 
 </div>
 
@@ -1559,34 +1750,7 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">post should be deleted</span>
-
-  <span class="lead-duration duration">0.010</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">proper post id should be returned</span>
+  <span class="name">page should be deleted</span>
 
   <span class="lead-duration duration">0.006</span>
 
@@ -1608,6 +1772,33 @@ $(document).ready(function() {
 
 
       </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">proper page id should be returned</span>
+
+  <span class="lead-duration duration">0.005</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
   </div>
 </div>
 
@@ -1618,6 +1809,7 @@ $(document).ready(function() {
   </div>
 </div>
 
+        </div>
 
       </div>
     </div>
