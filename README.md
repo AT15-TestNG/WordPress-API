@@ -1,5 +1,6 @@
 [![WordPress Pipeline](https://github.com/AT15-TestNG/WordPress-API/actions/workflows/github-actions-pipeline.yml/badge.svg)](https://github.com/AT15-TestNG/WordPress-API/actions/workflows/github-actions-pipeline.yml)
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=wordpress-testng)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wordpress-testng&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=wordpress-testng)
+
 # WordPress API v2 Testing Framework
 
 This framework was implemented to test the [WordPress API](http://18.208.160.75/) with the [
@@ -45,7 +46,6 @@ Or you can run the tests with a specific tag and a specific scenario:
 ```
 $ gradle clean executeFeatures -PenvId="QA01" -PcucumberOptions="@Tag and @Scenario"
 ```
-
 
 Run the following command to run regression tests:
 ```
