@@ -12,11 +12,9 @@ import java.util.Objects;
 
 public class AuthorizationSteps {
     private final HttpHeaders headers;
-
     public AuthorizationSteps(HttpHeaders headers) {
         this.headers = headers;
     }
-
     @Given("^I am authorized with a user with \"(.*?)\" role$")
     public void getToken(String userRole) {
         Header authHeader = APIAuthorizationMethods.getAuthHeader(userRole);

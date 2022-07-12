@@ -1,6 +1,7 @@
 package api.methods;
 
 import api.APIManager;
+import constants.DomainAppEnums;
 import framework.CredentialsManager;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
@@ -16,8 +17,9 @@ public class APIPostsMethods {
     private static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
     private static final LoggerManager log = LoggerManager.getInstance();
 
+
     public static boolean deletePostById(String postId) {
-        String userRole = "administrator";
+        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
@@ -37,7 +39,7 @@ public class APIPostsMethods {
     }
 
     public static Response createAPost(String content, String title, String excerpt) {
-        String userRole = "administrator";
+        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
