@@ -26,6 +26,7 @@ test {
     setBuildNumber()
     systemProperty "envId", envId
 }
+
 configurations {
     cucumberRuntime {
         extendsFrom testImplementation
