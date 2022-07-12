@@ -1,6 +1,7 @@
 package com.jalasoft.wordpress.steps;
 
 import api.http.HttpResponse;
+
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.restassured.http.ContentType;
@@ -8,6 +9,7 @@ import io.restassured.internal.http.Status;
 import org.testng.Assert;
 
 import java.nio.charset.StandardCharsets;
+
 import java.util.List;
 import java.util.Map;
 
@@ -62,4 +64,3 @@ public class APISteps {
         Assert.assertTrue(response.getResponse().jsonPath().getString("message").contains(queryParams.get("message").toString()), "wrong message value returned");
     }
 }
-
