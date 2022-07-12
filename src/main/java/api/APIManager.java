@@ -75,3 +75,4 @@ public class APIManager {
         return RestAssured.given().queryParams(queryParams).headers(headers).delete(endpoint);
     }
 }
+
