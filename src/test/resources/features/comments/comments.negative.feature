@@ -6,7 +6,7 @@ Feature: Comments Negative Tests
     Given I am using a token with "<Token Value>"
     When I make a request to retrieve all comments
     Then response should be "<Status Line>"
-    And response should be invalid and have a body with the following keys and values
+    And the response should be invalid and have a body with the following keys and values
       | status    | error   | code   |  error_description  |
       | <Status>  | <Error> | <Code> | <Error description> |
 

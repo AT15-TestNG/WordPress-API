@@ -29,6 +29,7 @@ public class APIManager {
         RestAssured.port = CredentialsManager.getInstance().getAPIServicePort();
         RestAssured.registerParser("text/html", Parser.JSON);
     }
+
     public Response get(String endpoint) {
         return RestAssured.given().get(endpoint);
     }

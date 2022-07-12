@@ -19,7 +19,25 @@ public class APIAuthorizationMethods {
         String tokenEndpoint = credentialsManager.getTokenEndpoint();
         Response response = apiManager.post(tokenEndpoint, ContentType.JSON, jsonAsMap);
         if ((response.jsonPath().get("token_type") == null) || (response.jsonPath().get("jwt_token") == null)) {
-            log.error("token was not created");
+            log.error("Failed to get auth token");
+            return null;
+        } else {
+            String authorization = response.jsonPath().get("token_type") + " " + response.jsonPath().get("jwt_token");
+            return new Header("Authorization", authorization);
+        }
+    }
+
+    public static Header getAuthHeader(String userRole, String username) {
+        Map<String, Object> jsonAsMap = new HashMap<>();
+        jsonAsMap.put("username", username);
+        jsonAsMap.put("password", credentialsManager.getPassword(userRole));
+
+        String tokenEndpoint = credentialsManager.getTokenEndpoint();
+
+        Response response = apiManager.post(tokenEndpoint, ContentType.JSON, jsonAsMap);
+
+        if ((response.jsonPath().get("token_type") == null) || (response.jsonPath().get("jwt_token") == null)) {
+            log.error("Failed to get auth token");
             return null;
         } else {
             String authorization = response.jsonPath().get("token_type") + " " + response.jsonPath().get("jwt_token");

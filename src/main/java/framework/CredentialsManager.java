@@ -107,6 +107,17 @@ public class CredentialsManager {
         return Integer.parseInt(getEnvironmentSetting("api.service.port"));
     }
 
+    public String getRetrieveMeEndpoint() {
+        return getEnvironmentSetting("api.endpoint.retrieveMe");
+    }
+
+    public String getTypesEndpoint() {
+        return getEnvironmentSetting("api.endpoint.types");
+    }
+
+    public String getTypeByNameEndpoint() {
+        return getEnvironmentSetting("api.endpoint.typesByName");
+    }
     public String getCategoriesEndpoint() {
         return getEnvironmentSetting("api.endpoint.categories");
     }
