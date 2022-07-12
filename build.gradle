@@ -24,6 +24,7 @@ dependencies {
 
 test {
     useTestNG()
+    setBuildNumber()
     systemProperty "envId", envId
 }
 
@@ -61,3 +62,10 @@ sonarqube {
         property "sonar.host.url", "https://sonarcloud.io"
     }
 }
+
+}
+
+def setBuildNumber() {
+    ant.propertyfile(file: "cucumber-reporting.properties") {
+        entry(key: "buildNumber", value: buildNumber)
+    }
