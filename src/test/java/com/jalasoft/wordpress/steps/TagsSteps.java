@@ -104,13 +104,11 @@ public class TagsSteps {
     }
 
     @Given("^I make a request to delete a non-existing tag$")
-    public void deleteDefaultCategory() {
-        String defaultCategoryEndpoint = "/wp/v2/tags/123456987";
-
-        Response requestResponse = apiManager.delete(defaultCategoryEndpoint, headers.getHeaders());
+    public void deleteDefaultTag() {
+        String defaultTagEndpoint = credentialsManager.getTagsByIdEndpoint().replace("<id>", "123456");
+        Response requestResponse = apiManager.delete(defaultTagEndpoint, headers.getHeaders());
         response.setResponse(requestResponse);
     }
-
     @Given("^I make a request to retrieve a tag using an invalid id \"(.*?)\"$")
     public void retrieveCategoryWithInvalidEndpoint(String invalidEndpoint) {
         Response requestResponse = apiManager.get(invalidEndpoint, headers.getHeaders());
