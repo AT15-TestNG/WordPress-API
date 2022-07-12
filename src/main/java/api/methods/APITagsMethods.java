@@ -1,6 +1,7 @@
 package api.methods;
 
 import api.APIManager;
+import constants.DomainAppEnums;
 import framework.CredentialsManager;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
@@ -14,7 +15,7 @@ public class APITagsMethods {
     public static final CredentialsManager credentialsManager = CredentialsManager.getInstance();
 
     public static boolean deleteTagById(String tagId) {
-        String userRole = "administrator";
+        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
         Map<String, Object> jsonAsMap = new HashMap<>();
@@ -31,7 +32,7 @@ public class APITagsMethods {
         }
     }
     public static Response createATag(String name) {
-        String userRole = "administrator";
+        String userRole = DomainAppEnums.UserRole.ADMINISTRATOR.getUserRole();
         Header header = APIAuthorizationMethods.getAuthHeader(userRole);
         Headers authHeaders = new Headers(header);
 
