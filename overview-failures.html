@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports (no 1.0.35ae69) - Failures Overview</title>
+<title>Cucumber Reports (no 1.0.3fa221) - Failures Overview</title>
 
 </head>
 
@@ -76,8 +76,8 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>WordPress</td>
-        <td>1.0.35ae69</td>
-      <td>12 Jul 2022, 20:55</td>
+        <td>1.0.3fa221</td>
+      <td>12 Jul 2022, 20:59</td>
     </tr>
   </tbody>
 </table>
@@ -96,12 +96,2022 @@ $(document).ready(function() {
 </div>
 
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1 col-md-offset-10">
+      <i class="fa fa-chevron-circle-down fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('show')"></i>
+      <i class="fa fa-chevron-circle-up fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('hide')"></i>
+    </div>
+  </div>
+</div>
+
+
 <div class="container-fluid" id="report">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
 
-        <p>You have no failed scenarios in your Cucumber report</p>
+        <div class="elements">
 
+<div class="element">
+    <div class="indention">
+      <b>Feature:</b>
+      <a href="report-feature_9_470617094.html">Users</a>
+    </div>
+
+
+<div class="tags indention">
+    <b>Tags:</b>
+       <a href="report-tag_4061775271.html">@Users</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_2230547599.html">@RetrieveAUser</a>
+       <a href="report-tag_4059758862.html">@Smoke</a>
+</div>
+
+
+  <span class="lead-duration duration">0.000</span>
+
+
+  <span data-toggle="collapse" class=" collapsable-control" data-target="#element-1">
+
+<div class="brief failed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">A user with proper role should be able to retrieve a User by Id</span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-1" class="collapse collapsable-details  in ">
+
+
+  <div class="inner-level hooks-element-before">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#before-2">
+
+<div class="brief failed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="before-2" class="inner-level collapse collapsable-details  in ">
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.beforeScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.001</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief failed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUsersFeature()</span>
+
+  <span class="lead-duration duration">0.304</span>
+
+          </div>
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-3">
+          <a>Error message</a>
+      </div>
+      <div id="msg-3" class="collapse collapsable-details  in ">
+        <pre>java.lang.AssertionError: User was not created
+	at org.testng.Assert.fail(Assert.java:110)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUsersFeature(UsersFeatureHook.java:34)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+
+
+<div class="steps inner-level">
+  <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-4">
+
+<div class="brief failed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </div>
+
+  <div id="steps-4" class="inner-level collapse collapsable-details  in ">
+      <div class="step">
+
+
+<div class="brief step-name-Given skipped">
+  <span class="keyword indention">Given</span>
+  <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-When skipped">
+  <span class="keyword indention">When</span>
+  <span class="name">I make a request to retrieve a user by Id</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then skipped">
+  <span class="keyword indention">Then</span>
+  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">response should be valid and have a body</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">proper user id should be returned</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">name should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">description should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+  </div>
+</div>
+
+
+
+
+  <div class="inner-level hooks-element-after">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#after-5">
+
+<div class="brief failed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="after-5" class="inner-level collapse collapsable-details  in ">
+        <div class="hook">
+          <div class="brief failed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature()</span>
+
+  <span class="lead-duration duration">0.166</span>
+
+          </div>
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-6">
+          <a>Error message</a>
+      </div>
+      <div id="msg-6" class="collapse collapsable-details  in ">
+        <pre>java.lang.NullPointerException: Cannot invoke &quot;java.lang.CharSequence.toString()&quot; because &quot;replacement&quot; is null
+	at java.base/java.lang.String.replace(String.java:2159)
+	at api.methods.APIUsersMethods.deleteUserById(APIUsersMethods.java:47)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature(UsersFeatureHook.java:57)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterFailedScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+
+<div class="element">
+    <div class="indention">
+      <b>Feature:</b>
+      <a href="report-feature_9_470617094.html">Users</a>
+    </div>
+
+
+<div class="tags indention">
+    <b>Tags:</b>
+       <a href="report-tag_4061775271.html">@Users</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_509319315.html">@UpdateUser</a>
+       <a href="report-tag_4059758862.html">@Smoke</a>
+</div>
+
+
+  <span class="lead-duration duration">0.000</span>
+
+
+  <span data-toggle="collapse" class=" collapsable-control" data-target="#element-7">
+
+<div class="brief failed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">A user with proper role should be able to update a User by Id</span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-7" class="collapse collapsable-details  in ">
+
+
+  <div class="inner-level hooks-element-before">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#before-8">
+
+<div class="brief failed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="before-8" class="inner-level collapse collapsable-details  in ">
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.beforeScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief failed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUsersFeature()</span>
+
+  <span class="lead-duration duration">0.328</span>
+
+          </div>
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-9">
+          <a>Error message</a>
+      </div>
+      <div id="msg-9" class="collapse collapsable-details  in ">
+        <pre>java.lang.AssertionError: User was not created
+	at org.testng.Assert.fail(Assert.java:110)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUsersFeature(UsersFeatureHook.java:34)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+
+
+<div class="steps inner-level">
+  <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-10">
+
+<div class="brief failed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </div>
+
+  <div id="steps-10" class="inner-level collapse collapsable-details  in ">
+      <div class="step">
+
+
+<div class="brief step-name-Given skipped">
+  <span class="keyword indention">Given</span>
+  <span class="name">I am authorized with a user with &quot;<span class="argument">administrator</span>&quot; role</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-When skipped">
+  <span class="keyword indention">When</span>
+  <span class="name">I make a request to update a user with the following query params</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+          <table class="step-arguments">
+              <tr>
+                  <td>first_name</td>
+                  <td>last_name</td>
+                  <td>description</td>
+              </tr>
+              <tr>
+                  <td>TESTNG Name</td>
+                  <td>TestNG Last Name Updated</td>
+                  <td>TestNG description</td>
+              </tr>
+          </table>
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then skipped">
+  <span class="keyword indention">Then</span>
+  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">response should be valid and have a body</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">proper user id should be returned</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">First Name should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">Last Name should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">description should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+  </div>
+</div>
+
+
+
+
+  <div class="inner-level hooks-element-after">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#after-11">
+
+<div class="brief failed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="after-11" class="inner-level collapse collapsable-details  in ">
+        <div class="hook">
+          <div class="brief failed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature()</span>
+
+  <span class="lead-duration duration">0.144</span>
+
+          </div>
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-12">
+          <a>Error message</a>
+      </div>
+      <div id="msg-12" class="collapse collapsable-details  in ">
+        <pre>java.lang.NullPointerException: Cannot invoke &quot;java.lang.CharSequence.toString()&quot; because &quot;replacement&quot; is null
+	at java.base/java.lang.String.replace(String.java:2159)
+	at api.methods.APIUsersMethods.deleteUserById(APIUsersMethods.java:47)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature(UsersFeatureHook.java:57)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterFailedScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+
+<div class="element">
+    <div class="indention">
+      <b>Feature:</b>
+      <a href="report-feature_9_470617094.html">Users</a>
+    </div>
+
+
+<div class="tags indention">
+    <b>Tags:</b>
+       <a href="report-tag_4061775271.html">@Users</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_3821754528.html">@UpdateMe</a>
+       <a href="report-tag_4059758862.html">@Smoke</a>
+</div>
+
+
+  <span class="lead-duration duration">0.000</span>
+
+
+  <span data-toggle="collapse" class=" collapsable-control" data-target="#element-13">
+
+<div class="brief failed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">A user with proper role should be able to update his own user</span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-13" class="collapse collapsable-details  in ">
+
+
+  <div class="inner-level hooks-element-before">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#before-14">
+
+<div class="brief failed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="before-14" class="inner-level collapse collapsable-details  in ">
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.beforeScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief failed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUsersFeature()</span>
+
+  <span class="lead-duration duration">0.260</span>
+
+          </div>
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-15">
+          <a>Error message</a>
+      </div>
+      <div id="msg-15" class="collapse collapsable-details  in ">
+        <pre>java.lang.AssertionError: User was not created
+	at org.testng.Assert.fail(Assert.java:110)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUsersFeature(UsersFeatureHook.java:34)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+
+
+<div class="steps inner-level">
+  <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-16">
+
+<div class="brief failed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </div>
+
+  <div id="steps-16" class="inner-level collapse collapsable-details  in ">
+      <div class="step">
+
+
+<div class="brief step-name-Given skipped">
+  <span class="keyword indention">Given</span>
+  <span class="name">An authorized user with &quot;<span class="argument">administrator</span>&quot; role</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-When skipped">
+  <span class="keyword indention">When</span>
+  <span class="name">He makes a request to update his own user with the following query params</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+          <table class="step-arguments">
+              <tr>
+                  <td>first_name</td>
+                  <td>last_name</td>
+                  <td>description</td>
+              </tr>
+              <tr>
+                  <td>TESTNG Name</td>
+                  <td>TestNG Last Name Updated</td>
+                  <td>TestNG description</td>
+              </tr>
+          </table>
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then skipped">
+  <span class="keyword indention">Then</span>
+  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">response should be valid and have a body</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">proper user id should be returned</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">First Name should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">Last Name should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">description should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+  </div>
+</div>
+
+
+
+
+  <div class="inner-level hooks-element-after">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#after-17">
+
+<div class="brief failed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="after-17" class="inner-level collapse collapsable-details  in ">
+        <div class="hook">
+          <div class="brief failed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature()</span>
+
+  <span class="lead-duration duration">0.136</span>
+
+          </div>
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-18">
+          <a>Error message</a>
+      </div>
+      <div id="msg-18" class="collapse collapsable-details  in ">
+        <pre>java.lang.NullPointerException: Cannot invoke &quot;java.lang.CharSequence.toString()&quot; because &quot;replacement&quot; is null
+	at java.base/java.lang.String.replace(String.java:2159)
+	at api.methods.APIUsersMethods.deleteUserById(APIUsersMethods.java:47)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature(UsersFeatureHook.java:57)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterFailedScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+
+<div class="element">
+    <div class="indention">
+      <b>Feature:</b>
+      <a href="report-feature_9_470617094.html">Users</a>
+    </div>
+
+
+<div class="tags indention">
+    <b>Tags:</b>
+       <a href="report-tag_4061775271.html">@Users</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_3318871298.html">@DeleteMe</a>
+       <a href="report-tag_4059758862.html">@Smoke</a>
+</div>
+
+
+  <span class="lead-duration duration">0.000</span>
+
+
+  <span data-toggle="collapse" class=" collapsable-control" data-target="#element-19">
+
+<div class="brief failed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">A user with proper role should be able to delete his own user</span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-19" class="collapse collapsable-details  in ">
+
+
+  <div class="inner-level hooks-element-before">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#before-20">
+
+<div class="brief failed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="before-20" class="inner-level collapse collapsable-details  in ">
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.beforeScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief failed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUsersFeature()</span>
+
+  <span class="lead-duration duration">0.300</span>
+
+          </div>
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-21">
+          <a>Error message</a>
+      </div>
+      <div id="msg-21" class="collapse collapsable-details  in ">
+        <pre>java.lang.AssertionError: User was not created
+	at org.testng.Assert.fail(Assert.java:110)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeRetrieveAUsersFeature(UsersFeatureHook.java:34)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+
+
+<div class="steps inner-level">
+  <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-22">
+
+<div class="brief failed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </div>
+
+  <div id="steps-22" class="inner-level collapse collapsable-details  in ">
+      <div class="step">
+
+
+<div class="brief step-name-Given skipped">
+  <span class="keyword indention">Given</span>
+  <span class="name">An authorized user with &quot;<span class="argument">administrator</span>&quot; role</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-When skipped">
+  <span class="keyword indention">When</span>
+  <span class="name">He makes a request to delete his own user</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then skipped">
+  <span class="keyword indention">Then</span>
+  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">response should be valid and have a body</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">user should be deleted</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">proper deleted user id should be returned</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+  </div>
+</div>
+
+
+
+
+  <div class="inner-level hooks-element-after">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-23">
+
+<div class="brief passed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="after-23" class="inner-level collapse collapsable-details ">
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterFailedScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.001</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+
+<div class="element">
+    <div class="indention">
+      <b>Feature:</b>
+      <a href="report-feature_9_470617094.html">Users</a>
+    </div>
+
+
+<div class="tags indention">
+    <b>Tags:</b>
+       <a href="report-tag_4061775271.html">@Users</a>
+       <a href="report-tag_2226523296.html">@Regression</a>
+       <a href="report-tag_2496482221.html">@RetrieveMeAsSubscriber</a>
+       <a href="report-tag_4059758862.html">@Smoke</a>
+</div>
+
+
+  <span class="lead-duration duration">0.000</span>
+
+
+  <span data-toggle="collapse" class=" collapsable-control" data-target="#element-24">
+
+<div class="brief failed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">A user with proper role should be able to retrieve your own user</span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-24" class="collapse collapsable-details  in ">
+
+
+  <div class="inner-level hooks-element-before">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#before-25">
+
+<div class="brief failed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="before-25" class="inner-level collapse collapsable-details  in ">
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.beforeScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief failed">
+            <span class="keyword indention">Before</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeTestsWithSubscriberUser()</span>
+
+  <span class="lead-duration duration">0.314</span>
+
+          </div>
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-26">
+          <a>Error message</a>
+      </div>
+      <div id="msg-26" class="collapse collapsable-details  in ">
+        <pre>java.lang.AssertionError: User was not created
+	at org.testng.Assert.fail(Assert.java:110)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.beforeTestsWithSubscriberUser(UsersFeatureHook.java:47)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+
+
+<div class="steps inner-level">
+  <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-27">
+
+<div class="brief failed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+  </div>
+
+  <div id="steps-27" class="inner-level collapse collapsable-details  in ">
+      <div class="step">
+
+
+<div class="brief step-name-Given skipped">
+  <span class="keyword indention">Given</span>
+  <span class="name">An authorized user with &quot;<span class="argument">subscriber</span>&quot; role</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-When skipped">
+  <span class="keyword indention">When</span>
+  <span class="name">I make a request to retrieve my own user</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then skipped">
+  <span class="keyword indention">Then</span>
+  <span class="name">response should be &quot;<span class="argument">HTTP/1.1 200 OK</span>&quot;</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">response should be valid and have a body</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">proper user id should be returned</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">name should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And skipped">
+  <span class="keyword indention">And</span>
+  <span class="name">description should be correct</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+  </div>
+</div>
+
+
+
+
+  <div class="inner-level hooks-element-after">
+    <div data-toggle="collapse" class=" collapsable-control" data-target="#after-28">
+
+<div class="brief failed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+
+
+     <i class="chevron fa fa-fw"></i>
+</div>
+
+    </div>
+
+    <div id="after-28" class="inner-level collapse collapsable-details  in ">
+        <div class="hook">
+          <div class="brief failed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature()</span>
+
+  <span class="lead-duration duration">0.199</span>
+
+          </div>
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-29">
+          <a>Error message</a>
+      </div>
+      <div id="msg-29" class="collapse collapsable-details  in ">
+        <pre>java.lang.NullPointerException: Cannot invoke &quot;java.lang.CharSequence.toString()&quot; because &quot;replacement&quot; is null
+	at java.base/java.lang.String.replace(String.java:2159)
+	at api.methods.APIUsersMethods.deleteUserById(APIUsersMethods.java:47)
+	at com.jalasoft.wordpress.steps.hooks.features.UsersFeatureHook.afterCreateAUserFeature(UsersFeatureHook.java:57)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterFailedScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+              <span class="location name">com.jalasoft.wordpress.steps.hooks.ScenarioHooks.afterScenario(io.cucumber.java.Scenario)</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1 col-md-offset-10">
+      <i class="fa fa-chevron-circle-down fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('show')"></i>
+      <i class="fa fa-chevron-circle-up fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('hide')"></i>
     </div>
   </div>
 </div>
